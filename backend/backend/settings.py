@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'tecnoburguer',
+        'NAME': 'tecnoburguer.sqlite3',
         'USER': 'rena02to',
         'PASSWORD': 'XhUlLkM4A7vv9oJhy1UsBIM5RKWsCfQs',
         'HOST': 'dpg-cq4rtp08fa8c73fueu0g-a',
