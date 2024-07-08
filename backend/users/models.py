@@ -1,20 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class UsersData(models.Model):
-    types = (
+class User(AbstractUser):
+    types=(
+        ('sudo', 'Superuser'),
         ('admin', 'Administrador'),
         ('employee', 'Funcionário'),
-        ('client', 'Cliente')
+        ('client', 'Cliente'),
     )
-    
-    login = models.CharField(unique=True, max_length=14)
-    name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    telephone = models.CharField(unique=True, max_length=15)
-    adress = models.CharField(max_length=255, null=True, blank=True)
-    type = models.CharField(
-        max_length=8,
-        choices=types,
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+
+    name = models.CharField(max_length=150, blank=False)
+    email = models.EmailField(unique=True, blank=False)
+    telephone = models.CharField(max_length=15, blank=False)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    type = models.CharField(max_length=9, choices=types, default='client')
+
+    REQUIRED_FIELDS = ['name', 'email', 'telephone', 'type']
+    last_name=None
+    first_name=None
