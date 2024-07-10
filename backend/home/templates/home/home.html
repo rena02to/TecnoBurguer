@@ -1,5 +1,31 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    <p>The home page will be here with a brief explanation and link to the project</p>
+    <div class="main">
+
+        <main>
+            <!-- alterar para o arquivo que possui o nome tecnoburguer e tem a extensão svg -->
+            <a href="https://tecnoburguer.renatoalves.site"><img src="{% static 'images/favicon.ico' %}"/></a>
+            <h1><a href="https://tecnoburguer.renatoalves.site" target="_blank">TecnoBurguer's</a> backend</h1>
+            <p>You are accessing the backend of a management system developed for a sandwich shop, using a modern technological stack composed of Next.js, Django, Sass, TypeScript and HTML. This project aims to serve both customers and employees, facilitating registration, placing orders and internal management of the store. The system has the following objectives:</p>
+            <ul>
+                <li>
+                    <p><span>Customers:</span> Allow customers to register and place orders quickly and conveniently.</p>
+                </li>
+                <li>
+                    <p><span>Owner:</span> Provide a detailed view of the amount of sales, identify the types of snacks best sold and other important metrics for business management.</p>
+                </li>
+                <li>
+                    <p><span>Waiters:</span> Provide an efficient table management and order recording system, speeding up service.</p>
+                </li>
+                <li>
+                    <p><span>Cooks:</span> Present orders to be prepared in an organized manner, including the list of required ingredients, to ensure efficient and accurate preparation.</p>
+                </li>
+            </ul>
+            <p>With this innovative stack, we seek to optimize all sandwich shop operations, providing a fluid and efficient experience for both customers and employees.</p>
+        </main>
+
+        <footer></footer>
+    </div>
 {% endblock%}
