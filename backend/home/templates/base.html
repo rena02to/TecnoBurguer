@@ -11,4 +11,8 @@
         {% block content %}
         {% endblock %}
     </body>
+    <script>
+        const currentYear = new Date().getFullYear();
+        document.getElementById('current-year').textContent = currentYear;
+    </script>
 </html>
