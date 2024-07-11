@@ -81,3 +81,35 @@ body{
     margin-bottom: 10px;
     font-weight: 500;
 }
+
+.main main .links{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.main main .links a{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    border: 2px solid gray;
+    gap: 5px;
+    color: black;
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.main main .links p{
+    margin: 0;
+}
+
+.main main .links a:hover{
+    /*background-color: $navbar-button-activated;*/
+    /*border: 2px solid $navbar-button-activated;*/
+    box-shadow: 5px 5px 5px rgba(black, 0.5);
+    color: white;
+    text-shadow: 5px 5px 5px rgba(black, 0.7);
+}
