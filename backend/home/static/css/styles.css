@@ -40,6 +40,10 @@ body{
     font-weight: 600;
 }
 
+.main ul li{
+    text-align: left;
+}
+
 .main footer{
     display: flex;
     flex-direction: column;
