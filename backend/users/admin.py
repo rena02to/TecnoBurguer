@@ -8,22 +8,22 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     model = User
 
-    list_display = ('username', 'name', 'email', 'telephone', 'address', 'type', 'is_staff')
+    list_display = ('name', 'email', 'telephone', 'address', 'type', 'is_staff')
     list_filter = ('is_staff', 'is_active', 'type')
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('email', 'name', 'telephone', 'address', 'type',)}),
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('name', 'telephone', 'address', 'type',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'name', 'email', 'password1', 'password2', 'telephone', 'address', 'type'),
+            'fields': ('name', 'email', 'password1', 'password2', 'telephone', 'address', 'type'),
         }),
     )
-    search_fields = ('username', 'email')
-    ordering = ('username',)
+    search_fields = ('name', 'email')
+    ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
 admin.site.register(User, UserAdmin)
