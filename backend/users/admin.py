@@ -26,6 +26,11 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['title'] = 'User list'
+        return super(UserAdmin, self).changelist_view(request, extra_context=extra_context)
+
 admin.site.register(User, UserAdmin)
 admin.site.site_title = 'TecnoBurguer'
 admin.site.index_title = 'Administrative Area'
