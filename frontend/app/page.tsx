@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Home | TecnoBurguer"
+export const metadata = {
+  title: 'TecnoBurguer'
 };
 
 export default function Home() {
   return (
-    <></>
+    <>
+    </>
   );
 }

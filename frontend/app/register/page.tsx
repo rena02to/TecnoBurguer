@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function Login(){
     useEffect(() => {
-        document.title = "Login | TecnoBurguer"
+        document.title = "Registro | TecnoBurguer"
     }, [])
 
     const initialValues = {}
@@ -15,7 +15,7 @@ export default function Login(){
         <>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({  }) => (
-                    <Form>
+                    <Form>  
                     </Form>
                 )}
             </Formik>
