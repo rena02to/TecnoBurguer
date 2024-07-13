@@ -1,0 +1,11 @@
+{
+    "login": {
+        "title": "Entrar"
+    },
+    "register": {
+        "title": "Register"
+    },
+    "404":{
+        "title": "Page not found"
+    }
+}
