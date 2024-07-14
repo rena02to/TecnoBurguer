@@ -1,11 +1,11 @@
 {
     "login": {
-        "title": "Entrar"
+        "title-form": "Acesse sua conta"
     },
     "register": {
-        "title": "Registrar-se"
+        "title-page": "Registrar-se"
     },
     "404":{
-        "title": "Página não encontrada"
+        "title-page": "Página não encontrada"
     }
 }

@@ -5,19 +5,20 @@ interface ContextProviderProps{
 }
 
 interface ContextType{
-    variable: string;
-    setVariable: React.Dispatch<React.SetStateAction<string>>;
+    //variable: string;
+    //setVariable: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
 
 export const ContextProvider = ( { children } : ContextProviderProps ) => {
-    const [ variable, setVariable ] = useState('estado-inicial');
+    //const [ variable, setVariable ] = useState('estado-inicial');
 
     return(
-        <Context.Provider value={{ variable, setVariable }}>
-            { children }
-        </Context.Provider>
+        // <Context.Provider value={{ variable, setVariable }}>
+        //     { children }
+        // </Context.Provider>
+        <></>
     )
 }
 

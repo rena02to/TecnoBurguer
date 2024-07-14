@@ -11,7 +11,7 @@ export default function Custom404() {
 
     //useeffect
     useEffect(() => {
-        document.title = `${t('404.title')} | TecnoBurguer`;
+        document.title = `${t('404.title-page')} | TecnoBurguer`;
     }, [ t ])
 
 

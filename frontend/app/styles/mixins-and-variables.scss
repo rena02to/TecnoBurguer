@@ -1,0 +1,10 @@
+$background-forms: white;
+$color-forms: gray;
+
+@mixin flex-align($direction){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

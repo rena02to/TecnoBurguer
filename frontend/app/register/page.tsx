@@ -3,6 +3,7 @@ import { Form, Formik } from "formik";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import '@/i18n/i18n';
+import style from '../styles/pages/forms.module.scss';
 
 export default function Register(){
 
@@ -13,7 +14,7 @@ export default function Register(){
 
     //useeffect
     useEffect(() => {
-        document.title = `${t('register.title')} | TecnoBurguer`;
+        document.title = `${t('register.title-page')} | TecnoBurguer`;
     }, [ t ])
 
 
@@ -22,13 +23,13 @@ export default function Register(){
 
     //return
     return(
-        <>
+        <div className={style.background}>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({  }) => (
                     <Form>
                     </Form>
                 )}
             </Formik>
-        </>
+        </div>
     );
 }
