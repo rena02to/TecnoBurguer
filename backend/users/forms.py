@@ -4,9 +4,9 @@ from .models import User
 class UserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('name', 'email', 'telephone', 'address', 'type')
+        fields = ('name', 'email', 'telephone', 'address', 'language', 'darkmode', 'type')
 
 class UserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ('name', 'email', 'telephone', 'address', 'type')
+        fields = ('name', 'email', 'telephone', 'address', 'language', 'darkmode', 'type')
