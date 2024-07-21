@@ -1,1 +1,8 @@
-{}
+{
+  "Login": {},
+  "Register": {
+    "form": {
+      "title": "Registro"
+    }
+  }
+}

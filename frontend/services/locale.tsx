@@ -9,5 +9,6 @@ export async function getUserLocale() {
 }
 
 export async function setUserLocale(locale: Locale) {
-    cookies().set(COOKIE_NAME, locale);
+    const expirationDate = 24 * 60 * 60;
+    cookies().set(COOKIE_NAME, locale, { expires: expirationDate, httpOnly: true, secure: true, sameSite: 'strict' });
 }

@@ -1,22 +1,22 @@
 'use client'
 import { Form, Formik } from "formik";
 import { useEffect } from "react";
-import style from '../styles/pages/forms.module.scss';
+import style from '@/app/styles/pages/forms.module.scss';
 import { useTranslations } from "next-intl";
 import { setUserLocale } from "@/services/locale";
 import { Locale } from "@/config";
 
-export default function Login(){
+export default function Register(){
 
     //variables
-    const t = useTranslations('Login')
+    const t = useTranslations('Register')
     const initialValues = {}
 
     //useeffect
     useEffect(() => {
-        document.title = 'Login | TecnoBurguer';
+        document.title = `${t(`form.title`)} | TecnoBurguer`;
         setUserLocale(navigator.language.slice(0, 2) as Locale)
-    }, [])
+    }, [ t ])
 
     //functions
     const handleSubmit = () => {}
