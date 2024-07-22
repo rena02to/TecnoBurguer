@@ -1,6 +1,7 @@
 {
   "Login": {
-    "Submit": "Access",
+    "title": "Welcome!",
+    "submit": "Access",
     "email": "Enter your e-mail",
     "password": {
       "label": "Password",

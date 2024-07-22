@@ -1,3 +1,5 @@
+@import './mixins-and-variables.scss';
+
 html{
     margin: 0;
     padding: 0;
@@ -5,7 +7,18 @@ html{
 body{
     margin: 0;
     padding: 0;
-    //font-family: $main-font;
+    font-family: $main-font;
+    button{
+        font-family: $main-font;
+        cursor: pointer;
+        border: 0 solid transparent;
+    }
+    input{
+        font-family: $main-font;
+        &::placeholder{
+            font-family: $main-font;
+        }
+    }
 }
 /*::-webkit-scrollbar{
     width: 7px;

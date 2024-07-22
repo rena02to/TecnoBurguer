@@ -34,7 +34,7 @@ export default function Login(){
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({  }) => (
                     <Form>
-                        <h1>Login</h1>
+                        <h1>{t('title')}</h1>
                         <div className={style.inputbox}>
                             <label htmlFor="email">E-mail</label>
                             <div className={style.input}>
@@ -52,8 +52,8 @@ export default function Login(){
                                 </button>
                             </div>
                         </div>
-                        <button type="submit" disabled={!submitting}>
-                            <p>{t('Submit')}</p>
+                        <button className={style.submit} type="submit" disabled={!submitting}>
+                            <p>{t('submit')}</p>
                             {loading ? <RiLoader2Line/> : null}
                         </button>
                     </Form>
