@@ -9,5 +9,31 @@
         padding: 30px;
         background-color: $color-forms;
         border-radius: 15px 0;
+        .inputbox{
+            @include flex-align(column);
+            .input, .inputPassword, .inputRepeatPassword{
+                @include flex-align(row);
+                position: relative;
+                .icon{
+                    position: absolute;
+                    z-index: 1;
+                    left: 5px;
+                }
+            }
+            .input{
+                input{
+                    padding: 5px 5px 5px 30px;
+                }
+            }
+            .inputPassword, .inputRepeatPassword{
+                input{
+                    padding: 5px 30px 5px 30px;
+                }
+                button{
+                    position: absolute;
+                    right: 5px;
+                }
+            }
+        }
     }
 }

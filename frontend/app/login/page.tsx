@@ -16,6 +16,8 @@ export default function Login(){
     const t = useTranslations('Login')
     const initialValues = {}
     const [ submitting, setSubmitting ] = useState(false);
+    const [ visible, setVisible ] = useState(false);
+    const [ loading, setLoading ] = useState(false);
 
     //useeffect
     useEffect(() => {
@@ -33,20 +35,27 @@ export default function Login(){
                 {({  }) => (
                     <Form>
                         <h1>Login</h1>
-                        <div className="inputbox">
+                        <div className={style.inputbox}>
                             <label htmlFor="email">E-mail</label>
-                            <Field type="email" id="email" name="email" placeholder={t('email')} />
-                            <IoMailOutline/>
+                            <div className={style.input}>
+                                <IoMailOutline className={style.icon}/>
+                                <Field type="email" id="email" name="email" placeholder={t('email')} />
+                            </div>
                         </div>
-                        <div className="inputbox">
+                        <div className={style.inputbox}>
                             <label htmlFor="password">{t('password.label')}</label>
-                            <MdLockOutline/>
-                            <Field type="password" id="password" name="password" placeholder={t('password.placeholder')} />
-                            <FaRegEye/>
-                            <FaRegEyeSlash/>
+                            <div className={style.inputPassword}>
+                                <MdLockOutline className={style.icon}/>
+                                <Field type={visible ? "text" : "password"} id="password" name="password" placeholder={t('password.placeholder')} />
+                                <button type="button">
+                                    {visible ? <FaRegEye/> : <FaRegEyeSlash/>}
+                                </button>
+                            </div>
                         </div>
-                        <button type="submit" disabled={!submitting}>{t('Submit')}</button>
-                        <RiLoader2Line/>
+                        <button type="submit" disabled={!submitting}>
+                            <p>{t('Submit')}</p>
+                            {loading ? <RiLoader2Line/> : null}
+                        </button>
                     </Form>
                 )}
             </Formik>
