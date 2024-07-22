@@ -1,5 +1,12 @@
 {
-  "Login": {},
+  "Login": {
+    "Submit": "Access",
+    "email": "Enter your e-mail",
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    }
+  },
   "Register": {
     "form": {
       "title": "Register"
