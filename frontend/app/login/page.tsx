@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl";
 import { setUserLocale } from "@/services/locale";
 import { Locale } from "@/config";
 import { IoMailOutline } from "react-icons/io5";
-import { MdLockOutline } from "react-icons/md";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { RiLoader2Line } from "react-icons/ri";
+import { LuKeyRound } from "react-icons/lu";
 
 export default function Login(){
 
@@ -45,9 +45,9 @@ export default function Login(){
                         <div className={style.inputbox}>
                             <label htmlFor="password">{t('password.label')}</label>
                             <div className={style.inputPassword}>
-                                <MdLockOutline className={style.icon}/>
+                                <LuKeyRound className={style.icon}/>
                                 <Field type={visible ? "text" : "password"} id="password" name="password" placeholder={t('password.placeholder')} />
-                                <button type="button">
+                                <button type="button" onClick={() => {setVisible(!visible)}}>
                                     {visible ? <FaRegEye/> : <FaRegEyeSlash/>}
                                 </button>
                             </div>

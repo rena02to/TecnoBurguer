@@ -6,33 +6,71 @@
     width: 100%;
     @include flex-align(column);
     form{
+        @include flex-align(column);
+        gap: 15px;
         padding: 30px;
         background-color: $color-forms;
         border-radius: 15px 0;
+        h1{
+            margin: 0;
+            font-size: 25px;
+            font-weight: 600;
+        }
         .inputbox{
             @include flex-align(column);
+            align-items: flex-start;
+            label{
+                margin-left: 10px;
+                font-size: 17px;
+                font-weight: 500;
+            }
             .input, .inputPassword, .inputRepeatPassword{
                 @include flex-align(row);
                 position: relative;
                 .icon{
                     position: absolute;
                     z-index: 1;
-                    left: 5px;
+                    left: 10px;
+                }
+                input{
+                    font-size: 17px;
+                    border-radius: 10px;
+                    border: 0 solid transparent;
+                }
+                svg{
+                    height: 22px;
+                    width: 22px;
                 }
             }
             .input{
                 input{
-                    padding: 5px 5px 5px 30px;
+                    padding: 7px 5px 7px 40px;
+                    width: calc(320px - 45px);
                 }
             }
             .inputPassword, .inputRepeatPassword{
                 input{
-                    padding: 5px 30px 5px 30px;
+                    padding: 7px 40px 7px 40px;
+                    width: calc(320px - 80px);
                 }
                 button{
                     position: absolute;
-                    right: 5px;
+                    right: 10px;
+                    @include flex-align(auto);
+                    padding: 0;
+                    background-color: transparent;
+                    border: 0 solid transparent;
+                    cursor: pointer;
                 }
+            }
+        }
+        button{
+            cursor: pointer;
+            &:disabled{
+                cursor: auto;
+            }
+            p{
+                margin: 0;
             }
         }
     }
