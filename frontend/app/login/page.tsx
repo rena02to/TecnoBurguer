@@ -39,7 +39,7 @@ export default function Login(){
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({  }) => (
                     <Form>
-                        <Image src='/images/Icon.svg' alt='Logo' width={200} height={120}/>
+                        <Image src='/Images/Icon.svg' alt='Logo' width={200} height={120}/>
                         <h1>{t('title')}</h1>
                         <div className={style.inputbox}>
                             <Field type="text" id="email" name="email" required/>
