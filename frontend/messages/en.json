@@ -1,12 +1,9 @@
 {
   "Login": {
     "title": "Welcome!",
-    "submit": "Access",
-    "email": "Enter your e-mail",
-    "password": {
-      "label": "Password",
-      "placeholder": "Enter your password"
-    }
+    "password": "Password",
+    "recover": "Recover password",
+    "register": "Create account"
   },
   "Register": {
     "form": {

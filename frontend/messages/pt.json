@@ -1,12 +1,9 @@
 {
   "Login": {
     "title": "Bem vindo!",
-    "submit": "Acessar",
-    "email": "Digite seu e-mail",
-    "password": {
-      "label": "Senha",
-      "placeholder": "Digite sua senha"
-    }
+    "password": "Senha",
+    "recover": "Recuperar senha",
+    "register": "Criar conta"
   },
   "Register": {
     "form": {

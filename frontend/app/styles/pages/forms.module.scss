@@ -5,84 +5,155 @@
     min-height: 100vh;
     width: 100%;
     @include flex-align(column);
+    position: relative;
+    z-index: 1;
     form{
         @include flex-align(column);
-        align-items: flex-start;
+        text-align: left;
         gap: 10px;
-        padding: 30px;
+        padding: 30px 75px 40px 75px;
         background-color: $color-forms;
         border-radius: 15px 0;
+        position: relative;
         h1{
-            margin: 0 0 10px 0;
+            margin: -20px 0 15px 0;
             font-size: 35px;
             font-weight: 600;
+            width: 100%;
             &::after{
                 display: block;
                 content: '';
                 width: 35%;
-                height: 2px;
+                height: 3px;
                 background-color: black;
+                border-radius: 100px;
             }
         }
-        .inputbox{
+        .inputbox, .inputboxPassword{
             @include flex-align(column);
             align-items: flex-start;
-            gap: 2px;
-            label{
-                margin: 0 0 0 15px;
-                font-size: 17px;
-                font-weight: 500;
-            }
-            .input, .inputPassword, .inputRepeatPassword{
-                @include flex-align(row);
+            position: relative;
+            margin-top: 10px;
+            input{
                 position: relative;
-                .icon{
-                    position: absolute;
-                    z-index: 1;
-                    left: 10px;
+                width: calc(300px - 30px);
+                padding: 5px 5px 5px 30px;
+                border: none;
+                outline: none;
+                font-size: 15px;
+                transition: .5s;
+                z-index: 2;
+                background: transparent;
+                color: black;
+                font-weight: 500;
+                &:focus ~ label, &:valid ~ label{
+                    font-size: 12px;
+                    font-weight: 600;
+                    transform: translateY(-25px);
+                    margin-left: 0;
                 }
-                input{
-                    font-size: 15px;
-                    border-radius: 7px;
-                    border: 0 solid transparent;
+                &:focus ~ span, &:valid ~ span{
+                    height: 35px;
                 }
+            }
+            label{
+                position: absolute;
+                left: 0;
+                padding: 10px;
+                pointer-events: none;
+                font-size: 15px;
+                transition: .5s;
+                margin-left: 25px;
+            }
+            span{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                background-color: $inputs-color;
+                overflow: hidden;
+                transition: .5s;
+                pointer-events: none;
+                border-radius: 5px;
+            }
+            .icon{
+                position: absolute;
+                left: 5px;
+                width: 20px;
+                height: 20px;
+            }
+            button{
+                @include flex-align(auto);
+                position: absolute;
+                right: 2px;
+                height: calc(100% - 6px);
+                background-color: transparent;
+                z-index: 2;
+                padding: 0 5px;
+                cursor: pointer;
+                border-radius: 5px;
                 svg{
-                    height: 22px;
-                    width: 22px;
+                    width: 20px;
+                    height: 20px;
                 }
             }
-            .input{
-                input{
-                    padding: 7px 5px 7px 40px;
-                    width: calc(320px - 45px);
-                }
-            }
-            .inputPassword, .inputRepeatPassword{
-                input{
-                    padding: 7px 40px 7px 40px;
-                    width: calc(320px - 80px);
-                }
-                button{
-                    position: absolute;
-                    right: 10px;
-                    @include flex-align(auto);
-                    padding: 0;
-                    background-color: transparent;
-                }
+        }.inputboxPassword{
+            input{
+                width: calc(300px - 55px);
+                padding: 5px 30px 5px 30px;
             }
         }
         .submit{
             width: 100%;
             padding: 5px 0;
             border-radius: 7px;
-            margin-top: 15px;
             &:disabled{
                 cursor: auto;
             }
             p{
                 margin: 0;
                 font-size: 15px;
+                font-weight: 500;
             }
+        }
+        .links{
+            @include flex-align(row);
+            width: 100%;
+            justify-content: space-between;
+            a{
+                font-size: 15px;
+                margin: 0;
+                text-decoration: none;
+                color: black;
+                font-weight: 500;
+            }
+        }
+        &::before{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(0, 0, 0, 0.8);
+            transform: rotate(-10deg);
+            pointer-events: none;
+            border-radius: 15px 0;
+            z-index: -1;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(0, 0, 0, 0.8);
+            transform: rotate(20deg);
+            pointer-events: none;
+            border-radius: 15px 0;
+            z-index: -1;
         }
     }
 }
