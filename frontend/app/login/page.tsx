@@ -11,6 +11,7 @@ import { RiLoader2Line } from "react-icons/ri";
 import { LuKeyRound } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
+import * as Yup from 'yup';
 
 export default function Login(){
 
@@ -20,7 +21,10 @@ export default function Login(){
         email: '',
         password: ''
     }
-    const [ submitting, setSubmitting ] = useState(false);
+    const validationSchema = Yup.object().shape({
+        email: Yup.string().email().required(),
+        password: Yup.string().required()
+    });
     const [ visible, setVisible ] = useState(false);
     const [ loading, setLoading ] = useState(false);
 
@@ -36,8 +40,8 @@ export default function Login(){
     //return
     return(
         <div className={style.background}>
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({  }) => (
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                {({ isValid, dirty }) => (
                     <Form>
                         <Image src='/Images/Icon.svg' alt='Logo' width={200} height={120}/>
                         <h1>{t('title')}</h1>
@@ -56,13 +60,13 @@ export default function Login(){
                                 {visible ? <FaRegEye/> : <FaRegEyeSlash/>}
                             </button>
                         </div>
-                        <button className={style.submit} type="submit" disabled={!submitting}>
+                        <button className={style.submit} type="submit" disabled={!isValid || !dirty}>
                             <p>Login</p>
                             {loading ? <RiLoader2Line/> : null}
                         </button>
                         <div className={style.links}>
-                            <Link href="##">{t('recover')}</Link>
-                            <Link href="##">{t('register')}</Link>
+                            <Link href="/recover">{t('recover')}</Link>
+                            <Link href="/register/user">{t('register')}</Link>
                         </div>
                     </Form>
                 )}
