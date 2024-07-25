@@ -11,9 +11,20 @@
         background-color: $color-forms;
     }
     .menu{
+        @include flex-align(row);
         position: absolute;
         top: 15px;
         left: 15px;
+        text-decoration: none;
+        color: black;
+        p{
+            font-size: 17px;
+            font-weight: 600;
+        }
+        svg{
+            width: 30px;
+            height: 30px;
+        }
     }
     form{
         @include flex-align(column);

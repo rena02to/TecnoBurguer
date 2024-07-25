@@ -1,5 +1,6 @@
 {
   "Login": {
+    "menu": "Menu",
     "title": "Welcome!",
     "password": "Password",
     "recover": "Recover password",

@@ -1,5 +1,6 @@
 {
   "Login": {
+    "menu": "Cardápio",
     "title": "Bem vindo!",
     "password": "Senha",
     "recover": "Recuperar senha",

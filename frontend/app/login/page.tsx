@@ -12,6 +12,7 @@ import { LuKeyRound } from "react-icons/lu";
 import Image from "next/image";
 import Link from "next/link";
 import * as Yup from 'yup';
+import { TiArrowBackOutline } from "react-icons/ti";
 
 export default function Login(){
 
@@ -40,7 +41,10 @@ export default function Login(){
     //return
     return(
         <div className={style.background}>
-            <Link className={style.menu} href="/">Voltar para o cardápio</Link>
+            <Link className={style.menu} href="/">
+                <TiArrowBackOutline/>
+                <p>{t('menu')}</p>
+            </Link>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 {({ isValid, dirty }) => (
                     <Form>
