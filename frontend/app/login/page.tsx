@@ -65,9 +65,17 @@ export default function Login(){
                                 {visible ? <FaRegEye/> : <FaRegEyeSlash/>}
                             </button>
                         </div>
-                        <button className={style.submit} type="submit" disabled={!isValid || !dirty}>
-                            <p>Login</p>
-                            {loading ? <RiLoader2Line/> : null}
+                        <button className={style.submit} type="submit" disabled={!isValid || !dirty || loading}>
+                            {loading?
+                                <>
+                                    <RiLoader2Line/>
+                                    <p>{t('logging')}</p>
+                                </>
+                                :
+                                <>
+                                    <p>Login</p>
+                                </>
+                            }
                         </button>
                         <div className={style.links}>
                             <Link href="/recover">{t('recover')}</Link>

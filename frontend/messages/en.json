@@ -4,7 +4,8 @@
     "title": "Welcome!",
     "password": "Password",
     "recover": "Recover password",
-    "register": "Create account"
+    "register": "Create account",
+    "logging": "Connecting"
   },
   "Register": {
     "form": {

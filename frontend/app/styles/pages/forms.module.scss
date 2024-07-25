@@ -145,6 +145,8 @@
             border-radius: 7px;
             transition: .5s;
             position: relative;
+            @include flex-align(row);
+            gap: 2px;
             &:disabled{
                 cursor: auto;
             }
@@ -184,6 +186,11 @@
                 margin: 0;
                 font-size: 16px;
                 font-weight: 500;
+            }
+            svg{
+                width: 25px;
+                height: 25px;
+                animation: loading 3s infinite linear;
             }
         }
         .links{
@@ -225,5 +232,13 @@
                 z-index: -1;
             }
         }
+    }
+}
+@keyframes loading {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
     }
 }
