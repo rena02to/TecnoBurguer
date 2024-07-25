@@ -40,6 +40,7 @@ export default function Login(){
     //return
     return(
         <div className={style.background}>
+            <Link className={style.menu} href="/">Voltar para o cardápio</Link>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
                 {({ isValid, dirty }) => (
                     <Form>
