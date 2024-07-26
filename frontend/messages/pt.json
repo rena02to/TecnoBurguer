@@ -6,7 +6,7 @@
     "recover": "Recuperar senha",
     "register": "Criar conta",
     "logging": "Conectando",
-    "error": "Error when logging in",
+    "error": "Erro ao iniciar sessão",
     "credentialsError": "E-mail ou senha incorreto"
   },
   "Register": {

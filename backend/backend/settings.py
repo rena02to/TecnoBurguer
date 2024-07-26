@@ -18,6 +18,7 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://tecnoburguer.renatoalves.site',
+    'http://localhost:3000',
 ]
 
 # Application definition

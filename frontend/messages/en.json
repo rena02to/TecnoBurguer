@@ -6,7 +6,7 @@
     "recover": "Recover password",
     "register": "Create account",
     "logging": "Connecting",
-    "error": "Erro ao iniciar sessão",
+    "error": "Error when logging in",
     "credentialsError": "Incorrect email or password"
   },
   "Register": {

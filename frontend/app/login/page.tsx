@@ -58,7 +58,9 @@ export default function Login(){
 
             if(response.ok){
                 const data = await response.json();
-                alert(data.access)
+                //armazenar nos cookies
+                //alert(data.access)
+                toast.success('Login successful')
             }else{
                 toast.error(t('credentialsError'))
             }
