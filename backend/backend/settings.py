@@ -14,9 +14,11 @@ ALLOWED_HOSTS = [
     'tecnoburguer.onrender.com',
     'localhost',
     '127.0.0.1',
-    'tecnoburguer.renatoalves.site'
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'https://tecnoburguer.renatoalves.site',
+]
 
 # Application definition
 
@@ -29,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
     'users',
     'home',
     'api',
@@ -70,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
