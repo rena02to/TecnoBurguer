@@ -5,7 +5,9 @@
     "password": "Senha",
     "recover": "Recuperar senha",
     "register": "Criar conta",
-    "logging": "Conectando"
+    "logging": "Conectando",
+    "error": "Error when logging in",
+    "credentialsError": "E-mail ou senha incorreto"
   },
   "Register": {
     "form": {

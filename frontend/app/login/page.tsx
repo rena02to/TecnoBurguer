@@ -13,12 +13,18 @@ import Image from "next/image";
 import Link from "next/link";
 import * as Yup from 'yup';
 import { TiArrowBackOutline } from "react-icons/ti";
+import { toast } from "react-toastify";
+
+interface FormValues {
+    email: string,
+    password: string,
+}
 
 export default function Login(){
 
     //variables
     const t = useTranslations('Login')
-    const initialValues = {
+    const initialValues : FormValues = {
         email: '',
         password: ''
     }
@@ -36,7 +42,32 @@ export default function Login(){
     }, [])
 
     //functions
-    const handleSubmit = () => {}
+    const handleSubmit = async ( values: FormValues ) => {
+        setLoading(true);
+        try{
+            const response = await fetch('https://tecnoburguer.onrender.com/login',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: values.email,
+                    password: values.password
+                })
+            })
+
+            if(response.ok){
+                const data = await response.json();
+                alert(data.access)
+            }else{
+                toast.error(t('credentialsError'))
+            }
+        }catch{
+            toast.error(t('error'))
+        }finally{
+            setLoading(false);
+        }
+    }
 
     //return
     return(
