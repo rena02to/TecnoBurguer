@@ -45,7 +45,7 @@ export default function Login(){
     const handleSubmit = async ( values: FormValues ) => {
         setLoading(true);
         try{
-            const response = await fetch('https://tecnoburguer.onrender.com/login',{
+            const response = await fetch('https://tecnoburguer.onrender.com/api/login',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
