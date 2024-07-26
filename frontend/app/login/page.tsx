@@ -14,6 +14,7 @@ import Link from "next/link";
 import * as Yup from 'yup';
 import { TiArrowBackOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
+import Cookies from 'js-cookie';
 
 interface FormValues {
     email: string,
@@ -38,14 +39,19 @@ export default function Login(){
     //useeffect
     useEffect(() => {
         document.title = 'Login | TecnoBurguer';
-        setUserLocale(navigator.language.slice(0, 2) as Locale)
+        setUserLocale(navigator.language.slice(0, 2) as Locale);
+
+        const token = Cookies.get('token');
+        if(token){
+            //redirecionar para a home
+        }
     }, [])
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
         setLoading(true);
         try{
-            const response = await fetch('https://tecnoburguer.onrender.com/api/login',{
+            const response = await fetch('http://localhost:8000/api/login',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,9 +64,8 @@ export default function Login(){
 
             if(response.ok){
                 const data = await response.json();
-                //armazenar nos cookies
-                //alert(data.access)
-                toast.success('Login successful')
+                Cookies.set('token', data.access, {expires: 1})
+
             }else{
                 toast.error(t('credentialsError'))
             }
