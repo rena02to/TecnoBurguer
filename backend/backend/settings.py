@@ -13,7 +13,8 @@ DEBUG = int(os.getenv('DEBUG', '0')) == 1
 ALLOWED_HOSTS = [
     'tecnoburguer.onrender.com',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    'tecnoburguer.renatoalves.site'
 ]
 
 
