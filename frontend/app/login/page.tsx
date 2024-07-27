@@ -15,6 +15,7 @@ import * as Yup from 'yup';
 import { TiArrowBackOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 interface FormValues {
     email: string,
@@ -24,7 +25,8 @@ interface FormValues {
 export default function Login(){
 
     //variables
-    const t = useTranslations('Login')
+    const router = useRouter();
+    const t = useTranslations('Login');
     const initialValues : FormValues = {
         email: '',
         password: ''
@@ -43,15 +45,15 @@ export default function Login(){
 
         const token = Cookies.get('token');
         if(token){
-            //redirecionar para a home
+            router.push(document.referrer || '/')
         }
-    }, [])
+    }, [router])
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
         setLoading(true);
         try{
-            const response = await fetch('http://localhost:8000/api/login',{
+            const response = await fetch('https://tecnoburguer.onrender.com/api/login',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,8 +66,8 @@ export default function Login(){
 
             if(response.ok){
                 const data = await response.json();
-                Cookies.set('token', data.access, {expires: 1})
-
+                Cookies.set('token', data.access, {expires: 1});
+                router.push(document.referrer || '/');
             }else{
                 toast.error(t('credentialsError'))
             }
