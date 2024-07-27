@@ -32,7 +32,7 @@ export default function Login(){
         password: ''
     }
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email().required(),
+        email: Yup.string().matches(/.*@.*\..*/).required(),
         password: Yup.string().required()
     });
     const [ visible, setVisible ] = useState(false);

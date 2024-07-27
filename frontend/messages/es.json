@@ -10,8 +10,33 @@
     "credentialsError": "Correo o contraseña incorrectos"
   },
   "Register": {
-    "form": {
-      "title": "Registro"
-    }
+    "User":{
+      "menu": "Menú",
+      "title": "Registro",
+      "title-form": "¡Bienvenido!",
+      "password": "Contraseña",
+      "signup": "Registro",
+      "signingup": "Registrarse",
+      "recover": "Recuperar contraseña",
+      "login": "Log in",
+      "name": "Nombre y apellido",
+      "telephone": "Teléfono",
+      "confirm-password": "Confirmación de contraseña",
+      "errors": {
+        "required": "Campo obligatorio",
+        "email": {
+          "format": "Invalid format"
+        },
+        "telephone": "Formato esperado: (00) 00000-0000",
+        "password": {
+          "upper": "Al menos un carácter en mayúscula",
+          "lower": "Al menos un carácter en minúscula",
+          "number": "Al menos un numero",
+          "special": "Al menos un carácter especial"
+        },
+        "confirmPassword": "Passwords must match"
+      }
+    },
+    "Collaborator": {}
   }
 }

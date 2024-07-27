@@ -10,8 +10,33 @@
     "credentialsError": "Incorrect email or password"
   },
   "Register": {
-    "form": {
-      "title": "Register"
-    }
+    "User":{
+      "menu": "Menu",
+      "title": "Sign up",
+      "title-form": "Welcome!",
+      "password": "Password",
+      "signup": "Sign up",
+      "signingup": "Signing up",
+      "recover": "Recover password",
+      "login": "Acceso",
+      "name": "Name and surname",
+      "telephone": "Telephone",
+      "confirm-password": "Password confirmation",
+      "errors": {
+        "email": {
+          "required": "Required field",
+          "format": "Formato inválido"
+        },
+        "telephone": "Expected format: (00) 00000-0000",
+        "password": {
+          "upper": "At least one uppercase character",
+          "lower": "At least one lowercase character",
+          "number": "At least one number",
+          "special": "At least one special character"
+        },
+        "confirmPassword": "Las contraseñas deben coincidir"
+      }
+    },
+    "Collaborator": {}
   }
 }

@@ -10,8 +10,33 @@
     "credentialsError": "E-mail ou senha incorreto"
   },
   "Register": {
-    "form": {
-      "title": "Cadastro"
-    }
+    "User":{
+      "menu": "Cardápio",
+      "title": "Cadastro",
+      "title-form": "Bem vindo!",
+      "password": "Senha",
+      "signup": "Registrar-se",
+      "signingup": "Cadatrando",
+      "recover": "Recuperar senha",
+      "login": "Faça login",
+      "name": "Nome e sobrenome",
+      "telephone": "Telefone",
+      "confirm-password": "Confirmação da senha",
+      "errors": {
+        "required": "Campo obrigatório",
+        "email": {
+          "format": "Formato invalido"
+        },
+        "telephone": "Formato esperado: (00) 00000-0000",
+        "password": {
+          "upper": "Pelo menos um caractere maiúsculo",
+          "lower": "Pelo menos um caractere minúsculo",
+          "number": "Pelo menos um número",
+          "special": "Pelo menos um caractere especial"
+        },
+        "confirmPassword": "As senhas devem corresponder"
+      }
+    },
+    "Collaborator": {}
   }
 }

@@ -52,6 +52,16 @@
                 border-radius: 100px;
             }
         }
+        .error{
+            margin: 0;
+            font-size: 13px;
+            max-width: 300px;
+            text-align: center;
+            word-wrap: break-word;
+            margin-top: -7px;
+            color: #ffff00;
+            font-weight: 500;
+        }
         .inputbox, .inputboxPassword{
             @include flex-align(column);
             align-items: flex-start;
@@ -151,7 +161,7 @@
                 cursor: auto;
             }
             &:enabled{
-                background-color: $orange-color;
+                background-color: $yellow-color;
                 &:hover{
                     transition: .5s;
                     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
