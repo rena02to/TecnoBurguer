@@ -8,18 +8,18 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     model = User
 
-    list_display = ('name', 'email', 'telephone', 'address', 'language', 'darkmode', 'type', 'is_staff')
+    list_display = ('name', 'email', 'telephone', 'language', 'darkmode', 'type', 'is_staff')
     list_filter = ('is_staff', 'is_active', 'type')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('name', 'telephone', 'address', 'language', 'darkmode', 'type',)}),
+        ('Personal info', {'fields': ('name', 'telephone', 'language', 'darkmode', 'type',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('name', 'email', 'password1', 'password2', 'telephone', 'address', 'language', 'darkmode', 'type'),
+            'fields': ('name', 'email', 'password1', 'password2', 'telephone', 'language', 'darkmode', 'type'),
         }),
     )
     search_fields = ('name', 'email')

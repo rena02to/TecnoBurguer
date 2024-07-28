@@ -21,7 +21,7 @@
       "login": "Acceso",
       "name": "Name and surname",
       "telephone": "Telephone",
-      "confirm-password": "Password confirmation",
+      "confirm-password": "Repeat your password",
       "errors": {
         "email": {
           "required": "Required field",

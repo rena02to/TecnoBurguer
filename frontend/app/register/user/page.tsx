@@ -54,6 +54,10 @@ export default function Register(){
 
     //useeffect
     useEffect(() => {
+        const token = Cookies.get('token');
+        if(token){
+            router.push(document.referrer || '/')
+        }
         document.title = `${t('title')} | TecnoBurguer`;
         const locale = navigator.language.slice(0, 2) as Locale; 
         setUserLocale(locale);
@@ -63,11 +67,6 @@ export default function Register(){
             setDarkMode('Yes')
         }else{
             setDarkMode('No')
-        }
-
-        const token = Cookies.get('token');
-        if(token){
-            router.push(document.referrer || '/')
         }
     }, [router])
 
@@ -80,14 +79,13 @@ export default function Register(){
         let formatado = '';
         for(let i = 0; i < number.length; i++){
             if(i === 0){
-                formatado += `(${number[i]}`;
-            }else if(i === 1){
-                formatado += `${number[i]}) `;
-            }else if(i === 6){
-                formatado += `${number[i]}-`;
-            }else{
-                formatado += number[i];
+                formatado += '(';
+            }else if(i === 2){
+                formatado += ') ';
+            }else if(i === 7){
+                formatado += '-';
             }
+            formatado += number[i];
         }
         return formatado;
     }
@@ -96,7 +94,7 @@ export default function Register(){
     const handleSubmit = async ( values: FormValues ) => {
         setLoading(true);
         try{
-            const response = await fetch('https://tecnoburguer.onrender.com/api/register', {
+            const response = await fetch('https://tecnoburguer.onrender.com/api/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -105,7 +103,6 @@ export default function Register(){
                     name: values.name,
                     email: values.email,
                     telephone: values.telephone,
-                    adress: '',
                     language: language,
                     darkmode: darkMode,
                     type: 'client',

@@ -16,12 +16,12 @@
       "title-form": "Bem vindo!",
       "password": "Senha",
       "signup": "Registrar-se",
-      "signingup": "Cadatrando",
+      "signingup": "Cadastrando",
       "recover": "Recuperar senha",
       "login": "Faça login",
       "name": "Nome e sobrenome",
       "telephone": "Telefone",
-      "confirm-password": "Confirmação da senha",
+      "confirm-password": "Repita sua senha",
       "errors": {
         "required": "Campo obrigatório",
         "email": {

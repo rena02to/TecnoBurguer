@@ -21,7 +21,7 @@
       "login": "Log in",
       "name": "Nombre y apellido",
       "telephone": "Teléfono",
-      "confirm-password": "Confirmación de contraseña",
+      "confirm-password": "Repita su contraseña",
       "errors": {
         "required": "Campo obligatorio",
         "email": {
