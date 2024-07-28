@@ -49,11 +49,21 @@ export default function Register(){
     const [ visible, setVisible ] = useState(false);
     const [ visibleRepeat, setVisibleRepeat ] = useState(false);
     const [ loading, setLoading ] = useState(false);
+    const [ language, setLanguage ] = useState('pt');
+    const [ darkMode, setDarkMode ] = useState('No');
 
     //useeffect
     useEffect(() => {
         document.title = `${t('title')} | TecnoBurguer`;
-        setUserLocale(navigator.language.slice(0, 2) as Locale);
+        const locale = navigator.language.slice(0, 2) as Locale; 
+        setUserLocale(locale);
+        setLanguage(locale);
+
+        if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+            setDarkMode('Yes')
+        }else{
+            setDarkMode('No')
+        }
 
         const token = Cookies.get('token');
         if(token){
@@ -84,7 +94,43 @@ export default function Register(){
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
-        //
+        setLoading(true);
+        try{
+            const response = await fetch('https://tecnoburguer.onrender.com/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: values.name,
+                    email: values.email,
+                    telephone: values.telephone,
+                    adress: '',
+                    language: language,
+                    darkmode: darkMode,
+                    type: 'client',
+                    password: values.password
+                })
+            })
+
+            if(response.ok){
+                toast.success(t('success'));
+                router.push('/login');
+            }else{
+                const data = await response.json();
+                if(data.error.telephone){
+                    toast.error(t('errors.telephoneExist'))
+                }else if(data.error.email){
+                    toast.error(t('errors.emailExist'))
+                }else{
+                    toast.error(t('errors.create'))
+                }
+            }
+        }catch{
+            toast.error(t('errors.connect'));
+        }finally{
+            setLoading(false);
+        }
     }
 
     //return
@@ -143,7 +189,7 @@ export default function Register(){
                             <label htmlFor="confirmPassword">{t('confirm-password')}</label>
                             <span></span>
                             <LuKeyRound className={style.icon}/>
-                            <button type="button" onClick={() => {setVisible(!visibleRepeat)}}>
+                            <button type="button" onClick={() => {setVisibleRepeat(!visibleRepeat)}}>
                                 {visibleRepeat ? <FaRegEye/> : <FaRegEyeSlash/>}
                             </button>
                         </div>

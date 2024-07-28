@@ -6,7 +6,7 @@
     "recover": "Recover password",
     "register": "Create account",
     "logging": "Connecting",
-    "error": "Error when logging in",
+    "error": "Sorry, we are experiencing technical issues at the moment. Please try again later.",
     "credentialsError": "Incorrect email or password"
   },
   "Register": {
@@ -34,8 +34,13 @@
           "number": "At least one number",
           "special": "At least one special character"
         },
-        "confirmPassword": "Las contraseñas deben coincidir"
-      }
+        "confirmPassword": "Las contraseñas deben coincidir",
+        "emailExist": "This e-mail is already registered",
+        "telephoneExist": "This telephone is already registered",
+        "create": "Error creating user",
+        "connect": "Sorry, we are experiencing technical issues at the moment. Please try again later."
+      },
+      "success": "User created successfully"
     },
     "Collaborator": {}
   }

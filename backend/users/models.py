@@ -24,7 +24,7 @@ class User(AbstractUser):
     username=None
     name = models.CharField(max_length=150, blank=False)
     email = models.EmailField(unique=True, blank=False)
-    telephone = models.CharField(max_length=15, blank=False)
+    telephone = models.CharField(max_length=15, blank=False, unique=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     language=models.CharField(max_length=2, choices=languages, blank=False, default='pt')
     darkmode=models.CharField(max_length=3, choices=dark, blank=False, default='No')

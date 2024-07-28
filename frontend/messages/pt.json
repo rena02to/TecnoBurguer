@@ -6,7 +6,7 @@
     "recover": "Recuperar senha",
     "register": "Criar conta",
     "logging": "Conectando",
-    "error": "Erro ao iniciar sessão",
+    "error": "Desculpe, estamos enfrentando problemas técnicos no momento. Por favor, tente novamente mais tarde.",
     "credentialsError": "E-mail ou senha incorreto"
   },
   "Register": {
@@ -34,8 +34,13 @@
           "number": "Pelo menos um número",
           "special": "Pelo menos um caractere especial"
         },
-        "confirmPassword": "As senhas devem corresponder"
-      }
+        "confirmPassword": "As senhas devem corresponder",
+        "emailExist": "Este e-mail já está cadastrado",
+        "telephoneExist": "Este telefone já está cadastrado",
+        "create": "Erro ao criar usuário",
+        "connect": "Desculpe, estamos enfrentando problemas técnicos no momento. Por favor, tente novamente mais tarde."
+      },
+      "success": "Usuário criado com sucesso"
     },
     "Collaborator": {}
   }
