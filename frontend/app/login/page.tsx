@@ -1,7 +1,7 @@
 'use client'
 import { Form, Formik, Field } from "formik";
 import { useEffect, useState } from "react";
-import style from '../styles/pages/forms.module.scss';
+import style from '../styles/forms.module.scss';
 import { useTranslations } from "next-intl";
 import { setUserLocale } from "@/services/locale";
 import { Locale } from "@/config";

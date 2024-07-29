@@ -1,0 +1,24 @@
+@import './../../app/styles/mixins-and-variables.scss';
+
+.top{
+    width: calc(100% - 20px);
+    padding: 5px 10px;
+    .infos{
+        @include flex-align(row);
+        gap:5px;
+        width: 100%;
+        .shop, .user{
+            width: calc(50% - 5px);
+            border: 1px solid gray;
+            border-radius: 10px;
+            background-color: transparent;
+        }
+    }
+    .search{
+        width: 100%;
+    }
+    .class{
+        width: 100%;
+        border: 1px solid gray;
+    }
+}
