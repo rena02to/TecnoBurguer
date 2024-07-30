@@ -33,28 +33,24 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ('name', 'locale')
-    search_fields = ('name', 'locale')
+    list_display = ('name', 'locale', 'states')
+    search_fields = ('name', 'locale', 'states')
 
-# Registro do modelo StoreHours
 @admin.register(StoreHour)
 class StoreHoursAdmin(admin.ModelAdmin):
-    list_display = ('store', 'monday_open', 'monday_close', 'tuesday_open', 'tuesday_close')
+    list_display = ('store', 'monday_open', 'monday_close', 'tuesday_open', 'tuesday_close', 'wednesday_open', 'wednesday_close', 'thursday_open', 'thursday_close', 'friday_open', 'friday_close', 'saturday_open', 'saturday_close', 'sunday_open', 'sunday_close')
     search_fields = ('store__name',)
 
-# Registro do modelo Food
 @admin.register(Food)
 class FoodAdmin(admin.ModelAdmin):
     list_display = ('name', 'store', 'amount', 'value')
     search_fields = ('name', 'store__name')
 
-# Registro do modelo Order
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('store', 'user', 'created_at', 'total_value')
     search_fields = ('store__name', 'user__email')
 
-# Registro do modelo OrderItem
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('order', 'food', 'quantity', 'total')

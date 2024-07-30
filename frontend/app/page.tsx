@@ -1,4 +1,4 @@
-import Infos from "@/components/Infos";
+import Main from "@/components/Main";
 import Menu from "@/components/Menu";
 import NavBar from "@/components/NavBar";
 
@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <main>
         <NavBar/>
-        <Infos/>
+        <Main/>
       </main>
     </>
   );

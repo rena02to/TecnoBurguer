@@ -1,6 +1,5 @@
 'use client'
 import style from './styles/navbar.module.scss';
-import { IoRestaurantOutline } from 'react-icons/io5';
 import { RiFilePaper2Line } from 'react-icons/ri';
 import { FaRegUser } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
@@ -15,8 +14,7 @@ export default function NavBar(){
     return(
         <nav className={style.navbar}>
             <a href="##" className={style.actived}>
-                <IoRestaurantOutline/>
-                <p>Cardápio</p>
+                <p>Início</p>
             </a>
             <a href="##">
                 <RiFilePaper2Line/>

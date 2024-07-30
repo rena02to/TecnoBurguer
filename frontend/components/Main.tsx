@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import style from './styles/infos.module.scss';
+import style from './styles/main.module.scss';
 
-export default function Infos(){
+export default function Main(){
     return(
         <div className={style.top}>
             <div className={style.image}></div>
