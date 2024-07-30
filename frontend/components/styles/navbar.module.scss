@@ -9,14 +9,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    @media (max-width: 375px) {
-        img{
-            display: none;
-        }
-    }
-    img{
-        margin-right: -5px
-    }
+    background-color: rgb(240, 240, 240);
     a, .actived{
         @include flex-align(column);
         text-decoration: none;

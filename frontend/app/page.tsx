@@ -10,6 +10,8 @@ export default function Home() {
   return (
     <>
       <main>
+        <NavBar/>
+        <Infos/>
       </main>
     </>
   );

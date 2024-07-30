@@ -1,24 +1,27 @@
 @import './../../app/styles/mixins-and-variables.scss';
 
 .top{
-    width: calc(100% - 20px);
-    padding: 5px 10px;
-    .infos{
-        @include flex-align(row);
-        gap:5px;
+    .image{
         width: 100%;
-        .shop, .user{
-            width: calc(50% - 5px);
-            border: 1px solid gray;
-            border-radius: 10px;
-            background-color: transparent;
+        height: 200px;
+        background-image: url('/Images/background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .profileShop{
+        width: calc(100% - 20px);
+        padding: 10px;
+        .photo{
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            @include flex-align(auto);
+            overflow: hidden;
+            img{
+                height: 90px;
+                width: 90px;
+            }
         }
-    }
-    .search{
-        width: 100%;
-    }
-    .class{
-        width: 100%;
-        border: 1px solid gray;
     }
 }

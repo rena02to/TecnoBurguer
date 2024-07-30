@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image';
 import style from './styles/navbar.module.scss';
 import { IoRestaurantOutline } from 'react-icons/io5';
 import { RiFilePaper2Line } from 'react-icons/ri';
@@ -15,7 +14,6 @@ export default function NavBar(){
 
     return(
         <nav className={style.navbar}>
-            <Image src='/images/TecnoBurguer.svg' width={115} height={45} alt='TecNoburguer Simbol'/>
             <a href="##" className={style.actived}>
                 <IoRestaurantOutline/>
                 <p>Cardápio</p>

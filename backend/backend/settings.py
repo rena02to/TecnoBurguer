@@ -33,10 +33,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'users',
+    'tecnoburguer',
     'home',
     'api',
-    'menu',
 ]
 
 REST_FRAMEWORK = {
@@ -130,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'tecnoburguer.User'
 
 # Internationalization
 
