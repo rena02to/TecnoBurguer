@@ -67,6 +67,19 @@ export default function Login(){
             if(response.ok){
                 const data = await response.json();
                 Cookies.set('token', data.access, {expires: 1});
+                try{
+                    const response2 = await fetch('https://tecnoburguer.onrender.com/api/user/get_user_from_token', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${data.access}`
+                        }
+                    })
+                    const data2 = await response2.json();
+                    setUserLocale(data2.language || 'pt');
+                }catch(error){
+                    console.log(error);
+                }
                 router.push(document.referrer || '/');
             }else{
                 toast.error(t('credentialsError'))

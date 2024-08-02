@@ -50,7 +50,10 @@ class Store(models.Model):
     locale = models.CharField(max_length=255)
     states = models.CharField(max_length=17, choices=States, default='open')
     admins = models.ManyToManyField(User, related_name='admin_stores', limit_choices_to={'type': 'admin'})
-    employees = models.ManyToManyField(User, related_name='employee_stores', limit_choices_to={'type': 'employee'})
+    employees = models.ManyToManyField(User, related_name='employee_stores', limit_choices_to={'type': 'attendant' or "cashier" or "chef" or "deliveryman"})
+
+    def __str__(self):
+        return self.name
 
 class StoreHour(models.Model):
     store = models.ForeignKey(Store, related_name='hours', on_delete=models.CASCADE)
@@ -78,12 +81,14 @@ class Food(models.Model):
     )
 
     store = models.ForeignKey(Store, related_name="food", on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     desc = models.CharField(max_length=255)
     amount = models.IntegerField()
     value = models.DecimalField(max_digits=6, decimal_places=2)
     states = models.CharField(max_length=12, choices=States, default='avaliable')
     image = models.ImageField(upload_to='images/')
+    def __str__(self):
+        return self.name
 
 class Order(models.Model):
     store = models.ForeignKey(Store, related_name="order", on_delete=models.PROTECT)
@@ -98,6 +103,8 @@ class Order(models.Model):
             total = sum(item.total for item in self.items.all())
             self.total_value = total
         super().save(*args, **kwargs)
+    def __str__(self):
+        return self.id
 
 
 class OrderItem(models.Model):
@@ -107,6 +114,8 @@ class OrderItem(models.Model):
     total = models.DecimalField(max_digits=10, decimal_places=2)
 
     def save(self, *args, **kwargs):
-        # Calcula o total do item antes de salvar
         self.total = self.food.price * self.quantity
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.id

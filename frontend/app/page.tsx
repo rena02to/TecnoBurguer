@@ -1,6 +1,5 @@
-import Main from "@/components/Main";
-import Menu from "@/components/Menu";
-import NavBar from "@/components/NavBar";
+import HomeSelector from "@/components/HomeSelector";
+import TopHomePage from "@/components/TopHomePage";
 
 export const metadata = {
   title: 'TecnoBurguer'
@@ -9,10 +8,8 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <main>
-        <NavBar/>
-        <Main/>
-      </main>
+      <TopHomePage/>
+      <HomeSelector/>
     </>
   );
 }

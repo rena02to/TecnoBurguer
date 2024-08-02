@@ -43,5 +43,9 @@
       "success": "Usuario creado exitosamente"
     },
     "Collaborator": {}
+  },
+  "HomePage": {
+    "signin": "Entrar",
+    "signingup": "Registro"
   }
 }
