@@ -10,11 +10,11 @@ export default function TopHomePage(){
     const t = useTranslations('HomePage');
 
     useEffect(() => {
-        const token = Cookies.get('token')
+        const token = Cookies.get('token');
         if(token){
             setExistToken(true);
         }
-    }, [existToken])
+    }, [])
 
     return(
         <div className={style.top}>

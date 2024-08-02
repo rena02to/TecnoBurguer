@@ -1,3 +1,4 @@
+import { ContextProvider } from '@/context/context';
 import './styles/global.scss';
 import type { Metadata } from "next";
 import {NextIntlClientProvider} from 'next-intl';
@@ -17,7 +18,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ContextProvider>
+            {children}
+          </ContextProvider>
           <ToastContainer position="bottom-right" autoClose={6000} closeOnClick/>
         </NextIntlClientProvider>
       </body>

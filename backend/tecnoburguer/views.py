@@ -9,7 +9,7 @@ from .serializers import UserSerializer
 @permission_classes([IsAuthenticated])
 def get_user_from_token(request):
     user = request.user
-    return Response({'language': user.language}, status=status.HTTP_201_CREATED)
+    return Response({'language': user.language, 'name': user.name, 'type': user.type}, status=status.HTTP_201_CREATED)
 
 #register user
 class Register(APIView):
