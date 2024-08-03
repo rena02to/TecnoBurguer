@@ -45,7 +45,8 @@
     "Collaborator": {}
   },
   "HomePage": {
-    "signin": "Sign in",
-    "signingup": "Signing up"
+    "Navbar":{
+      "signup": "Sign up"
+    }
   }
 }

@@ -1,5 +1,7 @@
 import HomeSelector from "@/components/HomeSelector";
-import TopHomePage from "@/components/TopHomePage";
+import ImageTop from "@/components/ImageTop";
+import NavBar from "@/components/NavBar";
+import { ContextProvider } from "@/context/context";
 
 export const metadata = {
   title: 'TecnoBurguer'
@@ -7,10 +9,10 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <>
-      
-      <TopHomePage/>
+    <ContextProvider>
+      <NavBar/>
+      <ImageTop/>
       <HomeSelector/>
-    </>
+    </ContextProvider>
   );
 }

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
 
-export default function TopHomePage(){
+export default function ImageTop(){
     const [ existToken, setExistToken ] = useState(false);
     const t = useTranslations('HomePage');
 
@@ -19,13 +19,6 @@ export default function TopHomePage(){
     return(
         <div className={style.top}>
             <div className={style.image}></div>
-            {!existToken ?
-                <div className={style.links}>
-                    <Link href="/login" className={style.signin}>{t('signin')}</Link>
-                    <Link href="/register/user" className={style.signingup}>{t('signingup')}</Link>
-                </div>
-                : null
-            }
         </div>
     )
 }

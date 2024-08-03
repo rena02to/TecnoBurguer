@@ -50,7 +50,7 @@ export const ContextProvider = ( { children } : ContextProviderProps ) => {
     );
 }
 
-export const useContexts = () :ContextType => {
+export const useContexts = () : ContextType => {
     const context = useContext(Context);
     if(!context){
         throw new Error("useMyContext deve ser usado dentro de um ContextProvider");

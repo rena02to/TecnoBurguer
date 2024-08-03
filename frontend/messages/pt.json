@@ -45,7 +45,8 @@
     "Collaborator": {}
   },
   "HomePage": {
-    "signin": "Entrar",
-    "signingup": "Registrar-se"
+    "Navbar":{
+      "signup": "Registre-se"
+    }
   }
 }
