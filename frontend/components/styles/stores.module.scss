@@ -46,7 +46,7 @@
             font-size: 14px;
             span{
                 @include flex-align(row);
-                gap: 10px;
+                gap: 5px;
                 .assessments{
                     svg{
                         color: rgb(215, 215, 0);
@@ -54,9 +54,8 @@
                 }
                 .min{
                     &::before{
-                        content: '';
-                        border: 1px solid gray;
-                        margin: 0 5px 0 1px;
+                        content: '-';
+                        margin: 0 5px 0 0;
                     }
                 }
             }

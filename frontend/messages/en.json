@@ -47,6 +47,23 @@
   "HomePage": {
     "Navbar":{
       "signup": "Sign up"
+    },
+    "Stores":{
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "tomorrow": "tomorrow",
+      "min": "Minimum",
+      "close": {
+        "week": "Closed this week",
+        "today": "Open"
+      },
+      "nothours": "No hours available",
+      "open": "Open now - Close"
     }
   }
 }

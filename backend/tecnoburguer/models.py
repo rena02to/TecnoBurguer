@@ -145,8 +145,8 @@ class Assessment(models.Model):
     OPTION_ONE = 1
     OPTION_TWO = 2
     OPTION_THREE = 3
-    OPTION_FOUR = 3
-    OPTION_FIVE = 3
+    OPTION_FOUR = 4
+    OPTION_FIVE = 5
 
     Stars = [
         (OPTION_ONE, '1'),
@@ -158,4 +158,4 @@ class Assessment(models.Model):
 
     store = models.ForeignKey(Store, related_name="assessments", on_delete=models.CASCADE)
     stars = models.IntegerField(choices=Stars)
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=255, null=True, blank=True)

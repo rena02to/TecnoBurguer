@@ -47,6 +47,23 @@
   "HomePage": {
     "Navbar":{
       "signup": "Registro"
+    },
+    "Stores":{
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo",
+      "tomorrow": "mañana",
+      "min": "Mínimo",
+      "close": {
+        "week": "Cerrado esta semana",
+        "today": "Abierto"
+      },
+      "nothours": "No hay horas disponibles",
+      "open": "Abrir ahora - Cerrar"
     }
   }
 }

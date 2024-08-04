@@ -1,5 +1,5 @@
 import ImageTop from "@/components/ImageTop";
-import Main from "@/components/Stores";
+import Stores from "@/components/Stores";
 import NavBar from "@/components/NavBar";
 import { ContextProvider } from "@/context/context";
 
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <ContextProvider>
       <ImageTop/>
-      <Main/>
+      <Stores/>
     </ContextProvider>
   );
 }
