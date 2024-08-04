@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Store, StoreHour, Food, Order, OrderItem
+from .models import User, Store, StoreHour, Food, Order, OrderItem, Coupon, UserCoupon, Assessment
 from .forms import UserCreationForm, UserChangeForm
 
 class UserAdmin(BaseUserAdmin):
@@ -38,7 +38,7 @@ class StoreAdmin(admin.ModelAdmin):
 
 @admin.register(StoreHour)
 class StoreHoursAdmin(admin.ModelAdmin):
-    list_display = ('store', 'monday_open', 'monday_close', 'tuesday_open', 'tuesday_close', 'wednesday_open', 'wednesday_close', 'thursday_open', 'thursday_close', 'friday_open', 'friday_close', 'saturday_open', 'saturday_close', 'sunday_open', 'sunday_close')
+    list_display = ('store', 'timezone', 'monday_open', 'monday_close', 'tuesday_open', 'tuesday_close', 'wednesday_open', 'wednesday_close', 'thursday_open', 'thursday_close', 'friday_open', 'friday_close', 'saturday_open', 'saturday_close', 'sunday_open', 'sunday_close')
     search_fields = ('store__name',)
 
 @admin.register(Food)
@@ -56,6 +56,20 @@ class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('order', 'food', 'quantity', 'total')
     search_fields = ('order__id', 'food__name')
 
+@admin.register(Coupon)
+class CouponAdmin(admin.ModelAdmin):
+    list_display = ('store', 'code', 'discount', 'expiry_date')
+    search_fields = ('store', 'code', 'discount', 'expiry_date')
+
+@admin.register(UserCoupon)
+class UserCouponAdmin(admin.ModelAdmin):
+    list_display = ('user', 'coupon', 'used')
+    search_fields = ('user', 'coupon', 'used')
+
+@admin.register(Assessment)
+class AssessmentAdmin(admin.ModelAdmin):
+    list_display = ('store', 'stars')
+    search_fields = ('store', 'stars')
 
 
 admin.site.register(User, UserAdmin)

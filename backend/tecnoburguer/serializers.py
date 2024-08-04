@@ -21,4 +21,4 @@ class UserSerializer(serializers.ModelSerializer):
 class StoresOpenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Store
-        fields = ['name', 'locale']
+        fields = ['name', 'locale', 'min_order', 'id']

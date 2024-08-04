@@ -10,7 +10,6 @@ export const metadata = {
 export default function Home() {
   return (
     <ContextProvider>
-      <NavBar/>
       <ImageTop/>
       <Main/>
     </ContextProvider>

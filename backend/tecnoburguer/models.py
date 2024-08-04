@@ -1,9 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
+import pytz
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class User(AbstractUser):
     types=(
+        ('sudo_main', 'Superuser geral'),
         ('sudo', 'Superuser'),
         ('admin', 'Administrador'),
         ('attendant', 'Atendente'),
@@ -51,12 +54,16 @@ class Store(models.Model):
     state = models.CharField(max_length=17, choices=States, default='open')
     admins = models.ManyToManyField(User, related_name='admin_stores', limit_choices_to={'type': 'admin'})
     employees = models.ManyToManyField(User, related_name='employee_stores', limit_choices_to={'type': 'attendant' or "cashier" or "chef" or "deliveryman"})
+    min_order = models.IntegerField()
+    rate_km = models.DecimalField(max_digits=6, decimal_places=2)
+    delivery_free_km = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
         return self.name
 
 class StoreHour(models.Model):
     store = models.ForeignKey(Store, related_name='hours', on_delete=models.CASCADE)
+    timezone = models.CharField(max_length=50, choices=[(tz, tz) for tz in pytz.all_timezones], default='UTC')
     monday_open = models.TimeField()
     monday_close = models.TimeField()
     tuesday_open = models.TimeField()
@@ -119,3 +126,36 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return self.id
+
+class Coupon(models.Model):
+    store = models.ForeignKey(Store, related_name="coupon", on_delete=models.PROTECT)
+    code = models.CharField(max_length=25, unique=True)
+    discount = models.DecimalField(max_digits=5, decimal_places=2)
+    expiry_date = models.DateField()
+
+class UserCoupon(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
+    used = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('user', 'coupon')
+
+class Assessment(models.Model):
+    OPTION_ONE = 1
+    OPTION_TWO = 2
+    OPTION_THREE = 3
+    OPTION_FOUR = 3
+    OPTION_FIVE = 3
+
+    Stars = [
+        (OPTION_ONE, '1'),
+        (OPTION_TWO, '2'),
+        (OPTION_THREE, '3'),
+        (OPTION_FOUR, '4'),
+        (OPTION_FIVE, '5'),
+    ]
+
+    store = models.ForeignKey(Store, related_name="assessments", on_delete=models.CASCADE)
+    stars = models.IntegerField(choices=Stars)
+    text = models.CharField(max_length=255)

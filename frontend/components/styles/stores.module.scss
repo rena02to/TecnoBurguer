@@ -8,32 +8,89 @@
     align-items: flex-start;
     gap: 10px;
     .store{
+        width: 250px;
+        height: 140px;
         border-radius: 10px;
-        @include flex-align(row);
-        border: 1px solid gray;
-        padding: 10px 15px;
-        gap: 10px;
+        @include flex-align(column);
+        justify-content: flex-start;
+        align-items: flex-start;
+        border: 3px solid gray;
         text-decoration: none;
         color: black;
-        .text{
+        overflow: hidden;
+        p{
+            margin: 0;
+        }
+        .top{
+            padding: 10px 15px;
+            @include flex-align(row);
+            gap: 10px;
+            background-color: rgb(230, 230, 230);
+            width: calc(100% - 30px);
+            .name{
+                font-weight: 500;
+                font-size: 17px;
+                color: black;
+            }
+            svg{
+                width: 25px;
+                height: 25px;
+                color: $green-color;
+            }
+        }
+        .infos{
+            width: 100%;
+            padding: 5px 15px;
+            width: calc(100% - 30px);
             @include flex-align(column);
-            align-items: flex-start;
+            font-size: 14px;
+            span{
+                @include flex-align(row);
+                gap: 10px;
+                .assessments{
+                    svg{
+                        color: rgb(215, 215, 0);
+                    }
+                }
+                .min{
+                    &::before{
+                        content: '';
+                        border: 1px solid gray;
+                        margin: 0 5px 0 1px;
+                    }
+                }
+            }
+            .locale{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%;
+            }
+        }
+        /*.text{
+            @include flex-align(column);
+            align-items: self-start;
             gap: 0;
             .name{
                 font-size: 17px;
                 font-weight: 500;
+                width: 210px;
             }
             .locale{
+                width: 210px;
                 font-size: 14px;
                 margin-top: -5px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden; 
+            }
+            .min_order{
+                width: 210px;
+                font-size: 14px;
             }
             p{
                 margin: 0;
             }
-        }
-        svg{
-            width: 25px;
-            height: 25px;
-        }
+        }*/
     }
 }

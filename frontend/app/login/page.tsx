@@ -66,7 +66,7 @@ export default function Login(){
 
             if(response.ok){
                 const data = await response.json();
-                Cookies.set('token', data.access, {expires: 1});
+                Cookies.set('token', data.access, {expires: 1, secure: true});
                 try{
                     const response2 = await fetch('https://tecnoburguer.onrender.com/api/user/get_user_from_token', {
                         method: 'GET',
