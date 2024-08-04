@@ -80,7 +80,11 @@ export default function Login(){
                 }catch(error){
                     console.log(error);
                 }
-                router.push(document.referrer || '/');
+                if(document.referrer && document.referrer !== '/login'){
+                    router.push(document.referrer);
+                }else{
+                    router.push('/');
+                }
             }else{
                 toast.error(t('credentialsError'))
             }

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Store
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,3 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
+class StoresOpenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Store
+        fields = ['name', 'locale']

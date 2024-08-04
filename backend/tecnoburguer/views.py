@@ -3,7 +3,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import UserSerializer
+from .serializers import UserSerializer, StoresOpenSerializer
+from .models import Store
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -53,5 +54,6 @@ class Register(APIView):
                 return Response({'error': 'Only customers can be registered without authentication'}, status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
-def get_stores(request):
-    pass
+def get_stores_open(request):
+    store = StoresOpenSerializer(Store.objects.filter(state='open'), many=True).data
+    return Response(store, status=status.HTTP_201_CREATED)

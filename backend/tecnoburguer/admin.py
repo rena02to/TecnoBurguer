@@ -33,8 +33,8 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ('name', 'locale', 'states')
-    search_fields = ('name', 'locale', 'states')
+    list_display = ('name', 'locale', 'state')
+    search_fields = ('name', 'locale', 'state')
 
 @admin.register(StoreHour)
 class StoreHoursAdmin(admin.ModelAdmin):
@@ -43,7 +43,7 @@ class StoreHoursAdmin(admin.ModelAdmin):
 
 @admin.register(Food)
 class FoodAdmin(admin.ModelAdmin):
-    list_display = ('name', 'store', 'amount', 'value')
+    list_display = ('name', 'store', 'amount', 'value', 'state')
     search_fields = ('name', 'store__name')
 
 @admin.register(Order)

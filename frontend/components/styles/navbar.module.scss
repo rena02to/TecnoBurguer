@@ -8,6 +8,7 @@
     height: 70px;
     bottom: 0;
     border-top: 1px solid gray;
+    background-color: $color-navbar;
     .button{
         @include flex-align(auto);
         background-color: $color-forms;
@@ -61,6 +62,9 @@
     }
     .link{
         color: black;
+        &:hover{
+            color: gray;
+        }
         &Selected{
             color: $color-forms;
             border-bottom: 2px solid $color-forms;

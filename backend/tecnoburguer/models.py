@@ -48,7 +48,7 @@ class Store(models.Model):
 
     name = models.CharField(max_length=50)
     locale = models.CharField(max_length=255)
-    states = models.CharField(max_length=17, choices=States, default='open')
+    state = models.CharField(max_length=17, choices=States, default='open')
     admins = models.ManyToManyField(User, related_name='admin_stores', limit_choices_to={'type': 'admin'})
     employees = models.ManyToManyField(User, related_name='employee_stores', limit_choices_to={'type': 'attendant' or "cashier" or "chef" or "deliveryman"})
 
@@ -85,7 +85,7 @@ class Food(models.Model):
     desc = models.CharField(max_length=255)
     amount = models.IntegerField()
     value = models.DecimalField(max_digits=6, decimal_places=2)
-    states = models.CharField(max_length=12, choices=States, default='avaliable')
+    state = models.CharField(max_length=12, choices=States, default='avaliable')
     image = models.ImageField(upload_to='images/')
     def __str__(self):
         return self.name

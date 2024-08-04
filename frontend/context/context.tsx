@@ -25,7 +25,6 @@ export const ContextProvider = ( { children } : ContextProviderProps ) => {
             if(token){
                 try{
                     const response = await fetch('https://tecnoburguer.onrender.com/api/user/get_user_from_token',{
-                        method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,
                         }
@@ -38,6 +37,8 @@ export const ContextProvider = ( { children } : ContextProviderProps ) => {
                 }catch(error){
                     console.log(error);
                 }
+            }else{
+                setType("loggedout");
             }
         }
         fetchData();

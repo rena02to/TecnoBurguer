@@ -1,5 +1,5 @@
-import HomeSelector from "@/components/HomeSelector";
 import ImageTop from "@/components/ImageTop";
+import Main from "@/components/Stores";
 import NavBar from "@/components/NavBar";
 import { ContextProvider } from "@/context/context";
 
@@ -12,7 +12,7 @@ export default function Home() {
     <ContextProvider>
       <NavBar/>
       <ImageTop/>
-      <HomeSelector/>
+      <Main/>
     </ContextProvider>
   );
 }

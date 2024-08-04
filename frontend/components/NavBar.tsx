@@ -31,7 +31,22 @@ export default function NavBar() {
             { key: 1, value: 'Início', link: '/', icon: <IoHomeOutline/>, selected: <IoHome/> },
             { key: 2, value: 'Pedidos', link: '/orders', icon: <RiFilePaper2Line />, selected: <RiFilePaper2Fill/> },
             { key: 3, value: 'Perfil', link: '/profile', icon: <BiUserPin/>, selected: <BiSolidUserPin/> }
-        ]
+        ],
+        admin: [
+            { key: 1, value: 'Início', link: '/', icon: <IoHomeOutline/>, selected: <IoHome/> },
+            { key: 2, value: 'Estatisticas', link: '/statistics', icon: <RiFilePaper2Line />, selected: <RiFilePaper2Fill/> },
+            { key: 3, value: 'Perfil', link: '/profile', icon: <BiUserPin/>, selected: <BiSolidUserPin/> }
+        ],
+        attendant: [
+            { key: 1, value: 'Início', link: '/', icon: <IoHomeOutline/>, selected: <IoHome/> },
+            { key: 2, value: 'Cardápio', link: '/orders', icon: <RiFilePaper2Line />, selected: <RiFilePaper2Fill/> },
+            { key: 3, value: 'Perfil', link: '/profile', icon: <BiUserPin/>, selected: <BiSolidUserPin/> }
+        ],
+        cashier: [
+            { key: 1, value: 'Início', link: '/', icon: <IoHomeOutline/>, selected: <IoHome/> },
+            { key: 2, value: 'Pedidos', link: '/orders', icon: <RiFilePaper2Line />, selected: <RiFilePaper2Fill/> },
+            { key: 3, value: 'Perfil', link: '/profile', icon: <BiUserPin/>, selected: <BiSolidUserPin/> }
+        ],
     };
 
     useEffect(() => {
