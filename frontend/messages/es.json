@@ -57,13 +57,18 @@
       "saturday": "Sábado",
       "sunday": "Domingo",
       "tomorrow": "mañana",
+      "today": "hoy",
       "min": "Mínimo",
       "close": {
         "week": "Cerrado esta semana",
         "today": "Abierto"
       },
       "nothours": "No hay horas disponibles",
-      "open": "Abrir ahora - Cerrar"
+      "open": "Abrir ahora - Cerrar",
+      "search": "Buscar tiendas o artículos...",
+      "delivery": {
+        "unavaliable": "Información de entrega no disponible"
+      }
     }
   }
 }

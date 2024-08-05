@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import Select from 'react-select';
 
 interface OpeningHoursType {
     status: string;
@@ -17,7 +16,6 @@ interface OpeningHoursType {
 interface Store {
     id: number;
     name: string;
-    locale: string;
     min_order: number;
     average_rating: number;
     opening_hours?: OpeningHoursType;
@@ -34,14 +32,15 @@ export default function Stores() {
         friday: t('friday'),
         saturday: t('saturday'),
         sunday: t('sunday'),
-        tomorrow: t('tomorrow')
+        tomorrow: t('tomorrow'),
+        today: t('today')
     };
     //const options{}
 
     useEffect(() => {
         const fetchData = async() => {
             try{
-                const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
+                const response = await fetch('http://localhost:8000/api/stores/open');
                 if (response.ok) {
                     const stores = await response.json();
                     setStores(stores)
@@ -55,16 +54,17 @@ export default function Stores() {
             }
         }
         fetchData();
-    }, [stores])
+    }, [])
 
     return (
         <div className={style.main}>
             <div className={style.filters}>
                 <div className={style.input}>
-                    <input type="text" name="search" id="search" placeholder='serach for stores...'/>
+                    <input type="text" name="search" id="search" placeholder={t('search')}/>
                     <button type='button'><IoSearch/></button>
+                    {/*fazer a busca no banco de dados*/}
                 </div>
-                
+                {/*filtros*/}
             </div>
             <div className={style.stores}>
                 {stores.map((store, index) => (
@@ -82,7 +82,8 @@ export default function Stores() {
                             {store.opening_hours?.status === 'not hours' && <p className={style.status}>{t('nothours')}</p>}
                             {store.opening_hours?.status === 'close' && <p className={style.status}>{t('close.today')} {days[store.opening_hours.day]} {store.opening_hours.hours_open}</p>}
                             {store.opening_hours?.status === 'open' && <p className={style.status}>{t('open')} {store.opening_hours.hours_close}</p>}
-                            <p className={style.locale}>{store.locale}</p>
+                            {/*taxa de entrega && tempo de entrega*/}
+                            <p className={style.delivery}>{t('delivery.unavaliable')}</p>
                         </div>
                     </Link>
                 ))}

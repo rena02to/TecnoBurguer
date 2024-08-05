@@ -25,7 +25,7 @@
                 border-radius: 10px;
                 outline: none;
                 border: 1px solid gray;
-                padding: 5px 10px;
+                padding: 5px 35px 5px 10px;
                 font-size: 15px;
                 font-weight: 500;
                 &::placeholder{
@@ -60,16 +60,17 @@
         align-items: flex-start;
         gap: 10px;
         .store{
-            width: 250px;
+            width: 260px;
             height: 140px;
             border-radius: 10px;
             @include flex-align(column);
             justify-content: flex-start;
             align-items: flex-start;
-            border: 3px solid gray;
+            border: 2px solid gray;
             text-decoration: none;
             color: black;
             overflow: hidden;
+            font-weight: 500;
             p{
                 margin: 0;
             }
@@ -80,7 +81,7 @@
                 background-color: rgb(230, 230, 230);
                 width: calc(100% - 30px);
                 .name{
-                    font-weight: 500;
+                    font-weight: 600;
                     font-size: 17px;
                     color: black;
                 }
@@ -101,7 +102,7 @@
                     gap: 5px;
                     .assessments{
                         svg{
-                            color: rgb(215, 215, 0);
+                            color: $yellow-color;
                         }
                     }
                     .min{

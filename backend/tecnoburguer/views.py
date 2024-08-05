@@ -3,8 +3,10 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import UserSerializer, StoresOpenSerializer
-from .models import Store
+from django.shortcuts import get_object_or_404
+from django.db.models import Q
+from .serializers import UserSerializer, StoresOpenSerializer, SearchStoreSerializer
+from .models import Store, Food
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -57,3 +59,11 @@ class Register(APIView):
 def get_stores_open(request):
     store = StoresOpenSerializer(Store.objects.filter(state='open'), many=True).data
     return Response(store, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+def search(request):
+    query = request.GET.get('q', '')
+    stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
+    store_serializer = SearchStoreSerializer(stores, many=True, context={'request': request})
+
+    return Response(store_serializer.data)

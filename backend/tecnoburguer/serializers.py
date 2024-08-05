@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Store, StoreHour
+from .models import User, Store, StoreHour, Food
 from django.db.models import Avg
 import pytz
 from datetime import datetime, timedelta
@@ -27,7 +27,7 @@ class StoresOpenSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Store
-        fields = ['id', 'name', 'locale', 'min_order', 'average_rating', 'opening_hours']
+        fields = ['id', 'name', 'min_order', 'average_rating', 'opening_hours']
     
     def get_average_rating(self, obj):
         average_rating = obj.assessments.aggregate(Avg('stars'))['stars__avg']
@@ -40,19 +40,40 @@ class StoresOpenSerializer(serializers.ModelSerializer):
             store_timezone = pytz.timezone(store_hours.timezone)
             open_time = getattr(store_hours, f"{current_day.strftime('%A').lower()}_open")
             close_time = getattr(store_hours, f"{current_day.strftime('%A').lower()}_close")
-            if (open_time and close_time) and (open_time != close_time): 
-                now = datetime.now(pytz.utc).astimezone(store_timezone)
+            now = datetime.now(pytz.utc).astimezone(store_timezone)
+            if (open_time and close_time) and (open_time != close_time):
                 close_time = store_timezone.localize(datetime.combine(now.date(), close_time))
-                return {'status' : 'open', 'hours_close' : close_time.strftime("%H:%M")}
+                open_time = store_timezone.localize(datetime.combine(now.date(), open_time))
+                if now < open_time:
+                    return {'status' : 'close', 'day': 'today', 'hours_open' : open_time.strftime("%H:%M")}
+                else:
+                    return {'status' : 'open', 'hours_close' : close_time.strftime("%H:%M")}
             else:
                 for i in range(1, 8):
                     next_day = (current_day + timedelta(days=i)).strftime('%A').lower()
                     next_day_open = getattr(store_hours, f'{next_day}_open')
                     next_day_close = getattr(store_hours, f'{next_day}_close')
                     if (next_day_open and next_day_close) and (next_day_open != next_day_close):
-                        now = datetime.now(pytz.utc).astimezone(store_timezone)
                         open_time = store_timezone.localize(datetime.combine(now.date(), next_day_open))
                         return {'status': 'close', 'day' : 'tomorrow' if i == 1 else next_day, 'hours_open' : open_time.strftime("%H:%M")}
                 return {'status': 'close week'}
         except StoreHour.DoesNotExist:
             return {'status': 'not hours'}
+
+class FoodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Food
+        fields = ['name', 'desc', 'amount', 'value', 'state', 'image']
+
+class SearchStoreSerializer(serializers.ModelSerializer):
+    foods = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Store
+        fields = ['name', 'locale', 'min_order', 'id', 'foods']
+
+    def get_foods(self, obj):
+        request = self.context.get('request')
+        query = request.GET.get('q', '')
+        foods = obj.food.filter(name__icontains=query)
+        return FoodSerializer(foods, many=True, read_only=True).data

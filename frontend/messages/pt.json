@@ -49,21 +49,26 @@
       "signup": "Registre-se"
     },
     "Stores":{
-      "monday": "Segunda",
-      "tuesday": "Terça",
-      "wednesday": "Quarta",
-      "thursday": "Quinta",
-      "friday": "Sexta",
-      "saturday": "Sábado",
-      "sunday": "Domingo",
+      "monday": "segunda",
+      "tuesday": "terça",
+      "wednesday": "quarta",
+      "thursday": "quinta",
+      "friday": "sexta",
+      "saturday": "sábado",
+      "sunday": "domingo",
       "tomorrow": "amanhã",
+      "today": "hoje",
       "min": "Mínimo",
       "close": {
         "week": "Fechado essa semana",
         "today": "Abre"
       },
       "nothours": "Sem horários disponíveis",
-      "open": "Aberto agora - Fecha"
+      "open": "Aberto agora - Fecha",
+      "search": "Pesquise por lojas ou itens...",
+      "delivery": {
+        "unavaliable": "Informações de entrega indisponíveis"
+      }
     }
   }
 }

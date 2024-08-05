@@ -49,21 +49,26 @@
       "signup": "Sign up"
     },
     "Stores":{
-      "monday": "Monday",
-      "tuesday": "Tuesday",
-      "wednesday": "Wednesday",
-      "thursday": "Thursday",
-      "friday": "Friday",
-      "saturday": "Saturday",
-      "sunday": "Sunday",
+      "monday": "monday",
+      "tuesday": "tuesday",
+      "wednesday": "wednesday",
+      "thursday": "thursday",
+      "friday": "friday",
+      "saturday": "saturday",
+      "sunday": "sunday",
       "tomorrow": "tomorrow",
+      "today": "today",
       "min": "Minimum",
       "close": {
         "week": "Closed this week",
         "today": "Open"
       },
       "nothours": "No hours available",
-      "open": "Open now - Close"
+      "open": "Open now - Close",
+      "search": "Search for stores or items...",
+      "delivery": {
+        "unavaliable": "Delivery information unavailable"
+      }
     }
   }
 }
