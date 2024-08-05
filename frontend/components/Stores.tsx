@@ -40,7 +40,7 @@ export default function Stores() {
     useEffect(() => {
         const fetchData = async() => {
             try{
-                const response = await fetch('http://localhost:8000/api/stores/open');
+                const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
                 if (response.ok) {
                     const stores = await response.json();
                     setStores(stores)
