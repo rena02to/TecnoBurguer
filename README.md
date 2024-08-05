@@ -40,11 +40,17 @@ Para mais informações entre em contato comigo por meio do [Linkedin](https://l
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+
+## Referências
+
+Caminho/link para a imagem | Créditos pela imagem
+---|---
+[Imagem de fundo](/frontend/public/Images/background.jpg)  da página `/` | Imagem de `azerbaijan_stockers` em [Freepik](https://br.freepik.com/fotos-gratis/sanduiches-de-baguete-com-frango-carne-linguica-e-legumes_5543018.htm#from_view=detail_alsolike)
+
+##
 ![Logo](/frontend/public/Images/Icon.svg)
 
+##
+© 2024 Renato Alves
 
 </div>
-
-<!---
-    <a href="https://br.freepik.com/fotos-gratis/sanduiches-de-baguete-com-frango-carne-linguica-e-legumes_5543018.htm#from_view=detail_alsolike">Imagem de azerbaijan_stockers no Freepik</a>
->
