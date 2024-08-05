@@ -1,10 +1,11 @@
 'use client'
-import { IoStorefrontSharp } from 'react-icons/io5';
+import { IoSearch, IoStorefrontSharp } from 'react-icons/io5';
 import style from './styles/stores.module.scss';
 import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Select from 'react-select';
 
 interface OpeningHoursType {
     status: string;
@@ -34,16 +35,22 @@ export default function Stores() {
         saturday: t('saturday'),
         sunday: t('sunday'),
         tomorrow: t('tomorrow')
-    }
+    };
+    //const options{}
 
     useEffect(() => {
         const fetchData = async() => {
-            const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
-            if (response.ok) {
-                const stores = await response.json();
-                setStores(stores)
-            } else {
-                console.error('Network response was not ok');
+            try{
+                const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
+                if (response.ok) {
+                    const stores = await response.json();
+                    setStores(stores)
+                } else {
+                    console.error('Network response was not ok');
+                    setStores([]);
+                }
+            }catch(error){
+                console.error(error);
                 setStores([]);
             }
         }
@@ -52,26 +59,34 @@ export default function Stores() {
 
     return (
         <div className={style.main}>
-            
-            {stores.map((store, index) => (
-                <Link href={`/store/${store.id}`} className={style.store} key={index}>
-                    <div className={style.top}>
-                        <IoStorefrontSharp />
-                        <p className={style.name}>{store.name}</p>
-                    </div>
-                    <div className={style.infos}>
-                        <span>
-                            <p className={style.assessments}><FaStar/>{store.average_rating.toFixed(1)}</p>
-                            <p className={style.min}>{t('min')}: R$ {store.min_order}</p>
-                        </span>
-                        {store.opening_hours?.status === 'close week' && <p className={style.status}>{t('close.week')}</p>}
-                        {store.opening_hours?.status === 'not hours' && <p className={style.status}>{t('nothours')}</p>}
-                        {store.opening_hours?.status === 'close' && <p className={style.status}>{t('close.today')} {days[store.opening_hours.day]} {store.opening_hours.hours_open}</p>}
-                        {store.opening_hours?.status === 'open' && <p className={style.status}>{t('open')} {store.opening_hours.hours_close}</p>}
-                        <p className={style.locale}>{store.locale}</p>
-                    </div>
-                </Link>
-            ))}
+            <div className={style.filters}>
+                <div className={style.input}>
+                    <input type="text" name="search" id="search" placeholder='serach for stores...'/>
+                    <button type='button'><IoSearch/></button>
+                </div>
+                
+            </div>
+            <div className={style.stores}>
+                {stores.map((store, index) => (
+                    <Link href={`/store/${store.id}`} className={style.store} key={index}>
+                        <div className={style.top}>
+                            <IoStorefrontSharp />
+                            <p className={style.name}>{store.name}</p>
+                        </div>
+                        <div className={style.infos}>
+                            <span>
+                                <p className={style.assessments}><FaStar/>{store.average_rating.toFixed(1)}</p>
+                                <p className={style.min}>{t('min')}: R$ {store.min_order}</p>
+                            </span>
+                            {store.opening_hours?.status === 'close week' && <p className={style.status}>{t('close.week')}</p>}
+                            {store.opening_hours?.status === 'not hours' && <p className={style.status}>{t('nothours')}</p>}
+                            {store.opening_hours?.status === 'close' && <p className={style.status}>{t('close.today')} {days[store.opening_hours.day]} {store.opening_hours.hours_open}</p>}
+                            {store.opening_hours?.status === 'open' && <p className={style.status}>{t('open')} {store.opening_hours.hours_close}</p>}
+                            <p className={style.locale}>{store.locale}</p>
+                        </div>
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 }
