@@ -1,4 +1,5 @@
 'use client'
+import { KeyboardEvent } from 'react';
 import { IoSearch, IoStorefrontSharp } from 'react-icons/io5';
 import style from './styles/stores.module.scss';
 import Link from 'next/link';
@@ -35,7 +36,6 @@ export default function Stores() {
         tomorrow: t('tomorrow'),
         today: t('today')
     };
-    //const options{}
 
     useEffect(() => {
         const fetchData = async() => {
@@ -54,14 +54,28 @@ export default function Stores() {
             }
         }
         fetchData();
-    }, [])
+    }, []);
+
+    const handleSearch = () => {
+        const searchInput = document.getElementById('search') as HTMLInputElement;
+        if(searchInput.value){
+            //requisicao para o backend
+            alert(searchInput.value)
+        }
+    }
+
+    const handleKeyDown = ( event : KeyboardEvent<HTMLInputElement> ) => {
+        if(event.key === 'Enter'){
+            handleSearch()
+        }
+    }
 
     return (
         <div className={style.main}>
             <div className={style.filters}>
                 <div className={style.input}>
-                    <input type="text" name="search" id="search" placeholder={t('search')}/>
-                    <button type='button'><IoSearch/></button>
+                    <input type="text" name="search" id="search" placeholder={t('search')} onKeyDown={(event) => handleKeyDown(event)}/>
+                    <button type='button' onClick={handleSearch}><IoSearch/></button>
                     {/*fazer a busca no banco de dados*/}
                 </div>
                 {/*filtros*/}
