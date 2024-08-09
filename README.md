@@ -29,6 +29,8 @@ O desenvolvimento do sistema TecnoBurguer contou com uma stack moderna e eficien
 
 Essas tecnologias foram escolhidas para garantir a robustez, escalabilidade e facilidade de manutenção do sistema, proporcionando uma experiência eficiente tanto para os usuários finais quanto para os desenvolvedores.
 
+Após a primeira reqisição é necessário aguardar alguns segundos, pois a instância que está armzenado todo o back-end desliga após 30 segundos de inatividade.
+
 ---
 
 ## Principais funcionalidades
