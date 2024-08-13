@@ -1,64 +1,27 @@
 @import './../../app//styles/mixins-and-variables.scss';
 
 .main{
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     width: calc(100% - 40px);
     @include flex-align(column);
     gap: 10px;
-    .filters{
-        @include flex-align(row);
-        width: 100%;
-        gap: 10px;
-        @media (max-width: 700px){
-            flex-direction: column;
-        }
-        .input{
-            position: relative;
-            @include flex-align(auto);
-            width: 300px;
-            @media (max-width: 700px){
-                width: 100%;
-            }
-            input{
-                width: 100%;
-                height: 30px;
-                border-radius: 10px;
-                outline: none;
-                border: 1px solid gray;
-                padding: 5px 35px 5px 10px;
-                font-size: 15px;
-                font-weight: 500;
-                &::placeholder{
-                    font-weight: 400;
-                }
-            }
-            button{
-                position: absolute;
-                right: 10px;
-                padding: 0;
-                background-color: transparent;
-                @include flex-align(auto);
-                svg{
-                    width: 25px;
-                    height: 25px;
-                    margin: 0;
-                    color: rgb(75, 75, 75);
-                }
-            }
-        }
-        .filter{
-            width: 300px;
-            @media (max-width: 700px){
-                width: 100%;
-            }
-        }
-    }
     .stores{
         width: 100%;
         @include flex-align(row);
         flex-wrap: wrap;
         align-items: flex-start;
         gap: 10px;
+        .load, .closed{
+            font-size: 15px;
+        }
+        .load{
+            @include flex-align(row);
+            svg{
+                width: 25px;
+                height: 25px;
+                animation: loading 3s infinite linear;
+            }
+        }
         .store{
             width: 275px;
             height: 140px;
@@ -120,5 +83,14 @@
                 }
             }
         }
+    }
+}
+
+@keyframes loading {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
     }
 }

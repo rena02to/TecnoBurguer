@@ -1,11 +1,12 @@
 'use client'
-import { KeyboardEvent } from 'react';
-import { IoSearch, IoStorefrontSharp } from 'react-icons/io5';
+import { IoStorefrontSharp } from 'react-icons/io5';
 import style from './styles/stores.module.scss';
 import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { RiLoader2Line } from "react-icons/ri";
+import Filters from './Filters';
 
 interface OpeningHoursType {
     status: string;
@@ -23,6 +24,7 @@ interface Store {
 }
 
 export default function Stores() {
+    const [ loading, setLoading ] = useState(true);
     const [ stores, setStores ] = useState<Store[]>([]);
     const t = useTranslations('HomePage.Stores');
     const days : {[key : string] : string} = {
@@ -39,48 +41,32 @@ export default function Stores() {
 
     useEffect(() => {
         const fetchData = async() => {
+            setLoading(true);
             try{
                 const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
-                if (response.ok) {
+                if(response.ok) {
                     const stores = await response.json();
                     setStores(stores)
-                } else {
+                }else {
                     console.error('Network response was not ok');
                     setStores([]);
                 }
             }catch(error){
                 console.error(error);
                 setStores([]);
+            }finally{
+                setLoading(false);
             }
         }
         fetchData();
-    }, []);
+    }, [  ]);
 
-    const handleSearch = () => {
-        const searchInput = document.getElementById('search') as HTMLInputElement;
-        if(searchInput.value){
-            //requisicao para o backend
-            alert(searchInput.value)
-        }
-    }
-
-    const handleKeyDown = ( event : KeyboardEvent<HTMLInputElement> ) => {
-        if(event.key === 'Enter'){
-            handleSearch()
-        }
-    }
 
     return (
         <div className={style.main}>
-            <div className={style.filters}>
-                <div className={style.input}>
-                    <input type="text" name="search" id="search" placeholder={t('search')} onKeyDown={(event) => handleKeyDown(event)}/>
-                    <button type='button' onClick={handleSearch}><IoSearch/></button>
-                    {/*fazer a busca no banco de dados*/}
-                </div>
-                {/*filtros*/}
-            </div>
+            <Filters value={""}/>
             <div className={style.stores}>
+                {loading ? <p className={style.load}>{t('load')}<RiLoader2Line/></p> : (stores.length > 0 ? null : <p className={style.closed}>{t('closed')}</p>)}
                 {stores.map((store, index) => (
                     <Link href={`/store/${store.id}`} className={style.store} key={index}>
                         <div className={style.top}>

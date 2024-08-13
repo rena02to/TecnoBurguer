@@ -57,8 +57,9 @@ class Register(APIView):
 
 @api_view(['GET'])
 def get_stores_open(request):
-    store = StoresOpenSerializer(Store.objects.filter(state='open'), many=True).data
-    return Response(store, status=status.HTTP_201_CREATED)
+    stores = StoresOpenSerializer(Store.objects.filter(state='open'), many=True).data
+    stores = [store for store in stores if (store['is_open_now'])]
+    return Response(stores, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
 def search(request):

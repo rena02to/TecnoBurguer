@@ -44,6 +44,9 @@
     },
     "Collaborator": {}
   },
+  "Filters": {
+    "search": "Pesquise por lojas ou itens..."
+  },
   "HomePage": {
     "Navbar":{
       "signup": "Registre-se"
@@ -65,10 +68,11 @@
       },
       "nothours": "Sem horários disponíveis",
       "open": "Aberto agora - Fecha",
-      "search": "Pesquise por lojas ou itens...",
       "delivery": {
         "unavaliable": "Informações de entrega indisponíveis"
-      }
+      },
+      "load": "Carregando lojas abertas no momento...",
+      "closed": "Não há lojas abertas no momento"
     }
   }
 }

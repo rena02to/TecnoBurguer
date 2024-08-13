@@ -44,6 +44,9 @@
     },
     "Collaborator": {}
   },
+  "Filters": {
+    "search": "Search for stores or items..."
+  },
   "HomePage": {
     "Navbar":{
       "signup": "Sign up"
@@ -65,10 +68,11 @@
       },
       "nothours": "No hours available",
       "open": "Open now - Close",
-      "search": "Search for stores or items...",
       "delivery": {
         "unavaliable": "Delivery information unavailable"
-      }
+      },
+      "load": "Loading stores currently open...",
+      "closed": "There are no stores open at the moment"
     }
   }
 }
