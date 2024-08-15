@@ -21,14 +21,30 @@ class UserSerializer(serializers.ModelSerializer):
         )
         return user
 
+class FoodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Food
+        fields = ['id', 'name', 'desc', 'amount', 'value', 'state', 'image']
+
 class StoresOpenSerializer(serializers.ModelSerializer):
     average_rating = serializers.SerializerMethodField()
     opening_hours = serializers.SerializerMethodField()
     is_open_now = serializers.SerializerMethodField()
-    
+    foods = serializers.SerializerMethodField()
+
     class Meta:
         model = Store
-        fields = ['id', 'name', 'min_order', 'average_rating', 'opening_hours', 'is_open_now']
+        fields = ['name', 'locale', 'min_order', 'id', 'foods']
+
+    class Meta:
+        model = Store
+        fields = ['id', 'name', 'min_order', 'average_rating', 'opening_hours', 'is_open_now', 'foods']
+
+    def get_foods(self, obj):
+        request = self.context.get('request')
+        query = request.GET.get('q', '')
+        foods = obj.food.filter(name__icontains=query)
+        return FoodSerializer(foods, many=True, read_only=True).data
     
     def get_average_rating(self, obj):
         average_rating = obj.assessments.aggregate(Avg('stars'))['stars__avg']
@@ -64,21 +80,3 @@ class StoresOpenSerializer(serializers.ModelSerializer):
     def get_is_open_now(self, obj):
         opening_hours = self.get_opening_hours(obj)
         return opening_hours['status'] == 'open'
-
-class FoodSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Food
-        fields = ['name', 'desc', 'amount', 'value', 'state', 'image']
-
-class SearchStoreSerializer(serializers.ModelSerializer):
-    foods = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Store
-        fields = ['name', 'locale', 'min_order', 'id', 'foods']
-
-    def get_foods(self, obj):
-        request = self.context.get('request')
-        query = request.GET.get('q', '')
-        foods = obj.food.filter(name__icontains=query)
-        return FoodSerializer(foods, many=True, read_only=True).data

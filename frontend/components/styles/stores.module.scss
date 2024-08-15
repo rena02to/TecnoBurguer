@@ -7,7 +7,7 @@
     gap: 10px;
     .stores{
         width: 100%;
-        @include flex-align(row);
+        @include flex-align(row-reverse);
         flex-wrap: wrap;
         align-items: flex-start;
         gap: 10px;
@@ -25,15 +25,21 @@
         .store{
             width: 275px;
             height: 140px;
-            border-radius: 10px;
+            border-radius: 13px;
             @include flex-align(column);
             justify-content: flex-start;
             align-items: flex-start;
-            border: 2px solid gray;
+            border: 2px solid rgb(170, 170, 170);
             text-decoration: none;
             color: black;
             overflow: hidden;
             font-weight: 500;
+            transition: .3s linear;
+            box-shadow: 4px 4px 4px rgba(black, 0.2);
+            &:hover{
+                box-shadow: 6px 6px 4px rgba(black, 0.3);
+                transition: .3s linear;
+            }
             p{
                 margin: 0;
             }
@@ -47,11 +53,17 @@
                     font-weight: 600;
                     font-size: 17px;
                     color: black;
-                }
-                svg{
-                    width: 25px;
-                    height: 25px;
-                    color: $green-color;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 100%;
+                    @include flex-align(row);
+                    gap: 5px;
+                    svg{
+                        width: 25px;
+                        height: 25px;
+                        color: $green-color;
+                    }
                 }
             }
             .infos{
@@ -64,8 +76,11 @@
                     @include flex-align(row);
                     gap: 5px;
                     .assessments{
-                        svg{
+                        .yes{
                             color: $yellow-color;
+                        }
+                        .no{
+                            color: gray;
                         }
                     }
                     .min{
@@ -81,16 +96,16 @@
                     overflow: hidden;
                     width: 100%;
                 }
+                .delivery{
+                    @include flex-align(row);
+                    svg{
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
             }
         }
     }
 }
 
-@keyframes loading {
-    0%{
-        transform: rotateZ(0deg);
-    }
-    100%{
-        transform: rotateZ(360deg);
-    }
-}
+@include loading();

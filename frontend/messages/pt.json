@@ -74,5 +74,29 @@
       "load": "Carregando lojas abertas no momento...",
       "closed": "Não há lojas abertas no momento"
     }
+  },
+  "Search": {
+    "load": "Carregando resultados...",
+    "notresults": "Não há resultados que correspondam à sua busca",
+    "Stores":{
+      "monday": "segunda",
+      "tuesday": "terça",
+      "wednesday": "quarta",
+      "thursday": "quinta",
+      "friday": "sexta",
+      "saturday": "sábado",
+      "sunday": "domingo",
+      "tomorrow": "amanhã",
+      "today": "hoje",
+      "min": "Mínimo",
+      "close": "Fechado",
+      "nothours": "Sem horários disponíveis",
+      "open": "Aberto",
+      "delivery": {
+        "unavaliable": "Informações de entrega indisponíveis"
+      },
+      "load": "Carregando lojas abertas no momento...",
+      "closed": "Não há lojas abertas no momento"
+    }
   }
 }

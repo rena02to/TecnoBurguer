@@ -67,7 +67,31 @@
         "today": "Abierto"
       },
       "nothours": "No hay horas disponibles",
-      "open": "Abrir ahora - Cerrar",
+      "open": "Abierto ahora - Cerrar",
+      "delivery": {
+        "unavaliable": "Información de entrega no disponible"
+      },
+      "load": "Cargando tiendas actualmente abiertas...",
+      "closed": "No hay tiendas abiertas en este momento"
+    }
+  },
+  "Search": {
+    "load": "Cargando resultados...",
+    "notresults": "There are no results that match your search",
+    "Stores":{
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo",
+      "tomorrow": "mañana",
+      "today": "hoy",
+      "min": "Mínimo",
+      "close": "Cerrado",
+      "nothours": "No hay horas disponibles",
+      "open": "Abierto",
       "delivery": {
         "unavaliable": "Información de entrega no disponible"
       },

@@ -16,3 +16,14 @@ $color-navbar: rgb(240, 240, 240);
     align-items: center;
     text-align: center;
 }
+
+@mixin loading(){
+    @keyframes loading {
+        0%{
+            transform: rotateZ(0deg);
+        }
+        100%{
+            transform: rotateZ(360deg);
+        }
+    }
+}

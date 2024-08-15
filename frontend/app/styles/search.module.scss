@@ -1,0 +1,190 @@
+@import './mixins-and-variables.scss';
+
+.search{
+    .load, .notresults{
+        font-size: 15px;
+        margin: 0;
+    }
+    .load{
+        @include flex-align(row);
+        svg{
+            width: 25px;
+            height: 25px;
+            animation: loading 3s infinite linear;
+        }
+    }
+    .resultsContainer{
+        width: calc(100% - 40px);
+        @include flex-align(column);
+        gap: 10px;
+        padding: 20px;
+        .results{
+            width: 100%;
+            @include flex-align(column);
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 10px;
+            .line{
+                width: 100%;
+                height: 2px;
+                background-color: rgb(170, 170, 170);
+            }
+            p{
+                margin: 0;
+            }
+            .legend{
+                font-weight: 500;
+                padding: 0 15px;
+                margin-top: 10px
+            }
+            .result, .resultClosed{
+                @include flex-align(column);
+                align-items: flex-start;
+                width: 95%;
+                padding: 5px 15px;
+                border-radius: 10px;
+                .store, .storeClosed{
+                    padding: 5px 10px;
+                    width: max-content;
+                    max-width: 90%;
+                    word-wrap: break-word;
+                    flex-wrap: wrap;
+                    border-radius: 10px;
+                    @include flex-align(row);
+                    text-decoration: none;
+                    color: black;
+                    overflow: hidden;
+                    font-weight: 500;
+                    transition: .3s linear;
+                    gap: 5px;
+                    .image{
+                        background-image: url('/Images/icon-simplified.svg');
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 100%;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center;
+                    }
+                    .infos{
+                        @include flex-align(column);
+                        align-items: flex-start;
+                        p{
+                            font-size: 12px;
+                        }
+                        .name{
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
+                        span{
+                            @include flex-align(row);
+                            gap: 5px;
+                            .min{
+                                @include flex-align(row);
+                                svg{
+                                    width: 18px;
+                                    height: 18px;
+                                    color: green;
+                                    margin-right: -3px;
+                                    margin-left: -3px;
+                                }
+                            }
+                            .delivery{
+                                svg{
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                            .open, .close{
+                                &::after{
+                                    content: '-';
+                                    margin-left: 5px
+                                }
+                            }
+                            .assessments{
+                                @include flex-align(row);
+                                &::after{
+                                    content: '-';
+                                    margin-left: 5px
+                                }
+                                .yes{
+                                    color: $yellow-color;
+                                }
+                                .no{
+                                    color: gray;
+                                }
+                            }
+                        }
+                    }
+                }
+                .store{
+                    background-color: rgba(black, 0.06);
+                    &Closed{
+                        background-color: rgba(black, 0.2);
+                        filter: grayscale(100%)
+                    }
+                }
+                .foods{
+                    position: relative;
+                    margin-top: 10px;
+                    margin-left: 20px;
+                    padding: 10px 40px;
+                    height: max-content;
+                    max-width: calc(100% - 80px);
+                    @include flex-align(row);
+                    justify-content: flex-start;
+                    overflow-x: scroll;
+                    gap: 20px;
+                    @media (max-width: 700px){
+                        margin-left: 10px;
+                    }
+                    &::-webkit-scrollbar{
+                        display: none;
+                        overflow: auto;
+                    }
+                    .food, .foodClose{
+                        text-decoration: none;
+                        @include flex-align(column);
+                        gap: 15px;
+                        background-color: rgb(220, 220, 220);
+                        padding: 10px;
+                        border-radius: 5px;
+                        width: 150px;
+                        transition: .5s linear;
+                        &:hover{
+                            background-color: rgb(200, 200, 200);
+                            box-shadow: 5px 5px 5px rgba(black, 0.3);
+                            transition: .5s linear;
+                        }
+                        img{
+                            border-radius: 200px;
+                        }
+                        .infos{
+                            @include flex-align(column);
+                            gap: 5px;
+                            width: 100%;
+                            .name, .value{
+                                width: 100%;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                font-weight: 500;
+                            }
+                            .name{
+                                font-size: 15px;
+                            }
+                            .value{
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                    .foodClose{
+                        filter: grayscale(100%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include loading;

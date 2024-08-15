@@ -3,10 +3,9 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from django.shortcuts import get_object_or_404
 from django.db.models import Q
-from .serializers import UserSerializer, StoresOpenSerializer, SearchStoreSerializer
-from .models import Store, Food
+from .serializers import UserSerializer, StoresOpenSerializer
+from .models import Store
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -57,14 +56,16 @@ class Register(APIView):
 
 @api_view(['GET'])
 def get_stores_open(request):
-    stores = StoresOpenSerializer(Store.objects.filter(state='open'), many=True).data
+    stores = StoresOpenSerializer(Store.objects.filter(state='open'), many=True, context={'request': request}).data
     stores = [store for store in stores if (store['is_open_now'])]
     return Response(stores, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
 def search(request):
     query = request.GET.get('q', '')
-    stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
-    store_serializer = SearchStoreSerializer(stores, many=True, context={'request': request})
+    stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct().filter(state='open')
+    stores = StoresOpenSerializer(stores, many=True, context={'request': request}).data
+    stores_open = [store for store in stores if (store['is_open_now'])]
+    stores_close = [store for store in stores if (not store['is_open_now'])]
 
-    return Response(store_serializer.data)
+    return Response({'open': stores_open, 'close': stores_close})

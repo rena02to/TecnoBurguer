@@ -66,16 +66,15 @@ export default function Stores() {
         <div className={style.main}>
             <Filters value={""}/>
             <div className={style.stores}>
-                {loading ? <p className={style.load}>{t('load')}<RiLoader2Line/></p> : (stores.length > 0 ? null : <p className={style.closed}>{t('closed')}</p>)}
-                {stores.map((store, index) => (
-                    <Link href={`/store/${store.id}`} className={style.store} key={index}>
+                {loading ? <p className={style.load}>{t('load')}<RiLoader2Line/></p> : (stores.length > 0 ? null : <p className={style.notresults}>{t('closed')}</p>)}
+                {stores.map((store) => (
+                    <Link href={`/store/${store.id}`} className={style.store} key={store.id}>
                         <div className={style.top}>
-                            <IoStorefrontSharp />
-                            <p className={style.name}>{store.name}</p>
+                            <p className={style.name}><IoStorefrontSharp />{store.name}</p>
                         </div>
                         <div className={style.infos}>
                             <span>
-                                <p className={style.assessments}><FaStar/>{store.average_rating.toFixed(1)}</p>
+                                <p className={style.assessments}><FaStar className={store.average_rating !== 0.0 ? style.yes : style.no}/>{store.average_rating !== 0 ? store.average_rating.toFixed(1) : '-'}</p>
                                 <p className={style.min}>{t('min')}: R$ {store.min_order}</p>
                             </span>
                             {store.opening_hours?.status === 'close week' && <p className={style.status}>{t('close.week')}</p>}
@@ -83,7 +82,7 @@ export default function Stores() {
                             {store.opening_hours?.status === 'close' && <p className={style.status}>{t('close.today')} {days[store.opening_hours.day]} {store.opening_hours.hours_open}</p>}
                             {store.opening_hours?.status === 'open' && <p className={style.status}>{t('open')} {store.opening_hours.hours_close}</p>}
                             {/*taxa de entrega && tempo de entrega*/}
-                            <p className={style.delivery}>{t('delivery.unavaliable')}</p>
+                            <p className={style.delivery}>-</p>
                         </div>
                     </Link>
                 ))}

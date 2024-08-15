@@ -32,7 +32,6 @@ export default function Filters( {value} : Props){
             <div className={style.input}>
                 <input type="text" name="search" id="search" placeholder={t('search')} onKeyDown={(event) => handleKeyDown(event)} value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
                 <button type='button' onClick={handleSearch}><IoSearch/></button>
-                {/*fazer a busca no banco de dados*/}
             </div>
             {/*filtros*/}
         </div>

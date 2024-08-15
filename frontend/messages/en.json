@@ -74,5 +74,29 @@
       "load": "Loading stores currently open...",
       "closed": "There are no stores open at the moment"
     }
+  },
+  "Search": {
+    "load": "Loading results...",
+    "notresults": "No hay resultados que coincidan con tu búsqueda",
+    "Stores":{
+      "monday": "monday",
+      "tuesday": "tuesday",
+      "wednesday": "wednesday",
+      "thursday": "thursday",
+      "friday": "friday",
+      "saturday": "saturday",
+      "sunday": "sunday",
+      "tomorrow": "tomorrow",
+      "today": "today",
+      "min": "Minimum",
+      "close": "Closed",
+      "nothours": "No hours available",
+      "open": "Open",
+      "delivery": {
+        "unavaliable": "Delivery information unavailable"
+      },
+      "load": "Loading stores currently open...",
+      "closed": "There are no stores open at the moment"
+    }
   }
 }

@@ -79,7 +79,7 @@ class StoreHour(models.Model):
     sunday_open = models.TimeField()
     sunday_close = models.TimeField()
     def __str__(self):
-        return f"Hours for {self.store.name}"
+        return f"{self.store.name} store hours"
 
 class Food(models.Model):
     States = (
