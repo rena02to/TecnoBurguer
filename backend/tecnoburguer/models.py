@@ -93,7 +93,7 @@ class Food(models.Model):
     amount = models.IntegerField()
     value = models.DecimalField(max_digits=6, decimal_places=2)
     state = models.CharField(max_length=12, choices=States, default='avaliable')
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='foods/')
     def __str__(self):
         return self.name
 
