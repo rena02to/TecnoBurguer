@@ -41,7 +41,7 @@ export default function Search(){
             setStoresOpen([]);
             setStoresClose([]);
             try{
-                const response = await fetch(`https://tecnoburguer.onrender.com/api/stores/search?q=${query}`);
+                const response = await fetch(`http://127.0.0.1:8000/api/stores/search?q=${query}`);
                 if(response.ok) {
                     const stores = await response.json();
                     setStoresOpen(stores.open);
@@ -89,7 +89,7 @@ export default function Search(){
                             <div className={style.foods}>
                                 {store.foods.map((food) => (
                                     <Link href={`/store/${store.id}/food/${food.id}`} className={style.food} key={food.id}>
-                                        <img height={125} width={125} src={`https://tecnoburguer.onrender.com/${food.image}`} alt={food.name}/>
+                                        <img height={125} width={125} src={food.image} alt={food.name}/>
                                         <div className={style.infos}>
                                             <p className={style.name}>{food.name}</p>
                                             <p className={style.value}>R$ {parseFloat(food.value).toFixed(2).replace('.', ',')}</p>
@@ -121,7 +121,7 @@ export default function Search(){
                             <div className={style.foods}>
                                 {store.foods.map((food) => (
                                     <Link href={`/store/${store.id}/food/${food.id}`} className={style.foodClose} key={food.id}>
-                                        <img height={125} width={125} src={`https://tecnoburguer.onrender.com/${food.image}`} alt={food.name}/>
+                                        <img height={125} width={125} src={food.image} alt={food.name}/>
                                         <div className={style.infos}>
                                             <p className={style.name}>{food.name}</p>
                                             <p className={style.value}>R$ {parseFloat(food.value).toFixed(2).replace('.', ',')}</p>
