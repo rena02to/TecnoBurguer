@@ -41,6 +41,8 @@ class User(AbstractUser):
     last_name=None
     first_name=None
     objects = UserManager()
+    def __str__(self):
+        return self.name
 
 class Store(models.Model):
     States = (
@@ -89,7 +91,7 @@ class Food(models.Model):
     )
 
     store = models.ForeignKey(Store, related_name="food", on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     desc = models.CharField(max_length=255)
     amount = models.IntegerField()
     value = models.DecimalField(max_digits=6, decimal_places=2)
@@ -118,6 +120,8 @@ class Food(models.Model):
             public_id = match.group(1)
             return public_id
         return None
+    def __str__(self):
+        return f"{self.name} from {self.store.name}"
 
 class Order(models.Model):
     store = models.ForeignKey(Store, related_name="order", on_delete=models.PROTECT)
@@ -154,6 +158,8 @@ class Coupon(models.Model):
     code = models.CharField(max_length=25, unique=True)
     discount = models.DecimalField(max_digits=5, decimal_places=2)
     expiry_date = models.DateField()
+    def __str__(self):
+        return self.code
 
 class UserCoupon(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
@@ -181,3 +187,5 @@ class Assessment(models.Model):
     store = models.ForeignKey(Store, related_name="assessments", on_delete=models.CASCADE)
     stars = models.IntegerField(choices=Stars)
     text = models.CharField(max_length=255, null=True, blank=True)
+    def __str__(self):
+        return f"Assessment from {self.store.name} ({self.stars} stars)"

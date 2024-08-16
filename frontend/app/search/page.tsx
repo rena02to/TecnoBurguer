@@ -41,7 +41,7 @@ export default function Search(){
             setStoresOpen([]);
             setStoresClose([]);
             try{
-                const response = await fetch(`http://127.0.0.1:8000/api/stores/search?q=${query}`);
+                const response = await fetch(`https://tecnoburguer.onrender.com/api/stores/search?q=${query}`);
                 if(response.ok) {
                     const stores = await response.json();
                     setStoresOpen(stores.open);
