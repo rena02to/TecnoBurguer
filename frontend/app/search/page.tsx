@@ -100,7 +100,7 @@ export default function Search(){
                         </div>
                     ))}
                     
-                    {storesOpen.length > 0 ? <span className={style.line}></span> : null}
+                    {storesOpen.length > 0 && storesClose.length > 0? <span className={style.line}></span> : null}
                     {storesClose.length > 0? <p className={style.legend}>Lojas fechadas no momento</p> : null}
                     {storesClose.map((store) => (
                         <div key={store.id} className={style.result}>

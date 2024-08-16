@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+@font-face {
+    font-family: 'Edu AU VIC WA NT Hand';
+    src: url('./EduAUVICWANTHand-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
 
 $main-font: "Edu AU VIC WA NT Hand", cursive;
 $orange-color: #FC7C00;
