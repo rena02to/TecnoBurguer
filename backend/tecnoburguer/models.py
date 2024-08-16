@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
 import pytz
-from django.core.validators import MaxValueValidator, MinValueValidator
+from cloudinary.uploader import destroy
+import re
 
 class User(AbstractUser):
     types=(
@@ -93,9 +94,30 @@ class Food(models.Model):
     amount = models.IntegerField()
     value = models.DecimalField(max_digits=6, decimal_places=2)
     state = models.CharField(max_length=12, choices=States, default='avaliable')
-    image = models.ImageField(upload_to='foods/')
-    def __str__(self):
-        return self.name
+    image = models.ImageField(upload_to='foods/', unique=True)
+    def save(self, *args, **kwargs):
+        if self.pk:
+            try:
+                # Obter o objeto existente
+                old_image = Food.objects.get(pk=self.pk).image
+                # Verificar se a imagem antiga está sendo substituída
+                if old_image and old_image.name != self.image.name:
+                    # Obter o `public_id` da imagem antiga
+                    old_image_url = old_image.url  # URL completa da imagem
+                    old_public_id = self._get_public_id_from_url(old_image_url)
+                    if old_public_id:
+                        # Excluir a imagem antiga do Cloudinary
+                        destroy(old_public_id, resource_type='image')
+            except Food.DoesNotExist:
+                pass
+        super(Food, self).save(*args, **kwargs)
+    def _get_public_id_from_url(self, url):
+        # Extrair o `public_id` da URL
+        match = re.search(r'/upload/v\d+/(.*?)(\.[a-zA-Z]+)?$', url)
+        if match:
+            public_id = match.group(1)
+            return public_id
+        return None
 
 class Order(models.Model):
     store = models.ForeignKey(Store, related_name="order", on_delete=models.PROTECT)

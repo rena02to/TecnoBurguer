@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User
+from .models import User, Food
+from django import forms
+from cloudinary.uploader import upload
 
 class UserCreationForm(UserCreationForm):
     class Meta:
