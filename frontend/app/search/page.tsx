@@ -86,17 +86,19 @@ export default function Search(){
                                 </div>
                             </Link>
                             
-                            <div className={style.foods}>
-                                {store.foods.map((food) => (
-                                    <Link href={`/store/${store.id}/food/${food.id}`} className={style.food} key={food.id}>
-                                        <img height={125} width={125} src={food.image} alt={food.name}/>
-                                        <div className={style.infos}>
-                                            <p className={style.name}>{food.name}</p>
-                                            <p className={style.value}>R$ {parseFloat(food.value).toFixed(2).replace('.', ',')}</p>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
+                            {store.foods.length > 0 &&
+                                <div className={style.foods}>
+                                    {store.foods.map((food) => (
+                                        <Link href={`/store/${store.id}/food/${food.id}`} className={style.food} key={food.id}>
+                                            <img height={125} width={125} src={food.image} alt={food.name}/>
+                                            <div className={style.infos}>
+                                                <p className={style.name}>{food.name}</p>
+                                                <p className={style.value}>R$ {parseFloat(food.value).toFixed(2).replace('.', ',')}</p>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            }
                         </div>
                     ))}
                     
@@ -118,17 +120,19 @@ export default function Search(){
                                 </div>
                             </Link>
 
-                            <div className={style.foods}>
-                                {store.foods.map((food) => (
-                                    <Link href={`/store/${store.id}/food/${food.id}`} className={style.foodClose} key={food.id}>
-                                        <img height={125} width={125} src={food.image} alt={food.name}/>
-                                        <div className={style.infos}>
-                                            <p className={style.name}>{food.name}</p>
-                                            <p className={style.value}>R$ {parseFloat(food.value).toFixed(2).replace('.', ',')}</p>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
+                            {store.foods.length > 0 &&
+                                <div className={style.foods}>
+                                    {store.foods.map((food) => (
+                                        <Link href={`/store/${store.id}/food/${food.id}`} className={style.foodClose} key={food.id}>
+                                            <img height={125} width={125} src={food.image} alt={food.name}/>
+                                            <div className={style.infos}>
+                                                <p className={style.name}>{food.name}</p>
+                                                <p className={style.value}>R$ {parseFloat(food.value).toFixed(2).replace('.', ',')}</p>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            }
                         </div>
                     ))}
                 </div>

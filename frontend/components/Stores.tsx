@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { RiLoader2Line } from "react-icons/ri";
 import Filters from './Filters';
+import { MdDeliveryDining } from 'react-icons/md';
 
 interface OpeningHoursType {
     status: string;
@@ -82,7 +83,7 @@ export default function Stores() {
                             {store.opening_hours?.status === 'close' && <p className={style.status}>{t('close.today')} {days[store.opening_hours.day]} {store.opening_hours.hours_open}</p>}
                             {store.opening_hours?.status === 'open' && <p className={style.status}>{t('open')} {store.opening_hours.hours_close}</p>}
                             {/*taxa de entrega && tempo de entrega*/}
-                            <p className={style.delivery}>-</p>
+                            <p className={style.delivery}><MdDeliveryDining/>-</p>
                         </div>
                     </Link>
                 ))}
