@@ -1,16 +1,16 @@
 @import './../../app//styles/mixins-and-variables.scss';
 
 .filters{
-    margin-top: 20px;
+    padding: 20px 10px 0 10px;
     @include flex-align(row);
-    width: 100%;
+    width: calc(100% - 20px);
     gap: 10px;
     .input{
         position: relative;
         @include flex-align(auto);
         width: 450px;
         @media (max-width: 550px){
-            width: calc(100% - 70px - 20px);
+            width: calc(100% - 80px);
         }
         input{
             width: 100%;
