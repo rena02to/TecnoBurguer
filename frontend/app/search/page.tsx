@@ -3,6 +3,7 @@ import style from './../styles/search.module.scss';
 import Filters from "@/components/Filters";
 import ImageTop from "@/components/ImageTop";
 import { useTranslations } from "next-intl";
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
