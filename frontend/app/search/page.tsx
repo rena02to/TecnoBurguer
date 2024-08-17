@@ -36,6 +36,7 @@ export default function Search(){
     const query = searchParams.get('q') || '';
 
     useEffect(() => {
+        document.title = `${query} - TecnoBurguer`;
         const fetchData = async() => {
             setLoading(true);
             setStoresOpen([]);

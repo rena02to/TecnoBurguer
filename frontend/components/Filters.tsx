@@ -70,7 +70,7 @@ export default function Filters( {value, filters} : Props){
                 </div>
                 {filters ?
                     <button type='button' className={filtersActived ? style.filterActived : style.filter} onClick={() => {setMenuFilters(!menuFilters)}}>
-                        <p>Filtros</p>
+                        <p>{t('title')}</p>
                         <FaArrowDownWideShort/>
                     </button>
                     : null
@@ -80,65 +80,65 @@ export default function Filters( {value, filters} : Props){
                 <div className={style.menuFilter}>
                     <div className={style.menu} ref={menuRef}>
                         <button type="button" className={style.close} onClick={() => {setMenuFilters(!menuFilters); setDistance('20');}}><IoClose/></button>
-                        <h1 className={style.title}>Filtros</h1>
+                        <h1 className={style.title}>{t('title')}</h1>
                         <div className={style.order}>
-                            <h2 className={style.legend}>Ordenar por:</h2>
+                            <h2 className={style.legend}>{t('sort.title')}</h2>
                             <div className={style.ordersButtons}>
                                 <button type="button" className={order === 'default' ? style.selected : style.notSelected} onClick={() => {setOrder('default')}}>
                                     <LuArrowUpDown/>
-                                    <p>Padrão</p>
+                                    <p>{t('sort.default')}</p>
                                 </button>
                                 <button type="button" className={order === 'value' ? style.selected : style.notSelected} onClick={() => {setOrder('value')}}>
                                     <MdAttachMoney/>
-                                    <p>Preço</p>
+                                    <p>{t('sort.price')}</p>
                                 </button>
                                 <button type="button" className={order === 'assessment' ? style.selected : style.notSelected} onClick={() => {setOrder('assessment')}}>
                                     <FaStarHalfStroke/>
-                                    <p>Avaliação</p>
+                                    <p>{t('sort.assessments')}</p>
                                 </button>
                                 <button type="button" className={order === 'time' ? style.selected : style.notSelected} onClick={() => {setOrder('time')}}>
                                     <LuAlarmClock/>
-                                    <p>Tempo de entrega</p>
+                                    <p>{t('sort.time')}</p>
                                 </button>
                                 <button type="button" className={order === 'rate' ? style.selected : style.notSelected} onClick={() => {setOrder('rate')}}>
                                     <MdDeliveryDining/>
-                                    <p>Taxa de entrega</p>
+                                    <p>{t('sort.rate')}</p>
                                 </button>
                                 <button type="button" className={order === 'distance' ? style.selected : style.notSelected} onClick={() => {setOrder('distance')}}>
                                     <IoLocationOutline/>
-                                    <p>Distância</p>
+                                    <p>{t('sort.distance')}</p>
                                 </button>
                             </div>
                         </div>
 
                         <div className={style.distance}>
-                            <h2 className={style.legend}>Distância</h2>
-                            <p>menos de {distance} km</p>
+                            <h2 className={style.legend}>{t('distance.title')}</h2>
+                            <p>{t('distance.less')} {distance} km</p>
                             <span><p>1 km</p><p>20 km</p></span>
                             <input type="range" id="distance" defaultValue={20} min={1} max={20} step={1} value={distance} onChange={(event) => {setDistance(event.target.value)}}/>
                         </div>
 
                         <div className={style.rate}>
-                            <h2 className={style.legend}>Taxa de entrega</h2>
+                            <h2 className={style.legend}>{t('rate.title')}</h2>
                             <div className={style.rateButtons}>
                                 <button type="button" className={rate === 'free' ? style.selected : style.notSelected} onClick={() => {setRate('free')}}>
-                                    Grátis
+                                    {t('rate.free')}
                                 </button>
                                 <button type="button" className={rate === '5' ? style.selected : style.notSelected} onClick={() => {setRate('5')}}>
-                                    Até R$5,00
+                                    {t('rate.until')} R$5,00
                                 </button>
                                 <button type="button" className={rate === '10' ? style.selected : style.notSelected} onClick={() => {setRate('10')}}>
-                                    Até R$10,00
+                                    {t('rate.until')} R$10,00
                                 </button>
                             </div>
                         </div>
 
                         <div className={style.buttons}>
                             <button type="button" className={style.clear} disabled={rate === '' && order === 'default' && distance === '20'} onClick={() => {setRate(''); setOrder('default'); setDistance('20')}}>
-                                Limpar
+                                {t('buttons.clear')}
                             </button>
                             <button type="button" className={style.filter} onClick={() => handleFilter()}>
-                                Filtrar
+                                {t('buttons.filter')}
                             </button>
                         </div>
                     </div>

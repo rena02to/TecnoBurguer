@@ -45,7 +45,30 @@
     "Collaborator": {}
   },
   "Filters": {
-    "search": "Pesquise por lojas ou itens..."
+    "search": "Pesquise por lojas ou itens...",
+    "title": "Filtros",
+    "sort": {
+      "title": "Ordenar por:",
+      "default": "Padrão",
+      "price": "Preço",
+      "assessments": "Avaliações",
+      "time": "Tempo de entrega",
+      "rate": "Taxa de entrega",
+      "distance": "Distância"
+    },
+    "distance": {
+      "title": "Distância",
+      "less": "menos de"
+    },
+    "rate": {
+      "title": "Taxa de entrega",
+      "free": "Grátis",
+      "until": "Até"
+    },
+    "buttons": {
+      "clear": "Limpar",
+      "filter": "Filtrar"
+    }
   },
   "HomePage": {
     "Navbar":{

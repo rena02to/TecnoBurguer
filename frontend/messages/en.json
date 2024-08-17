@@ -45,7 +45,30 @@
     "Collaborator": {}
   },
   "Filters": {
-    "search": "Search for stores or items..."
+    "search": "Search for stores or items...",
+    "title": "Filters",
+    "sort": {
+      "title": "Sort by:",
+      "default": "Default",
+      "price": "Price",
+      "assessments": "Assessments",
+      "time": "Delivery time",
+      "rate": "Delivery rate",
+      "distance": "Distance"
+    },
+    "distance": {
+      "title": "Distance",
+      "less": "less than"
+    },
+    "rate": {
+      "title": "Delivery rate",
+      "free": "Free",
+      "until": "Until"
+    },
+    "buttons": {
+      "clear": "Clear",
+      "filter": "Filter"
+    }
   },
   "HomePage": {
     "Navbar":{
