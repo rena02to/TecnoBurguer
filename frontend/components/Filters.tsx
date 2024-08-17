@@ -19,6 +19,9 @@ export default function Filters( {value, filters} : Props){
     const router = useRouter();
     const menuRef = useRef<HTMLDivElement>(null);
     const [ menuFilters, setMenuFilters ] = useState(false);
+    const [ order, setOrder ] = useState('default');
+    const [ rate, setRate ] = useState('');
+    const [ filtersActived, setFiltersActived ] = useState(false);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -49,6 +52,15 @@ export default function Filters( {value, filters} : Props){
         }
     }
 
+    const handleFilter = () => {
+        setMenuFilters(false);
+        if(distance !== '20' || order !== 'default' || rate !== ''){
+            setFiltersActived(true);
+        }else{
+            setFiltersActived(false);
+        }
+    }
+
     return(
         <>
             <div className={style.filters}>
@@ -57,7 +69,7 @@ export default function Filters( {value, filters} : Props){
                     <button type='button' onClick={handleSearch}><IoSearch/></button>
                 </div>
                 {filters ?
-                    <button type='button' className={style.filter} onClick={() => {setMenuFilters(!menuFilters)}}>
+                    <button type='button' className={filtersActived ? style.filterActived : style.filter} onClick={() => {setMenuFilters(!menuFilters)}}>
                         <p>Filtros</p>
                         <FaArrowDownWideShort/>
                     </button>
@@ -72,12 +84,30 @@ export default function Filters( {value, filters} : Props){
                         <div className={style.order}>
                             <h2 className={style.legend}>Ordenar por:</h2>
                             <div className={style.ordersButtons}>
-                                <button type="button"><LuArrowUpDown/><p>Padrão</p></button>
-                                <button type="button"><MdAttachMoney/><p>Preço</p></button>
-                                <button type="button"><FaStarHalfStroke/><p>Avaliação</p></button>
-                                <button type="button"><LuAlarmClock/><p>Tempo de entrega</p></button>
-                                <button type="button"><MdDeliveryDining/><p>Taxa de entrega</p></button>
-                                <button type="button"><IoLocationOutline/><p>Distância</p></button>
+                                <button type="button" className={order === 'default' ? style.selected : style.notSelected} onClick={() => {setOrder('default')}}>
+                                    <LuArrowUpDown/>
+                                    <p>Padrão</p>
+                                </button>
+                                <button type="button" className={order === 'value' ? style.selected : style.notSelected} onClick={() => {setOrder('value')}}>
+                                    <MdAttachMoney/>
+                                    <p>Preço</p>
+                                </button>
+                                <button type="button" className={order === 'assessment' ? style.selected : style.notSelected} onClick={() => {setOrder('assessment')}}>
+                                    <FaStarHalfStroke/>
+                                    <p>Avaliação</p>
+                                </button>
+                                <button type="button" className={order === 'time' ? style.selected : style.notSelected} onClick={() => {setOrder('time')}}>
+                                    <LuAlarmClock/>
+                                    <p>Tempo de entrega</p>
+                                </button>
+                                <button type="button" className={order === 'rate' ? style.selected : style.notSelected} onClick={() => {setOrder('rate')}}>
+                                    <MdDeliveryDining/>
+                                    <p>Taxa de entrega</p>
+                                </button>
+                                <button type="button" className={order === 'distance' ? style.selected : style.notSelected} onClick={() => {setOrder('distance')}}>
+                                    <IoLocationOutline/>
+                                    <p>Distância</p>
+                                </button>
                             </div>
                         </div>
 
@@ -85,21 +115,31 @@ export default function Filters( {value, filters} : Props){
                             <h2 className={style.legend}>Distância</h2>
                             <p>menos de {distance} km</p>
                             <span><p>1 km</p><p>20 km</p></span>
-                            <input type="range" id="distance" defaultValue={20} min={1} max={20} step={1} onChange={(event) => {setDistance(event.target.value)}}/>
+                            <input type="range" id="distance" defaultValue={20} min={1} max={20} step={1} value={distance} onChange={(event) => {setDistance(event.target.value)}}/>
                         </div>
 
                         <div className={style.rate}>
                             <h2 className={style.legend}>Taxa de entrega</h2>
                             <div className={style.rateButtons}>
-                                <button type="button">Grátis</button>
-                                <button type="button">Até R$5,00</button>
-                                <button type="button">Até R$10,00</button>
+                                <button type="button" className={rate === 'free' ? style.selected : style.notSelected} onClick={() => {setRate('free')}}>
+                                    Grátis
+                                </button>
+                                <button type="button" className={rate === '5' ? style.selected : style.notSelected} onClick={() => {setRate('5')}}>
+                                    Até R$5,00
+                                </button>
+                                <button type="button" className={rate === '10' ? style.selected : style.notSelected} onClick={() => {setRate('10')}}>
+                                    Até R$10,00
+                                </button>
                             </div>
                         </div>
 
                         <div className={style.buttons}>
-                            <button type="button" className={style.clear}>Limpar</button>
-                            <button type="button" className={style.filter}>Filtrar</button>
+                            <button type="button" className={style.clear} disabled={rate === '' && order === 'default' && distance === '20'} onClick={() => {setRate(''); setOrder('default'); setDistance('20')}}>
+                                Limpar
+                            </button>
+                            <button type="button" className={style.filter} onClick={() => handleFilter()}>
+                                Filtrar
+                            </button>
                         </div>
                     </div>
                 </div>

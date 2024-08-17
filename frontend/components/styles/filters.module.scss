@@ -156,6 +156,12 @@
                         border-radius: 100%;
                     }
                 }
+                .selected{
+                    svg{
+                        background-color: rgba($green-color, 0.2);
+                    }
+                    color: $green-color;
+                }
             }
         }
         .distance{
@@ -202,6 +208,10 @@
                     text-wrap: nowrap;
                     border-radius: 30px;
                 }
+                .selected{
+                    background-color: rgba($green-color, 0.2);
+                    color: $green-color;
+                }
             }
         }
         .buttons{
@@ -220,9 +230,17 @@
             }
             .filter{
                 background-color: $color-forms;
+                &:disabled{
+                    background-color: rgba($color-forms, 0.5);
+                    cursor: auto;
+                }
             }
             .clear{
                 background-color: $yellow-color;
+                &:disabled{
+                    background-color: rgba($yellow-color, 0.5);
+                    cursor: auto;
+                }
             }
         }
     }
