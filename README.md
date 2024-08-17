@@ -2,9 +2,10 @@
 
 # TecnoBurguer | Sempre saboroso... SEMPRE!
 
-[![TecnoBurguer](https://img.shields.io/badge/Para_visitar_o_projeto-clique_aqui-323232?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://tecnoburguer.renatoalves.site)
-
 O projeto **TecnoBurguer** é um sistema de gerenciamento **centralizado** desenvolvido para otimizar as operações de um restaurante, oferecendo soluções eficazes tanto para funcionários quanto para clientes. Desde a concepção das ideias e definição das regras de negócio até a criação das telas e implementação final, este sistema foi projetado para fornecer uma experiência integrada e intuitiva.
+
+[![TecnoBurguer](https://img.shields.io/badge/Para_visitar_o_projeto-clique_aqui-323232?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://tecnoburguer.renatoalves.site)
+[![Apresentação do proeto](/TecnoBurguer_Arte.png)](https://tecnoburguer.renatoalves.site)
 
 ---
 
@@ -29,7 +30,7 @@ O desenvolvimento do sistema TecnoBurguer contou com uma stack moderna e eficien
 
 Essas tecnologias foram escolhidas para garantir a robustez, escalabilidade e facilidade de manutenção do sistema, proporcionando uma experiência eficiente tanto para os usuários finais quanto para os desenvolvedores.
 
-Após a primeira reqisição é necessário aguardar alguns segundos, pois a instância que está armzenado todo o back-end desliga após 30 segundos de inatividade.
+Após a primeira reqisição é necessário aguardar alguns segundos, pois a instância que está armzenado todo o back-end desliga após 50 segundos de inatividade.
 
 ---
 
