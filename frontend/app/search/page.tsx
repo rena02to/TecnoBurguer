@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaStar } from 'react-icons/fa';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { MdAttachMoney, MdDeliveryDining } from 'react-icons/md';
 import { RiLoader2Line } from 'react-icons/ri';
 
@@ -65,11 +64,11 @@ export default function Search(){
     return(
         <div className={style.search}>
             <ImageTop/>
-            <Filters value={query}/>
+            <Filters value={query} filters={true}/>
             <div className={style.resultsContainer}>
                 {loading ? <p className={style.load}>{t('load')}<RiLoader2Line/></p> : (storesOpen.length <= 0 && storesClose.length <= 0 ? <p className={style.notresults}>{t('notresults')}</p> : null )}
                 <div className={style.results}>
-                    {storesOpen.length > 0 ? <p className={style.legend}>Lojas abertas no momento</p> : null}
+                    {storesOpen.length > 0 ? <h1 className={style.legend}>{t('legends.open')}</h1> : null}
                     {storesOpen.map((store) => (
                         <div key={store.id} className={style.result}>
                             <Link href={`/store/${store.id}`} className={style.store}>
@@ -103,7 +102,7 @@ export default function Search(){
                     ))}
                     
                     {storesOpen.length > 0 && storesClose.length > 0? <span className={style.line}></span> : null}
-                    {storesClose.length > 0? <p className={style.legend}>Lojas fechadas no momento</p> : null}
+                    {storesClose.length > 0? <h1 className={style.legend}>{t('legends.closed')}</h1> : null}
                     {storesClose.map((store) => (
                         <div key={store.id} className={style.result}>
                             <Link href={`/store/${store.id}`} className={style.storeClosed}>

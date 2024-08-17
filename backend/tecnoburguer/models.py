@@ -42,7 +42,7 @@ class User(AbstractUser):
     first_name=None
     objects = UserManager()
     def __str__(self):
-        return self.name
+        return self.email
 
 class Store(models.Model):
     States = (
@@ -52,7 +52,7 @@ class Store(models.Model):
         ('close_permanently', 'Fechada permanentemente')
     )
 
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     locale = models.CharField(max_length=255)
     state = models.CharField(max_length=17, choices=States, default='open')
     admins = models.ManyToManyField(User, related_name='admin_stores', limit_choices_to={'type': 'admin'})

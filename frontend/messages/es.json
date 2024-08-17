@@ -94,9 +94,11 @@
       "open": "Abierto",
       "delivery": {
         "unavaliable": "Información de entrega no disponible"
-      },
-      "load": "Cargando tiendas actualmente abiertas...",
-      "closed": "No hay tiendas abiertas en este momento"
+      }
+    },
+    "legends": {
+      "open": "Tiendas actualmente abiertas",
+      "closed": "Tiendas actualmente cerradas"
     }
   }
 }

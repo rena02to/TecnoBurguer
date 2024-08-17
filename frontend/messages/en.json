@@ -94,9 +94,11 @@
       "open": "Open",
       "delivery": {
         "unavaliable": "Delivery information unavailable"
-      },
-      "load": "Loading stores currently open...",
-      "closed": "There are no stores open at the moment"
+      }
+    },
+    "legends": {
+      "open": "Stores currently open",
+      "closed": "Stores currently closed"
     }
   }
 }

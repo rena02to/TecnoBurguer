@@ -5,15 +5,12 @@
     @include flex-align(row);
     width: 100%;
     gap: 10px;
-    @media (max-width: 700px){
-        flex-direction: column;
-    }
     .input{
         position: relative;
         @include flex-align(auto);
-        width: 300px;
-        @media (max-width: 700px){
-            width: 100%;
+        width: 450px;
+        @media (max-width: 550px){
+            width: calc(100% - 70px - 20px);
         }
         input{
             width: 100%;
@@ -42,10 +39,200 @@
             }
         }
     }
-    .filter{
-        width: 300px;
-        @media (max-width: 700px){
+    .filter, .filterActived{
+        @include flex-align(row);
+        justify-content: space-between;
+        width: 90px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid gray;
+        padding: 5px 10px;
+        font-size: 15px;
+        font-weight: 500;
+        position: relative;
+        background-color: transparent;
+        svg{
+            width: 20px;
+            height: 20px;
+        }
+        p{
+            font-size: 15px;
+            font-weight: 400;
+        }
+    }
+    .filterActived{
+        position: relative;
+        background-color: rgba($green-color, 0.4);
+        &::before{
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: $green-color;
+            top: -5px;
+            right: -5px;
+        }
+    }
+}
+
+.menuFilter{
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(black, 0.3);
+    @include flex-align(auto);
+    .menu{
+        @include flex-align(column);
+        padding: 20px;
+        background-color: rgb(245, 245, 245);
+        border-radius: 10px;
+        animation: menuOpen linear .2s;
+        position: relative;
+        width: 400px;
+        gap: 10px;
+        @media (max-width:550px){
+            width: calc(100% - 40px);
+            height: calc(100vh - 40px);
+            border-radius: 0;
+        }
+        p, h1, h2{
+            margin: 0
+        }
+        .close{
+            @include flex-align(auto);
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: transparent;
+            svg{
+                width: 25px;
+                height: 25px;
+            }
+        }
+        .title{
+            font-size: 20px;
+            font-weight: 500;
+            margin: 10px;
             width: 100%;
         }
+        .legend{
+            font-size: 17px;
+            font-weight: 500;
+        }
+        .order{
+            @include flex-align(column);
+            align-items: flex-start;
+            width: 100%;
+            gap: 10px;
+            .ordersButtons{
+                @include flex-align(row);
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                width: 100%;
+                overflow-x: scroll;
+                gap: 10px;
+                &::-webkit-scrollbar{
+                    display: none;
+                    overflow: auto;
+                }
+                button{
+                    @include flex-align(column);
+                    justify-content: flex-start;
+                    width: 75px;
+                    height: 100px;
+                    background-color: transparent;
+                    p{
+                        font-size: 13px;
+                    }
+                    svg{
+                        width: 30px;
+                        height: 30px;
+                        border: 1px solid gray;
+                        padding: 10px;
+                        border-radius: 100%;
+                    }
+                }
+            }
+        }
+        .distance{
+            @include flex-align(column);
+            align-items: flex-start;
+            width: 100%;
+            p{
+                font-size: 14px;
+                margin-left: 5px;
+            }
+            input{
+                width: 90%;
+            }
+            span{
+                width: 90%;
+                @include flex-align(row);
+                justify-content: space-between;
+                p{
+                    font-size: 12px;
+                }
+            }
+        }
+        .rate{
+            @include flex-align(column);
+            align-items: flex-start;
+            width: 100%;
+            gap: 10px;
+            .rateButtons{
+                @include flex-align(row);
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                width: 100%;
+                overflow-x: scroll;
+                gap: 10px;
+                &::-webkit-scrollbar{
+                    display: none;
+                    overflow: auto;
+                }
+                button{
+                    @include flex-align(column);
+                    padding: 7px 15px;
+                    background-color: transparent;
+                    border: 1px solid gray;
+                    text-wrap: nowrap;
+                    border-radius: 30px;
+                }
+            }
+        }
+        .buttons{
+            padding: 20px;
+            @include flex-align(row);
+            justify-content: space-between;
+            width: 100%;
+            button{
+                @include flex-align(auto);
+                width: calc(50% - 5px);
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 10px;
+                font-size: 14px;
+                color: white;
+            }
+            .filter{
+                background-color: $color-forms;
+            }
+            .clear{
+                background-color: $yellow-color;
+            }
+        }
+    }
+}
+
+@keyframes menuOpen{
+    0%{
+        transform: translateY(-50%);
+    }
+    100%{
+        transform: translateY(0);
     }
 }

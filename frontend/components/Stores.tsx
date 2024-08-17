@@ -65,7 +65,7 @@ export default function Stores() {
 
     return (
         <div className={style.main}>
-            <Filters value={""}/>
+            <Filters value={""} filters={false}/>
             <div className={style.stores}>
                 {loading ? <p className={style.load}>{t('load')}<RiLoader2Line/></p> : (stores.length > 0 ? null : <p className={style.notresults}>{t('closed')}</p>)}
                 {stores.map((store) => (

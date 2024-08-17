@@ -35,7 +35,8 @@
             .legend{
                 font-weight: 500;
                 padding: 0 15px;
-                margin-top: 10px
+                margin-top: 10px;
+                font-size: 20px;
             }
             .result, .resultClosed{
                 @include flex-align(column);
@@ -128,9 +129,9 @@
                     position: relative;
                     margin-top: 10px;
                     margin-left: 20px;
-                    padding: 10px 40px;
+                    padding: 10px 0;
                     height: max-content;
-                    max-width: calc(100% - 80px);
+                    max-width: 100%;
                     @include flex-align(row);
                     justify-content: flex-start;
                     overflow-x: scroll;
