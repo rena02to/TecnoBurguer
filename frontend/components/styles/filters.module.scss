@@ -1,9 +1,9 @@
 @import './../../app//styles/mixins-and-variables.scss';
 
 .filters{
-    padding: 20px 10px 0 10px;
+    padding: 20px 20px 0 20px;
     @include flex-align(row);
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     gap: 10px;
     .input{
         position: relative;
