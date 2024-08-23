@@ -142,10 +142,10 @@
                 button{
                     @include flex-align(column);
                     justify-content: flex-start;
-                    width: 75px;
                     height: 100px;
                     background-color: transparent;
                     p{
+                        width: 60px;
                         font-size: 13px;
                     }
                     svg{
@@ -161,26 +161,7 @@
                         background-color: rgba($green-color, 0.2);
                     }
                     color: $green-color;
-                }
-            }
-        }
-        .distance{
-            @include flex-align(column);
-            align-items: flex-start;
-            width: 100%;
-            p{
-                font-size: 14px;
-                margin-left: 5px;
-            }
-            input{
-                width: 90%;
-            }
-            span{
-                width: 90%;
-                @include flex-align(row);
-                justify-content: space-between;
-                p{
-                    font-size: 12px;
+                    font-weight: 500;
                 }
             }
         }
@@ -211,6 +192,7 @@
                 .selected{
                     background-color: rgba($green-color, 0.2);
                     color: $green-color;
+                    font-weight: 500;
                 }
             }
         }

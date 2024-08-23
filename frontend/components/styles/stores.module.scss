@@ -11,20 +11,30 @@
         flex-wrap: wrap;
         align-items: flex-start;
         gap: 10px;
-        .load, .closed{
-            font-size: 15px;
-        }
         .load{
             @include flex-align(row);
+            font-size: 16px;
+            font-weight: 500;
             svg{
                 width: 25px;
                 height: 25px;
                 animation: loading 3s infinite linear;
             }
         }
+        .noresults{
+            @include flex-align(column);
+            width: max-content;
+            height: max-content;
+            .title{
+                font-size: 16px;
+                margin: 0;
+                margin-top: 10px;
+                font-weight: 500;
+            }
+        }
         .store{
-            width: 250px;
-            height: 140px;
+            width: 210px;
+            height: 130px;
             border-radius: 13px;
             @include flex-align(column);
             justify-content: flex-start;
@@ -71,7 +81,7 @@
                 padding: 5px 15px;
                 width: calc(100% - 30px);
                 @include flex-align(column);
-                font-size: 14px;
+                font-size: 12px;
                 span{
                     @include flex-align(row);
                     gap: 5px;
@@ -81,6 +91,10 @@
                         }
                         .no{
                             color: gray;
+                        }
+                        svg{
+                            width: 14px;
+                            height: 14px;
                         }
                     }
                     .min{
@@ -99,8 +113,8 @@
                 .delivery{
                     @include flex-align(row);
                     svg{
-                        width: 25px;
-                        height: 25px;
+                        width: 20px;
+                        height: 20px;
                     }
                 }
             }

@@ -56,10 +56,6 @@
       "rate": "Delivery rate",
       "distance": "Distance"
     },
-    "distance": {
-      "title": "Distance",
-      "less": "less than"
-    },
     "rate": {
       "title": "Delivery rate",
       "free": "Free",
@@ -95,12 +91,13 @@
         "unavaliable": "Delivery information unavailable"
       },
       "load": "Loading stores currently open...",
-      "closed": "There are no stores open at the moment"
+      "closed": "Sorry, all stores are currently closed"
     }
   },
   "Search": {
     "load": "Loading results...",
-    "notresults": "No hay resultados que coincidan con tu búsqueda",
+    "notresults": "No results found",
+    "resultsfor": "Results for ",
     "Stores":{
       "monday": "monday",
       "tuesday": "tuesday",

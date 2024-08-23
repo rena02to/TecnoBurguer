@@ -56,10 +56,6 @@
       "rate": "Tarifa de envío",
       "distance": "Distancia"
     },
-    "distance": {
-      "title": "Distancia",
-      "less": "menos que"
-    },
     "rate": {
       "title": "Tarifa de envío",
       "free": "Gratis",
@@ -100,7 +96,8 @@
   },
   "Search": {
     "load": "Cargando resultados...",
-    "notresults": "There are no results that match your search",
+    "notresults": "No se encontraron resultados",
+    "resultsfor": "Resultados para ",
     "Stores":{
       "monday": "Lunes",
       "tuesday": "Martes",
@@ -121,7 +118,7 @@
     },
     "legends": {
       "open": "Tiendas actualmente abiertas",
-      "closed": "Tiendas actualmente cerradas"
+      "closed": "Lo sentimos, todas las tiendas están actualmente cerradas"
     }
   }
 }

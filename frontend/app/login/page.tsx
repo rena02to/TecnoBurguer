@@ -15,7 +15,6 @@ import * as Yup from 'yup';
 import { TiArrowBackOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 
 interface FormValues {
     email: string,
@@ -25,7 +24,6 @@ interface FormValues {
 export default function Login(){
 
     //variables
-    const router = useRouter();
     const t = useTranslations('Login');
     const initialValues : FormValues = {
         email: '',
@@ -45,9 +43,9 @@ export default function Login(){
 
         const token = Cookies.get('token');
         if(token){
-            router.push(document.referrer || '/')
+            window.location.href =  document.referrer || '/';
         }
-    }, [router])
+    }, [])
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
@@ -81,9 +79,9 @@ export default function Login(){
                     console.log(error);
                 }
                 if(document.referrer && document.referrer !== '/login'){
-                    router.push(document.referrer);
+                    window.location.href = document.referrer;
                 }else{
-                    router.push('/');
+                    window.location.href = '/';
                 }
             }else{
                 toast.error(t('credentialsError'))

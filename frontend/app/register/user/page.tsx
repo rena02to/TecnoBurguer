@@ -15,7 +15,6 @@ import * as Yup from 'yup';
 import { TiArrowBackOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 import { SlUser } from "react-icons/sl";
 import { BsTelephone } from "react-icons/bs";
 
@@ -30,7 +29,6 @@ interface FormValues {
 export default function Register(){
 
     //variables
-    const router = useRouter();
     const t = useTranslations('Register.User');
     const initialValues : FormValues = {
         name: '',
@@ -56,7 +54,7 @@ export default function Register(){
     useEffect(() => {
         const token = Cookies.get('token');
         if(token){
-            router.push(document.referrer || '/')
+            window.location.href = document.referrer || '/'
         }
         document.title = `${t('title')} | TecnoBurguer`;
         const locale = navigator.language.slice(0, 2) as Locale; 
@@ -68,7 +66,7 @@ export default function Register(){
         }else{
             setDarkMode('No')
         }
-    }, [router])
+    }, [])
 
     const formataNome = ( value : string ) : string => {
         return value.replace(/\b\w/g, char => char.toUpperCase());
@@ -112,7 +110,7 @@ export default function Register(){
 
             if(response.ok){
                 toast.success(t('success'));
-                router.push('/login');
+                window.location.href = '/login';
             }else{
                 const data = await response.json();
                 if(data.error.telephone){

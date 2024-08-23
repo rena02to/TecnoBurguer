@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Store, StoreHour, Food, Order, OrderItem, Coupon, UserCoupon, Assessment
+from .models import User, Store, StoreHour, Food, Order, OrderItem, Coupon, UserCoupon, Assessment, InfosDelivery
 from .forms import UserCreationForm, UserChangeForm
 
 class UserAdmin(BaseUserAdmin):
@@ -71,6 +71,10 @@ class AssessmentAdmin(admin.ModelAdmin):
     list_display = ('store', 'stars')
     search_fields = ('store', 'stars')
 
+@admin.register(InfosDelivery)
+class InfosDeliveryAdmin(admin.ModelAdmin):
+    list_display = ('store', 'rate_km', 'delivery_free_km', 'preparation_time', 'delivery_time_km')
+    search_fields = ('store', )
 
 admin.site.register(User, UserAdmin)
 admin.site.site_title = 'TecnoBurguer'

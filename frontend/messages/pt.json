@@ -56,10 +56,6 @@
       "rate": "Taxa de entrega",
       "distance": "Distância"
     },
-    "distance": {
-      "title": "Distância",
-      "less": "menos de"
-    },
     "rate": {
       "title": "Taxa de entrega",
       "free": "Grátis",
@@ -95,12 +91,13 @@
         "unavaliable": "Informações de entrega indisponíveis"
       },
       "load": "Carregando lojas abertas no momento...",
-      "closed": "Não há lojas abertas no momento"
+      "closed": "Desculpe, todas as lojas estão fechadas no momento"
     }
   },
   "Search": {
     "load": "Carregando resultados...",
-    "notresults": "Não há resultados que correspondam à sua busca",
+    "notresults": "Nenhum resultado encontrado",
+    "resultsfor": "Resultados para ",
     "Stores":{
       "monday": "segunda",
       "tuesday": "terça",

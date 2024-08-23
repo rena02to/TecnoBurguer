@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { RiLoader2Line } from "react-icons/ri";
 import Filters from './Filters';
 import { MdDeliveryDining } from 'react-icons/md';
+import Image from 'next/image';
 
 interface OpeningHoursType {
     status: string;
@@ -47,6 +48,7 @@ export default function Stores() {
                 const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
                 if(response.ok) {
                     const stores = await response.json();
+                    console.log(stores)
                     setStores(stores)
                 }else {
                     console.error('Network response was not ok');
@@ -65,9 +67,23 @@ export default function Stores() {
 
     return (
         <div className={style.main}>
-            <Filters value={""} filters={false}/>
+            <Filters filters={false}/>
             <div className={style.stores}>
-                {loading ? <p className={style.load}>{t('load')}<RiLoader2Line/></p> : (stores.length > 0 ? null : <p className={style.notresults}>{t('closed')}</p>)}
+                {loading ?
+                    <p className={style.load}>
+                        {t('load')}
+                        <RiLoader2Line/>
+                    </p> 
+                    : 
+                    (stores.length > 0 ? 
+                        null : 
+                        <div className={style.noresults}>
+                            <p className={style.title}>
+                                {t('closed')}
+                            </p>
+                            <Image src='/Images/close.png' width={300} height={300} alt='All stores close'/>
+                        </div>
+                    )}
                 {stores.map((store) => (
                     <Link href={`/store/${store.id}`} className={style.store} key={store.id}>
                         <div className={style.top}>

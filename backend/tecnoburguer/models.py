@@ -58,8 +58,6 @@ class Store(models.Model):
     admins = models.ManyToManyField(User, related_name='admin_stores', limit_choices_to={'type': 'admin'})
     employees = models.ManyToManyField(User, related_name='employee_stores', limit_choices_to={'type': 'attendant' or "cashier" or "chef" or "deliveryman"})
     min_order = models.IntegerField()
-    rate_km = models.DecimalField(max_digits=6, decimal_places=2)
-    delivery_free_km = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
         return self.name
@@ -83,6 +81,16 @@ class StoreHour(models.Model):
     sunday_close = models.TimeField()
     def __str__(self):
         return f"{self.store.name} store hours"
+
+class InfosDelivery(models.Model):
+    store = models.ForeignKey(Store, related_name='infos_delivery', on_delete=models.CASCADE)
+    rate_km = models.DecimalField(max_digits=6, decimal_places=2)
+    delivery_free_km = models.DecimalField(max_digits=6, decimal_places=2)
+    preparation_time = models.IntegerField()
+    delivery_time_km = models.DecimalField(max_digits=6, decimal_places=2)
+    
+    def __str__(self):
+        return f"Delivery information from {self.store.name}"
 
 class Food(models.Model):
     States = (

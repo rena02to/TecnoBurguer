@@ -1,33 +1,41 @@
 import style from './styles/filters.module.scss';
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { IoClose, IoLocationOutline, IoSearch } from 'react-icons/io5';
 import { useTranslations } from 'next-intl';
 import { FaArrowDownWideShort, FaStarHalfStroke } from 'react-icons/fa6';
 import { LuAlarmClock, LuArrowUpDown } from 'react-icons/lu';
 import { MdAttachMoney, MdDeliveryDining } from 'react-icons/md';
+import { useSearchParams } from 'next/navigation';
 
 interface Props{
-    value: string,
     filters: boolean;
 }
 
-export default function Filters( {value, filters} : Props){
-    const [ distance, setDistance ] = useState('20');
-    const [searchValue, setSearchValue] = useState(value);
+export default function Filters( {filters} : Props){
+    const searchParams = useSearchParams();
+    const [searchValue, setSearchValue] = useState('');
     const t = useTranslations('Filters');
-    const router = useRouter();
     const menuRef = useRef<HTMLDivElement>(null);
     const [ menuFilters, setMenuFilters ] = useState(false);
     const [ order, setOrder ] = useState('default');
     const [ rate, setRate ] = useState('');
     const [ filtersActived, setFiltersActived ] = useState(false);
+    const q = searchParams.get('q') || '';
+    const o = searchParams.get('order') || 'default';
+    const r = searchParams.get('rate') || '';
 
     useEffect(() => {
+        setSearchValue(q);
+        setOrder(o);
+        setRate(r);
+        if(o !== 'default' || r){
+            setFiltersActived(true);
+        }
         function handleClickOutside(event: MouseEvent) {
             if (menuRef.current && !menuRef.current.contains(event.target as Node) && menuFilters){
                 setMenuFilters(false);
-                setDistance('20');
+                setOrder('default');
+                setRate('');
             }
         }
         document.addEventListener('mousedown', handleClickOutside);
@@ -35,29 +43,33 @@ export default function Filters( {value, filters} : Props){
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [menuFilters])
+    }, [menuFilters, q])
 
     const handleSearch = () => {
+        //pegar os valores de order e rate pela url
         const searchInput = document.getElementById('search') as HTMLInputElement;
+        let url = `/search?q=${searchInput.value}&filter=stores`;
+        setMenuFilters(false);
+        
         if(searchInput.value){
-            router.push(`/search?q=${searchInput.value}`);
+            if(order !== 'default'){
+                url += `&order=${order}`;
+            }
+            if(rate !== ''){
+                url += `&rate=${rate}`;
+            }
+            window.location.href = url;
         }else{
-            router.push('/');
+            setFiltersActived(false);
+            setRate('');
+            setOrder('default');
+            window.location.href = '/';
         }
     }
 
     const handleKeyDown = ( event : KeyboardEvent<HTMLInputElement> ) => {
         if(event.key === 'Enter'){
             handleSearch();
-        }
-    }
-
-    const handleFilter = () => {
-        setMenuFilters(false);
-        if(distance !== '20' || order !== 'default' || rate !== ''){
-            setFiltersActived(true);
-        }else{
-            setFiltersActived(false);
         }
     }
 
@@ -79,7 +91,7 @@ export default function Filters( {value, filters} : Props){
             {menuFilters ?
                 <div className={style.menuFilter}>
                     <div className={style.menu} ref={menuRef}>
-                        <button type="button" className={style.close} onClick={() => {setMenuFilters(!menuFilters); setDistance('20');}}><IoClose/></button>
+                        <button type="button" className={style.close} onClick={() => {setMenuFilters(!menuFilters)}}><IoClose/></button>
                         <h1 className={style.title}>{t('title')}</h1>
                         <div className={style.order}>
                             <h2 className={style.legend}>{t('sort.title')}</h2>
@@ -111,13 +123,6 @@ export default function Filters( {value, filters} : Props){
                             </div>
                         </div>
 
-                        <div className={style.distance}>
-                            <h2 className={style.legend}>{t('distance.title')}</h2>
-                            <p>{t('distance.less')} {distance} km</p>
-                            <span><p>1 km</p><p>20 km</p></span>
-                            <input type="range" id="distance" defaultValue={20} min={1} max={20} step={1} value={distance} onChange={(event) => {setDistance(event.target.value)}}/>
-                        </div>
-
                         <div className={style.rate}>
                             <h2 className={style.legend}>{t('rate.title')}</h2>
                             <div className={style.rateButtons}>
@@ -134,10 +139,10 @@ export default function Filters( {value, filters} : Props){
                         </div>
 
                         <div className={style.buttons}>
-                            <button type="button" className={style.clear} disabled={rate === '' && order === 'default' && distance === '20'} onClick={() => {setRate(''); setOrder('default'); setDistance('20')}}>
+                            <button type="button" className={style.clear} disabled={rate === '' && order === 'default'} onClick={() => {setRate(''); setOrder('default')}}>
                                 {t('buttons.clear')}
                             </button>
-                            <button type="button" className={style.filter} onClick={() => handleFilter()}>
+                            <button type="button" className={style.filter} onClick={() => handleSearch()}>
                                 {t('buttons.filter')}
                             </button>
                         </div>
