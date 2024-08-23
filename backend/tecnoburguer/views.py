@@ -73,7 +73,7 @@ def search(request):
         if filters.get('order') == 'value':
             stores = sorted(stores, key=lambda x: x['average_price'])
         elif filters.get('order') == 'assessment':
-            stores = sorted(stores, key=lambda x: x['average_rating'])
+            stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
     else:
         stores = Store.objects.filter(food__name__icontains=query).distinct()
         stores = stores.filter(state='open')
@@ -83,7 +83,7 @@ def search(request):
             for store in stores:
                 store['foods'] = sorted(store['foods'], key=lambda x: float(x['value']))
         if filters.get('order') == 'assessment':
-            stores = sorted(stores, key=lambda x: x['average_rating'])
+            stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
 
 
     stores_open = [store for store in stores if (store['is_open_now'])]
