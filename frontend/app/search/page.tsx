@@ -159,8 +159,8 @@ export default function Search(){
                                         : 
                                         <div className={style.items}>
                                             {storesOpen.map((store, index) => (
-                                                <div className={style.item}>
-                                                    <Link href={`/store/${store.id}`} className={style.store} key={index}>
+                                                <div className={style.item} key={index}>
+                                                    <Link href={`/store/${store.id}`} className={style.store}>
                                                         <div className={style.image}>
                                                             <Image src='/Images/icon-simplified.svg' width={45} height={45} alt='Image from store'/>
                                                         </div>
@@ -189,8 +189,8 @@ export default function Search(){
                                                 </div>
                                             ))}
                                             {storesClose.map((store, index) => (
-                                                <div className={style.itemClose}>
-                                                    <Link href={`/store/${store.id}`} className={style.store} key={index}>
+                                                <div className={style.itemClose} key={index}>
+                                                    <Link href={`/store/${store.id}`} className={style.store}>
                                                         <div className={style.image}>
                                                             <Image src='/Images/icon-simplified.svg' width={45} height={45} alt='Image from store'/>
                                                         </div>
