@@ -51,7 +51,7 @@ export default function Search(){
             const fetchData = async() => {
                 setLoading(true);
                 try{
-                    let url = `http://localhost:8000/api/stores/search?q=${query}&filter=${filter}`
+                    let url = `https://tecnoburguer.onrender.com/api/stores/search?q=${query}&filter=${filter}`
                     if(o !== 'default'){
                         url += `&order=${o}`;
                     }
