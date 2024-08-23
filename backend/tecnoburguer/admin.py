@@ -73,7 +73,7 @@ class AssessmentAdmin(admin.ModelAdmin):
 
 @admin.register(InfosDelivery)
 class InfosDeliveryAdmin(admin.ModelAdmin):
-    list_display = ('store', 'rate_km', 'delivery_free_km', 'preparation_time', 'delivery_time_km')
+    list_display = ('store', 'rate_km', 'delivery_free_km', 'min_preparation_time', 'max_preparation_time', 'min_delivery_time_km', 'max_delivery_time_km')
     search_fields = ('store', )
 
 admin.site.register(User, UserAdmin)

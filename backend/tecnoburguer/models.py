@@ -86,8 +86,10 @@ class InfosDelivery(models.Model):
     store = models.ForeignKey(Store, related_name='infos_delivery', on_delete=models.CASCADE)
     rate_km = models.DecimalField(max_digits=6, decimal_places=2)
     delivery_free_km = models.DecimalField(max_digits=6, decimal_places=2)
-    preparation_time = models.IntegerField()
-    delivery_time_km = models.DecimalField(max_digits=6, decimal_places=2)
+    min_preparation_time = models.IntegerField()
+    max_preparation_time = models.IntegerField()
+    min_delivery_time_km = models.DecimalField(max_digits=6, decimal_places=2)
+    max_delivery_time_km = models.DecimalField(max_digits=6, decimal_places=2)
     
     def __str__(self):
         return f"Delivery information from {self.store.name}"
