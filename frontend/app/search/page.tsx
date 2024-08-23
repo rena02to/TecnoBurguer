@@ -51,7 +51,7 @@ export default function Search(){
             const fetchData = async() => {
                 setLoading(true);
                 try{
-                    let url = `https://tecnoburguer.onrender.com/api/stores/search?q=${query}&filter=${filter}`
+                    let url = `http://localhost:8000/api/stores/search?q=${query}&filter=${filter}`
                     if(o !== 'default'){
                         url += `&order=${o}`;
                     }
@@ -126,7 +126,7 @@ export default function Search(){
                                                     <div className={style.infos}>
                                                         <h2>{store.name}</h2>
                                                         <span>
-                                                            <p className={style.status}>Fechado</p>
+                                                            {store.opening_hours?.status === 'open' ? <p className={style.status}>{t('Stores.open')}</p> : <p className={style.status}>{t('Stores.close')}</p>}
                                                             <p className={style.assessments}><FaStar className={store.average_rating !== 0.0 ? style.yes : style.no}/>{store.average_rating.toFixed(1)}</p>
                                                             <p>0.0 Km</p>
                                                         </span>
@@ -138,7 +138,23 @@ export default function Search(){
                                                 </Link>
                                             ))}
                                             {storesClose.map((store, index) => (
-                                               <div className={style.store} key={index}></div> 
+                                               <Link href={`/store/${store.id}`} className={style.storeClose} key={index}>
+                                                    <div className={style.image}>
+                                                        <Image src='/Images/icon-simplified.svg' width={60} height={60} alt='Image from store'/>
+                                                    </div>
+                                                    <div className={style.infos}>
+                                                        <h2>{store.name}</h2>
+                                                        <span>
+                                                            {store.opening_hours?.status === 'open' ? <p className={style.status}>{t('Stores.open')}</p> : <p className={style.status}>{t('Stores.close')}</p>}
+                                                            <p className={style.assessments}><FaStar className={store.average_rating !== 0.0 ? style.yes : style.no}/> {store.average_rating.toFixed(1)}</p>
+                                                            <p>0.0 Km</p>
+                                                        </span>
+                                                        <span>
+                                                            <p className={style.time}>00 - 00 min</p>
+                                                            <p>R$ 0.0</p>
+                                                        </span>
+                                                    </div>
+                                                </Link>
                                             ))}
                                         </div>
                                         : 

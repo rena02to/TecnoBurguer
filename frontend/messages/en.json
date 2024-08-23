@@ -99,22 +99,8 @@
     "notresults": "No results found",
     "resultsfor": "Results for ",
     "Stores":{
-      "monday": "monday",
-      "tuesday": "tuesday",
-      "wednesday": "wednesday",
-      "thursday": "thursday",
-      "friday": "friday",
-      "saturday": "saturday",
-      "sunday": "sunday",
-      "tomorrow": "tomorrow",
-      "today": "today",
-      "min": "Minimum",
       "close": "Closed",
-      "nothours": "No hours available",
-      "open": "Open",
-      "delivery": {
-        "unavaliable": "Delivery information unavailable"
-      }
+      "open": "Open"
     },
     "legends": {
       "open": "Stores currently open",

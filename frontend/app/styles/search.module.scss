@@ -79,7 +79,7 @@
                 width: 100%;
                 flex-wrap: wrap;
                 gap: 10px;
-                .store{
+                .store, .storeClose{
                     @include flex-align(row);
                     width: 250px;
                     border: 1px solid gray;
@@ -127,6 +127,9 @@
                             }
                         }
                     }
+                }
+                .storeClose{
+                    filter: grayscale(100%);
                 }
             }
         }

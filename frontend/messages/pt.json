@@ -99,22 +99,8 @@
     "notresults": "Nenhum resultado encontrado",
     "resultsfor": "Resultados para ",
     "Stores":{
-      "monday": "segunda",
-      "tuesday": "terça",
-      "wednesday": "quarta",
-      "thursday": "quinta",
-      "friday": "sexta",
-      "saturday": "sábado",
-      "sunday": "domingo",
-      "tomorrow": "amanhã",
-      "today": "hoje",
-      "min": "Mínimo",
       "close": "Fechado",
-      "nothours": "Sem horários disponíveis",
-      "open": "Aberto",
-      "delivery": {
-        "unavaliable": "Informações de entrega indisponíveis"
-      }
+      "open": "Aberto"
     },
     "legends": {
       "open": "Lojas abertas no momento",
