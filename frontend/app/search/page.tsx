@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaStar } from 'react-icons/fa';
-import { MdAttachMoney, MdDeliveryDining } from 'react-icons/md';
 import { RiLoader2Line } from 'react-icons/ri';
 
 interface Food{
@@ -183,7 +182,7 @@ export default function Search(){
                                                             <Link href={`/store/${store.id}/item/${food.id}`} key={index} className={style.food}>
                                                                 <img src={food.image} width={140} height={140} alt='Image from store'/>
                                                                 <h3>{food.name}</h3>
-                                                                <p>R$ {food.value}</p>
+                                                                <p>R$ {food.value.replace('.', ',')}</p>
                                                             </Link>
                                                         ))}
                                                     </div>
@@ -213,7 +212,7 @@ export default function Search(){
                                                             <Link href={`/store/${store.id}/item/${food.id}`} key={index} className={style.food}>
                                                                 <img src={food.image} width={140} height={140} alt='Image from store'/>
                                                                 <h3>{food.name}</h3>
-                                                                <p>R$ {food.value}</p>
+                                                                <p>R$ {food.value.replace('.', ',')}</p>
                                                             </Link>
                                                         ))}
                                                     </div>

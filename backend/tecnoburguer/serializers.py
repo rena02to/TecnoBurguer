@@ -83,10 +83,11 @@ class ItemsAvaliableSerializer(serializers.ModelSerializer):
     opening_hours = serializers.SerializerMethodField()
     is_open_now = serializers.SerializerMethodField()
     foods = serializers.SerializerMethodField()
+    min_price = serializers.SerializerMethodField()
 
     class Meta:
         model = Store
-        fields = ['id', 'name', 'min_order', 'average_rating', 'opening_hours', 'is_open_now', 'foods']
+        fields = ['id', 'name', 'min_order', 'average_rating', 'opening_hours', 'is_open_now', 'foods', 'min_price']
     
     def get_average_rating(self, obj):
         average_rating = obj.assessments.aggregate(Avg('stars'))['stars__avg']
@@ -117,3 +118,10 @@ class ItemsAvaliableSerializer(serializers.ModelSerializer):
         query = self.context['request'].query_params.get('q', '')
         foods = obj.food.filter(name__icontains=query)
         return FoodSerializer(foods, many=True).data
+    
+    def get_min_price(self, obj):
+        query = self.context['request'].query_params.get('q', '')
+        foods = obj.food.filter(name__icontains=query)
+        if foods.exists():
+            min_price = min(float(food.value) for food in foods)
+        return min_price

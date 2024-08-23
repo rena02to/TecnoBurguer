@@ -23,6 +23,7 @@ export default function Filters( {filters} : Props){
     const q = searchParams.get('q') || '';
     const o = searchParams.get('order') || 'default';
     const r = searchParams.get('rate') || '';
+    const filter = searchParams.get('filter') || '';
 
     useEffect(() => {
         setSearchValue(q);
@@ -46,9 +47,8 @@ export default function Filters( {filters} : Props){
     }, [menuFilters, q, o, r])
 
     const handleSearch = () => {
-        //pegar os valores de order e rate pela url
         const searchInput = document.getElementById('search') as HTMLInputElement;
-        let url = `/search?q=${searchInput.value}&filter=stores`;
+        let url = `/search?q=${searchInput.value}&filter=${filter}`;
         setMenuFilters(false);
         
         if(searchInput.value){

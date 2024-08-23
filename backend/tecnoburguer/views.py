@@ -70,30 +70,23 @@ def search(request):
         stores = Store.objects.filter(name__icontains=query).distinct()
         stores = stores.filter(state='open')
         stores = StoresOpenSerializer(stores, many=True, context={'request': request}).data
+        if filters.get('order') == 'value':
+            stores = sorted(stores, key=lambda x: x['average_price'])
+        elif filters.get('order') == 'assessment':
+            stores = sorted(stores, key=lambda x: x['average_rating'])
     else:
         stores = Store.objects.filter(food__name__icontains=query).distinct()
         stores = stores.filter(state='open')
         stores = ItemsAvaliableSerializer(stores, many=True, context={'request': request}).data
+        if filters.get('order') == 'value':
+            stores = sorted(stores, key=lambda x: x['min_price'])
+            for store in stores:
+                store['foods'] = sorted(store['foods'], key=lambda x: float(x['value']))
+        if filters.get('order') == 'assessment':
+            stores = sorted(stores, key=lambda x: x['average_rating'])
+
 
     stores_open = [store for store in stores if (store['is_open_now'])]
     stores_close = [store for store in stores if (not store['is_open_now'])]
 
     return Response({'open': stores_open, 'close': stores_close})
-    
-    #ordenar por preço: stores_open = sorted(stores_open, key=lambda x: x[orderby])
-    #ordenar por preço: stores_close = sorted(stores_close, key=lambda x: x[orderby])
-
-    #ordenar por avaliação: stores_open = sorted(stores_open, key=lambda x: x['average_rating'], reverse=True)
-    #ordenar por avaliação: stores_close = sorted(stores_close, key=lambda x: x['average_rating'], reverse=True)
-
-    #ordenar por tempo de entrega: stores_open = sorted(stores_open, key=lambda x: x['time_delivery'])
-    #ordenar por tempo de entrega: stores_close = sorted(stores_close, key=lambda x: x['time_delivery'])
-
-    #ordenar por taxa de entrega: stores_open = sorted(stores_open, key=lambda x: x['rate'])
-    #ordenar por taxa de entrega: stores_close = sorted(stores_close, key=lambda x: x['rate'])
-
-    #ordenar por distancia: stores_open = sorted(stores_open, key=lambda x: x['distance'])
-    #ordenar por distancia: stores_close = sorted(stores_close, key=lambda x: x['distance'])
-
-    #filtrar por taxa de entrega: stores_open = [store_open for store_open in stores_open if (store[valor])] em que valor é o valor do filtro da taxa de entrega
-    #filtrar por taxa de entrega: stores_close = [store_close for store_close in stores_close if (store[valor])] em que valor é o valor do filtro da taxa de entrega
