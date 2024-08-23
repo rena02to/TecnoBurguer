@@ -23,7 +23,7 @@ export default function Filters( {filters} : Props){
     const q = searchParams.get('q') || '';
     const o = searchParams.get('order') || 'default';
     const r = searchParams.get('rate') || '';
-    const filter = searchParams.get('filter') || '';
+    const filter = searchParams.get('filter') || 'stores';
 
     useEffect(() => {
         setSearchValue(q);
