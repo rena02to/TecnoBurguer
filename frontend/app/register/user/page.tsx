@@ -66,7 +66,7 @@ export default function Register(){
         }else{
             setDarkMode('No')
         }
-    }, [])
+    }, [t])
 
     const formataNome = ( value : string ) : string => {
         return value.replace(/\b\w/g, char => char.toUpperCase());

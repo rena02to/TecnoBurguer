@@ -43,7 +43,7 @@ export default function Filters( {filters} : Props){
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [menuFilters, q])
+    }, [menuFilters, q, o, r])
 
     const handleSearch = () => {
         //pegar os valores de order e rate pela url

@@ -80,7 +80,7 @@ export default function Search(){
         }else{
             window.location.href = '/';
         }
-    }, [ query, filter ]);
+    }, [ query, filter, o, r ]);
 
     const handleFilter = ( value: string ) => {
         if(value !== itemsOrStores){
@@ -118,8 +118,8 @@ export default function Search(){
                                 <>
                                     {itemsOrStores === 'stores' ? 
                                         <div className={style.stores}>
-                                            {storesOpen.map((store) => (
-                                                <div className={style.store}>
+                                            {storesOpen.map((store, index) => (
+                                                <div className={style.store} key={index}>
                                                     <div className={style.image}>
                                                         <Image src='/Images/icon-simplified.svg' width={75} height={75} alt='Image from store'/>
                                                     </div>
@@ -127,13 +127,14 @@ export default function Search(){
                                                         <h2>{store.name}</h2>
                                                         <span>
                                                             <p>{store.opening_hours?.status}</p>
-                                                            <p><FaStar/></p>
+                                                            <p><FaStar/>{store.average_rating}</p>
+                                                            <p></p>
                                                         </span>
                                                     </div>
                                                 </div>
                                             ))}
-                                            {storesClose.map((store) => (
-                                               <p>{store.name}</p> 
+                                            {storesClose.map((store, index) => (
+                                               <div className={style.store} key={index}></div> 
                                             ))}
                                         </div>
                                         : 

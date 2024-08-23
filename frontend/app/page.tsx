@@ -1,5 +1,4 @@
 import ImageTop from "@/components/ImageTop";
-import NavBar from "@/components/NavBar";
 import Stores from "@/components/Stores";
 import { ContextProvider } from "@/context/context";
 
