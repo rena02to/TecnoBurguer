@@ -158,7 +158,68 @@ export default function Search(){
                                             ))}
                                         </div>
                                         : 
-                                        <div className={style.items}></div>
+                                        <div className={style.items}>
+                                            {storesOpen.map((store, index) => (
+                                                <div className={style.item}>
+                                                    <Link href={`/store/${store.id}`} className={style.store} key={index}>
+                                                        <div className={style.image}>
+                                                            <Image src='/Images/icon-simplified.svg' width={45} height={45} alt='Image from store'/>
+                                                        </div>
+                                                        <div className={style.infos}>
+                                                            <h2>{store.name}</h2>
+                                                            <span>
+                                                                {store.opening_hours?.status === 'open' ? <p className={style.status}>{t('Stores.open')}</p> : <p className={style.status}>{t('Stores.close')}</p>}
+                                                                <p className={style.assessments}><FaStar className={store.average_rating !== 0.0 ? style.yes : style.no}/>{store.average_rating.toFixed(1)}</p>
+                                                                <p>0.0 Km</p>
+                                                            </span>
+                                                            <span>
+                                                                <p className={style.time}>00 - 00 min</p>
+                                                                <p>R$ 0.0</p>
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                    <div className={style.foods}>
+                                                        {store.foods.map((food, index) => (
+                                                            <Link href={`/store/${store.id}/item/${food.id}`} key={index} className={style.food}>
+                                                                <img src={food.image} width={140} height={140} alt='Image from store'/>
+                                                                <h3>{food.name}</h3>
+                                                                <p>R$ {food.value}</p>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            {storesClose.map((store, index) => (
+                                                <div className={style.itemClose}>
+                                                    <Link href={`/store/${store.id}`} className={style.store} key={index}>
+                                                        <div className={style.image}>
+                                                            <Image src='/Images/icon-simplified.svg' width={45} height={45} alt='Image from store'/>
+                                                        </div>
+                                                        <div className={style.infos}>
+                                                            <h2>{store.name}</h2>
+                                                            <span>
+                                                                {store.opening_hours?.status === 'open' ? <p className={style.status}>{t('Stores.open')}</p> : <p className={style.status}>{t('Stores.close')}</p>}
+                                                                <p className={style.assessments}><FaStar className={store.average_rating !== 0.0 ? style.yes : style.no}/>{store.average_rating.toFixed(1)}</p>
+                                                                <p>0.0 Km</p>
+                                                            </span>
+                                                            <span>
+                                                                <p className={style.time}>00 - 00 min</p>
+                                                                <p>R$ 0.0</p>
+                                                            </span>
+                                                        </div>
+                                                    </Link>
+                                                    <div className={style.foods}>
+                                                        {store.foods.map((food, index) => (
+                                                            <Link href={`/store/${store.id}/item/${food.id}`} key={index} className={style.food}>
+                                                                <img src={food.image} width={140} height={140} alt='Image from store'/>
+                                                                <h3>{food.name}</h3>
+                                                                <p>R$ {food.value}</p>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     }
                                 </>
                             }

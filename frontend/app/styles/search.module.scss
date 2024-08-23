@@ -132,6 +132,105 @@
                     filter: grayscale(100%);
                 }
             }
+            .items{
+                @include flex-align(column);
+                align-items: flex-start;
+                width: 100%;
+                gap: 20px;
+                .item, .itemClose{
+                    @include flex-align(column);
+                    align-items: flex-start;
+                    width: 100%;
+                    margin-top: 10px;
+                    .store, .storeClose{
+                        @include flex-align(row);
+                        width: max-content;
+                        gap: 10px;
+                        text-decoration: none;
+                        color: black;
+                        .image{
+                            background-color: rgb(220, 220, 220);
+                            padding: 5px;
+                            border-radius: 100%;
+                            width: 45px;
+                            height: 45px;
+                            margin: 0;
+                        }
+                        .infos{
+                            @include flex-align(column);
+                            align-items: flex-start;
+                            h2, p{
+                                margin: 0;
+                                padding: 0;
+                            }
+                            h2{
+                                font-size: 15px;
+                                font-weight: 500;
+                            }
+                            p{
+                                font-size: 12px;
+                                font-weight: 400;
+                            }
+                            span{
+                                @include flex-align(row);
+                                gap: 5px;
+                            }
+                            .status, .assessments, .time{
+                                &::after{
+                                    content: '|';
+                                    margin: 0 0 0 5px;
+                                }
+                            }
+                            .assessments{
+                                .yes{
+                                    color: $yellow-color;
+                                }
+                            }
+                        }
+                    }
+                    .foods{
+                        @include flex-align(row);
+                        justify-content: flex-start;
+                        padding-left: 15px;
+                        width: calc(100% - 15px);
+                        overflow-x: scroll;
+                        overflow-y: hidden;
+                        align-items: flex-start;
+                        margin-top: 5px;
+                        gap: 10px;
+                        &::-webkit-scrollbar{
+                            display: none;
+                        }
+                        .food{
+                            @include flex-align(column);
+                            text-decoration: none;
+                            color: black;
+                            width: 160px;
+                            padding: 5px;
+                            align-items: flex-start;
+                            img{
+                                border-radius: 20px;
+                                margin-bottom: 5px;
+                            }
+                            h3, p{
+                                max-width: calc(100% - 20px);
+                                margin: 0;
+                                padding: 0 5px;
+                                font-weight: 500;
+                            }
+                            h3{
+                                font-size: 15px;
+                            }
+                            p{
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+                .itemClose{
+                    filter: grayscale(100%);
+                }
+            }
         }
     }
 }
