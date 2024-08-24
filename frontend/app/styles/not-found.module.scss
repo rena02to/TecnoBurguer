@@ -1,0 +1,32 @@
+@import './mixins-and-variables.scss';
+
+.notFound{
+    main{
+        @include flex-align(column);
+        padding: 10px 20px;
+        min-height: calc(100vh - 101px - 20px);
+        h1, p{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 20px;
+            span{
+                color: $orange-color;
+                font-weight: 600;
+            }
+        }
+        p{
+            font-size: 17px;
+        }
+        @media (max-width: 600px){
+            img{
+                margin-top: 15px;
+                width: 300px;
+                height: 167px;
+            }
+        }
+    }
+}
