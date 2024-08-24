@@ -106,5 +106,6 @@
       "open": "Stores currently open",
       "closed": "Stores currently closed"
     }
-  }
+  },
+  "Footer": "All rights reserved"
 }

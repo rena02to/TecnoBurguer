@@ -1,9 +1,10 @@
-@import './../../app//styles/mixins-and-variables.scss';
+@import './../../app/styles/mixins-and-variables.scss';
 
 .main{
     padding: 0 20px 20px 20px;
     width: calc(100% - 40px);
     @include flex-align(column);
+    justify-content: flex-start;
     gap: 10px;
     .stores{
         width: 100%;

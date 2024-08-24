@@ -1,6 +1,5 @@
 'use client'
-import Link from 'next/link'
-import style from './styles/tophomepage.module.scss'
+import style from './styles/imagetop.module.scss'
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';

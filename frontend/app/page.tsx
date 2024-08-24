@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import ImageTop from "@/components/ImageTop";
 import Stores from "@/components/Stores";
 import { ContextProvider } from "@/context/context";
@@ -9,8 +10,11 @@ export const metadata = {
 export default function Home() {
   return (
     <ContextProvider>
-      <ImageTop/>
-      <Stores/>
+      <main>
+        <ImageTop/>
+        <Stores/>
+      </main>
+      <Footer/>
     </ContextProvider>
   );
 }

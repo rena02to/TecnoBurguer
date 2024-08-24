@@ -3,7 +3,6 @@ export const metadata = {
 };
 
 export default function Custom404() {
-    //return
     return(
         <></>
     )

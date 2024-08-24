@@ -21,6 +21,9 @@ body{
         }
     }
 }
+main{
+    min-height: calc(100vh - 101px);
+}
 /*::-webkit-scrollbar{
     width: 7px;
     background-color: rgb(200, 200, 200);
