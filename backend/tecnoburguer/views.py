@@ -67,7 +67,7 @@ def search(request):
     filters.pop('q')
 
     if filters.get('filter') == 'stores':
-        stores = Store.objects.filter(name__icontains=query).distinct()
+        stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
         stores = stores.filter(state='open')
         stores = StoresOpenSerializer(stores, many=True, context={'request': request}).data
         if filters.get('order') == 'value':
