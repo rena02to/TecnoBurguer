@@ -90,6 +90,7 @@ export default function Register(){
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
+        toast.info(t('instance'), { position: "top-right", hideProgressBar: true, autoClose: 6000, closeOnClick: false, theme: "dark" })
         setLoading(true);
         try{
             const response = await fetch('https://tecnoburguer.onrender.com/api/user/register', {

@@ -7,7 +7,7 @@ export const metadata = {
   title: 'TecnoBurguer'
 };
 
-export default function Home() {
+export default function Home(){
   return (
     <ContextProvider>
       <main>

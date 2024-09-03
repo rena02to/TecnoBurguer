@@ -9,6 +9,7 @@ import { RiLoader2Line } from "react-icons/ri";
 import Filters from './Filters';
 import { MdDeliveryDining } from 'react-icons/md';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 interface OpeningHoursType {
     status: string;
@@ -44,6 +45,7 @@ export default function Stores() {
     useEffect(() => {
         const fetchData = async() => {
             setLoading(true);
+            toast.info(t('instance'), { position: "top-right", hideProgressBar: true, autoClose: 6000, closeOnClick: false, theme: "dark" })
             try{
                 const response = await fetch('https://tecnoburguer.onrender.com/api/stores/open');
                 if(response.ok) {

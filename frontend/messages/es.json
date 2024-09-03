@@ -42,7 +42,9 @@
       },
       "success": "Usuario creado exitosamente"
     },
-    "Collaborator": {}
+    "Collaborator": {
+      "instance": "El backend del proyecto se almacena en una instancia gratuita que se desactiva después de unos minutos de inactividad, por lo que si la instancia se desactiva, deberá esperar unos segundos para que se carguen los datos."
+    }
   },
   "Filters": {
     "search": "Buscar tiendas o artículos...",
@@ -71,6 +73,7 @@
       "signup": "Registro"
     },
     "Stores":{
+      "instance": "El backend del proyecto se almacena en una instancia gratuita que se desactiva después de unos minutos de inactividad, por lo que si la instancia se desactiva, deberá esperar unos segundos para que se carguen los datos.",
       "monday": "Lunes",
       "tuesday": "Martes",
       "wednesday": "Miércoles",
@@ -95,6 +98,7 @@
     }
   },
   "Search": {
+    "instance": "El backend del proyecto se almacena en una instancia gratuita que se desactiva después de unos minutos de inactividad, por lo que si la instancia se desactiva, deberá esperar unos segundos para que se carguen los datos.",
     "load": "Cargando resultados...",
     "notresults": "No se encontraron resultados",
     "resultsfor": "Resultados para ",
