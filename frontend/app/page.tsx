@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import ImageTop from "@/components/ImageTop";
+import NavBar from "@/components/NavBar";
 import Stores from "@/components/Stores";
 import { ContextProvider } from "@/context/context";
 
@@ -10,6 +11,7 @@ export const metadata = {
 export default function Home(){
   return (
     <ContextProvider>
+      <NavBar/>
       <main>
         <ImageTop/>
         <Stores/>

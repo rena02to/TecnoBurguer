@@ -18,6 +18,12 @@ export default function ImageTop(){
     return(
         <div className={style.top}>
             <div className={style.image}></div>
+            {!existToken &&
+                <div className={style.links}>
+                    <a href='/login'>Login</a>
+                    <a href="/register/user">{t('signup')}</a>
+                </div>
+            }
         </div>
     )
 }

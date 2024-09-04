@@ -16,12 +16,18 @@
         @include flex-align(column);
         gap: 5px;
         align-items: flex-end;
-        .signin, .signingup{
+        a{
+            font-size: 15px;
             text-decoration: none;
             padding: 5px 15px;
             background-color: $color-forms;
-            color: white;
+            color: rgb(230, 230, 230);
             border-radius: 5px;
+            &:hover{
+                transition: .5s;
+                box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
+                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+            }
         }
     }
 }

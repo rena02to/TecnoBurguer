@@ -3,6 +3,7 @@ import style from './../styles/search.module.scss';
 import Filters from "@/components/Filters";
 import Footer from '@/components/Footer';
 import ImageTop from "@/components/ImageTop";
+import NavBar from '@/components/NavBar';
 import { useTranslations } from "next-intl";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -99,6 +100,7 @@ export default function Search(){
 
     return(
         <div className={style.search}>
+            <NavBar/>
             <main>
                 <ImageTop/>
                 <Filters filters={true}/>

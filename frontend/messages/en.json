@@ -71,9 +71,7 @@
     }
   },
   "HomePage": {
-    "Navbar":{
-      "signup": "Sign up"
-    },
+    "signup": "Sign up",
     "Stores":{
       "instance": "The project backend is stored in a free instance that deactivates after a few minutes of inactivity, so if the instance is deactivated, you need to wait a few seconds for the data to load.",
       "monday": "monday",

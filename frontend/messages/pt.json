@@ -71,9 +71,7 @@
     }
   },
   "HomePage": {
-    "Navbar":{
-      "signup": "Registre-se"
-    },
+    "signup": "Registre-se",
     "Stores":{
       "instance": "O backend do projeto está armazenado em uma instância gratuita que desativa após alguns minutos de inatividade, portanto, caso a instância esteja desativada, é necessário aguardar alguns segundos para que os dados carreguem.",
       "monday": "segunda",
