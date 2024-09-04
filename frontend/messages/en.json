@@ -111,5 +111,8 @@
       "closed": "Stores currently closed"
     }
   },
-  "Footer": "All rights reserved"
+  "Footer": "All rights reserved",
+  "Navbar": {
+    "signup": "Sign up"
+  }
 }

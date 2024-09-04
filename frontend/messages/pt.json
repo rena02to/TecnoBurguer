@@ -111,5 +111,8 @@
       "closed": "Lojas fechadas no momento"
     }
   },
-  "Footer": "Todos os direitos reservados"
+  "Footer": "Todos os direitos reservados",
+  "Navbar": {
+    "signup": "Registre-se"
+  }
 }

@@ -109,5 +109,8 @@
       "closed": "Lo sentimos, todas las tiendas están actualmente cerradas"
     }
   },
-  "Footer": "Reservados todos los derechos"
+  "Footer": "Reservados todos los derechos",
+  "Navbar": {
+    "signup": "Registro"
+  }
 }
