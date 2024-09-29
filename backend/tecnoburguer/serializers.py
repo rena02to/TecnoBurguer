@@ -7,14 +7,13 @@ from datetime import datetime, timedelta
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['name', 'email', 'telephone', 'language', 'darkmode', 'type', 'password']
+        fields = ['name', 'email', 'telephone', 'darkmode', 'type', 'password']
 
     def create(self, validated_data):
         user = User.objects.create_user(
             name=validated_data['name'],
             email=validated_data['email'],
             telephone=validated_data['telephone'],
-            language=validated_data['language'],
             darkmode=validated_data['darkmode'],
             type=validated_data['type'],
             password=validated_data['password']
@@ -26,7 +25,7 @@ class FoodSerializer(serializers.ModelSerializer):
         model = Food
         fields = ['id', 'name', 'desc', 'amount', 'value', 'state', 'image']
 
-class StoresOpenSerializer(serializers.ModelSerializer):
+class StoresSerializer(serializers.ModelSerializer):
     average_rating = serializers.SerializerMethodField()
     opening_hours = serializers.SerializerMethodField()
     is_open_now = serializers.SerializerMethodField()

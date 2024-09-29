@@ -1,92 +1,105 @@
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from .serializers import UserSerializer, Store, StoresSerializer, ItemsAvaliableSerializer
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework import status
 from django.db.models import Q
-from .serializers import UserSerializer, StoresOpenSerializer, ItemsAvaliableSerializer
-from .models import Store
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_user_from_token(request):
-    user = request.user
-    return Response({'language': user.language, 'name': user.name, 'type': user.type}, status=status.HTTP_201_CREATED)
 
 #register user
 class Register(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        user_type = request.data.get('type', None)
+        try:
+            user_type = request.data.get('type', None)
 
-        # Usuário autenticado
-        if request.user.is_authenticated:
-            if request.user.type == 'admin':
-                if user_type != 'client' and user_type != 'sudo':
+            #checks if the user is authenticated
+            if request.user.is_authenticated:
+                #check if you are admin
+                if request.user.type == 'admin':
+                    #check if you are trying to register a client or superuser
+                    if user_type != 'client' and user_type != 'sudo':
+                        serializer = UserSerializer(data=request.data)
+                        if serializer.is_valid():
+                            serializer.save()
+                            return Response({'status': 'User created successfully'}, status=status.HTTP_201_CREATED)
+                        else:
+                            return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+                    #if so, it returns permission error
+                    else:
+                        return Response({'error': 'Admins cannot create sudo or client users'}, status=status.HTTP_403_FORBIDDEN)
+                #if you are not admin
+                elif request.user.type == 'sudo':
                     serializer = UserSerializer(data=request.data)
                     if serializer.is_valid():
                         serializer.save()
-                        return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
+                        return Response({'status': 'User created successfully'}, status=status.HTTP_201_CREATED)
                     else:
                         return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
                 else:
-                    return Response({'error': 'Admins cannot create sudo or client users'}, status=status.HTTP_403_FORBIDDEN)
-            elif request.user.type == 'sudo':
-                serializer = UserSerializer(data=request.data)
-                if serializer.is_valid():
-                    serializer.save()
-                    return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
-                else:
-                    return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'error': 'User not authorized to create new users'}, status=status.HTTP_403_FORBIDDEN)
+            
+            #if the user is not authenticated
             else:
-                return Response({'error': 'User not authorized to create new users'}, status=status.HTTP_403_FORBIDDEN)
-        
-        # Usuário não autenticado
-        else:
-            if user_type == 'client':
-                serializer = UserSerializer(data=request.data)
-                if serializer.is_valid():
-                    serializer.save()
-                    return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
+                #check if it is a client type
+                if user_type == 'client':
+                    serializer = UserSerializer(data=request.data)
+                    if serializer.is_valid():
+                        serializer.save()
+                        return Response({'status': 'User created successfully'}, status=status.HTTP_201_CREATED)
+                    else:
+                        return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+                #if it is not, you cannot register
                 else:
-                    return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'error': 'Only customers can be registered without authentication'}, status=status.HTTP_403_FORBIDDEN)
+        except Exception as e:
+            return Response({'error': f'Error creating user: {e}'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Stores(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        try:
+            #checks the existence of filters
+            if request.GET.dict():
+                filters = request.GET.dict()
+                query = filters.pop('q')
+
+                #check if you are filtering by stores
+                if filters.get('filter') == 'stores':
+                    stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
+                    stores = stores.filter(state='open')
+                    stores = StoresSerializer(stores, many=True, context={'request': request}).data
+                    if filters.get('order') == 'value':
+                        stores = sorted(stores, key=lambda x: x['average_price'])
+                    elif filters.get('order') == 'assessment':
+                        stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
+                #if it's not for stores, it's for items
+                else:
+                    stores = Store.objects.filter(food__name__icontains=query).distinct()
+                    stores = stores.filter(state='open')
+                    stores = ItemsAvaliableSerializer(stores, many=True, context={'request': request}).data
+                    if filters.get('order') == 'value':
+                        stores = sorted(stores, key=lambda x: x['min_price'])
+                        for store in stores:
+                            store['foods'] = sorted(store['foods'], key=lambda x: float(x['value']))
+                    if filters.get('order') == 'assessment':
+                        stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
+
+
+                stores_open = [store for store in stores if (store['is_open_now'])]
+                stores_close = [store for store in stores if (not store['is_open_now'])]
+
+                return Response({'open': stores_open, 'close': stores_close})
+            #checks if the search is for a specific store
+            
+            #elif:
+
+            #if it does not match previous searches, the search is for all open stores
             else:
-                return Response({'error': 'Only customers can be registered without authentication'}, status=status.HTTP_403_FORBIDDEN)
-
-@api_view(['GET'])
-def get_stores_open(request):
-    stores = StoresOpenSerializer(Store.objects.filter(state='open'), many=True, context={'request': request}).data
-    stores = [store for store in stores if (store['is_open_now'])]
-    return Response(stores, status=status.HTTP_201_CREATED)
-
-@api_view(['GET'])
-def search(request):
-    query = request.GET.get('q', '')
-    filters = request.GET.dict()
-    filters.pop('q')
-
-    if filters.get('filter') == 'stores':
-        stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
-        stores = stores.filter(state='open')
-        stores = StoresOpenSerializer(stores, many=True, context={'request': request}).data
-        if filters.get('order') == 'value':
-            stores = sorted(stores, key=lambda x: x['average_price'])
-        elif filters.get('order') == 'assessment':
-            stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
-    else:
-        stores = Store.objects.filter(food__name__icontains=query).distinct()
-        stores = stores.filter(state='open')
-        stores = ItemsAvaliableSerializer(stores, many=True, context={'request': request}).data
-        if filters.get('order') == 'value':
-            stores = sorted(stores, key=lambda x: x['min_price'])
-            for store in stores:
-                store['foods'] = sorted(store['foods'], key=lambda x: float(x['value']))
-        if filters.get('order') == 'assessment':
-            stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
-
-
-    stores_open = [store for store in stores if (store['is_open_now'])]
-    stores_close = [store for store in stores if (not store['is_open_now'])]
-
-    return Response({'open': stores_open, 'close': stores_close})
+                stores = StoresSerializer(Store.objects.filter(state='open'), many=True, context={'request': request}).data
+                stores = [store for store in stores if (store['is_open_now'])]
+                return Response(stores, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({"error": f"An error occurred when searching for stores: {e}"}, status=status.HTTP_)

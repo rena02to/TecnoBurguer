@@ -1,25 +1,26 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .forms import UserChangeForm, UserCreationForm
 from .models import User, Store, StoreHour, Food, Order, OrderItem, Coupon, UserCoupon, Assessment, InfosDelivery
-from .forms import UserCreationForm, UserChangeForm
 
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     add_form = UserCreationForm
     form = UserChangeForm
     model = User
 
-    list_display = ('name', 'email', 'telephone', 'language', 'darkmode', 'type', 'is_staff')
+    list_display = ('name', 'email', 'telephone', 'darkmode', 'type', 'is_staff')
     list_filter = ('is_staff', 'is_active', 'type')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('name', 'telephone', 'language', 'darkmode', 'type',)}),
+        ('Personal info', {'fields': ('name', 'telephone', 'darkmode', 'type',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('name', 'email', 'password1', 'password2', 'telephone', 'language', 'darkmode', 'type'),
+            'fields': ('name', 'email', 'password1', 'password2', 'telephone', 'darkmode', 'type'),
         }),
     )
     search_fields = ('name', 'email')
@@ -76,7 +77,7 @@ class InfosDeliveryAdmin(admin.ModelAdmin):
     list_display = ('store', 'rate_km', 'delivery_free_km', 'min_preparation_time', 'max_preparation_time', 'min_delivery_time_km', 'max_delivery_time_km')
     search_fields = ('store', )
 
-admin.site.register(User, UserAdmin)
+
 admin.site.site_title = 'TecnoBurguer'
 admin.site.index_title = 'Administrative Area'
 admin.site.site_header = 'Administrative Area'
