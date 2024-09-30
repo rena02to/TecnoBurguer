@@ -5,10 +5,12 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.db.models import Q
 
-#register user
-class Register(APIView):
-    permission_classes = [AllowAny]
-
+class User(APIView):
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [AllowAny()]
+        return [IsAuthenticated()]
+    
     def post(self, request):
         try:
             user_type = request.data.get('type', None)
@@ -54,6 +56,12 @@ class Register(APIView):
                     return Response({'error': 'Only customers can be registered without authentication'}, status=status.HTTP_403_FORBIDDEN)
         except Exception as e:
             return Response({'error': f'Error creating user: {e}'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get(self, request):
+        try:
+            return Response({'language': request.user.language, 'name': request.user.name, 'type': request.user.type}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': f"Ocorreu um erro ao buscar o usuário: {e}"}, status=status.HTTP_200_OK)
 
 
 class Stores(APIView):
@@ -63,35 +71,38 @@ class Stores(APIView):
         try:
             #checks the existence of filters
             if request.GET.dict():
-                filters = request.GET.dict()
-                query = filters.pop('q')
+                try:
+                    filters = request.GET.dict()
+                    query = filters.pop('q')
 
-                #check if you are filtering by stores
-                if filters.get('filter') == 'stores':
-                    stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
-                    stores = stores.filter(state='open')
-                    stores = StoresSerializer(stores, many=True, context={'request': request}).data
-                    if filters.get('order') == 'value':
-                        stores = sorted(stores, key=lambda x: x['average_price'])
-                    elif filters.get('order') == 'assessment':
-                        stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
-                #if it's not for stores, it's for items
-                else:
-                    stores = Store.objects.filter(food__name__icontains=query).distinct()
-                    stores = stores.filter(state='open')
-                    stores = ItemsAvaliableSerializer(stores, many=True, context={'request': request}).data
-                    if filters.get('order') == 'value':
-                        stores = sorted(stores, key=lambda x: x['min_price'])
-                        for store in stores:
-                            store['foods'] = sorted(store['foods'], key=lambda x: float(x['value']))
-                    if filters.get('order') == 'assessment':
-                        stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
+                    #check if you are filtering by stores
+                    if filters.get('filter') == 'stores':
+                        stores = Store.objects.filter(Q(name__icontains=query) | Q(food__name__icontains=query)).distinct()
+                        stores = stores.filter(state='open')
+                        stores = StoresSerializer(stores, many=True, context={'request': request}).data
+                        if filters.get('order') == 'value':
+                            stores = sorted(stores, key=lambda x: x['average_price'])
+                        elif filters.get('order') == 'assessment':
+                            stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
+                    #if it's not for stores, it's for items
+                    else:
+                        stores = Store.objects.filter(food__name__icontains=query).distinct()
+                        stores = stores.filter(state='open')
+                        stores = ItemsAvaliableSerializer(stores, many=True, context={'request': request}).data
+                        if filters.get('order') == 'value':
+                            stores = sorted(stores, key=lambda x: x['min_price'])
+                            for store in stores:
+                                store['foods'] = sorted(store['foods'], key=lambda x: float(x['value']))
+                        if filters.get('order') == 'assessment':
+                            stores = sorted(stores, key=lambda x: x['average_rating'], reverse=True)
 
 
-                stores_open = [store for store in stores if (store['is_open_now'])]
-                stores_close = [store for store in stores if (not store['is_open_now'])]
+                    stores_open = [store for store in stores if (store['is_open_now'])]
+                    stores_close = [store for store in stores if (not store['is_open_now'])]
 
-                return Response({'open': stores_open, 'close': stores_close})
+                    return Response({'open': stores_open, 'close': stores_close}, status=status.HTTP_200_OK)
+                except Exception as e:
+                    return Response({"error": f"An error occurred when searching for stores: {e}"}, status=status.HTTP_400_BAD_REQUEST)
             #checks if the search is for a specific store
             
             #elif:
@@ -100,6 +111,6 @@ class Stores(APIView):
             else:
                 stores = StoresSerializer(Store.objects.filter(state='open'), many=True, context={'request': request}).data
                 stores = [store for store in stores if (store['is_open_now'])]
-                return Response(stores, status=status.HTTP_201_CREATED)
+                return Response(stores, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response({"error": f"An error occurred when searching for stores: {e}"}, status=status.HTTP_)
+            return Response({"error": f"An error occurred when searching for stores: {e}"}, status=status.HTTP_400_BAD_REQUEST)

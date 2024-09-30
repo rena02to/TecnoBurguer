@@ -50,7 +50,7 @@ class StoresSerializer(serializers.ModelSerializer):
             if (open_time and close_time) and (open_time != close_time):
                 close_time = store_timezone.localize(datetime.combine(now.date(), close_time))
                 open_time = store_timezone.localize(datetime.combine(now.date(), open_time))
-                if now >= open_time and now <= close_time:
+                if now >= open_time and now < close_time:
                     return {'status' : 'open', 'hours_close' : close_time.strftime("%H:%M")}
                 else:
                     return {'status' : 'close', 'day': 'today', 'hours_open' : open_time.strftime("%H:%M")}

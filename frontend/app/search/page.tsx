@@ -48,7 +48,6 @@ export default function Search(){
 
     useEffect(() => {
         if(query){
-            toast.info(t('instance'), { position: "top-right", hideProgressBar: true, autoClose: 6000, closeOnClick: false, theme: "dark" })
             document.title = `${query} - TecnoBurguer`;
             setItemsOrStores(filter)
             const fetchData = async() => {

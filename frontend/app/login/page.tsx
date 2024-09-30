@@ -3,7 +3,7 @@ import { Form, Formik, Field } from "formik";
 import { useEffect, useState } from "react";
 import style from '../styles/forms.module.scss';
 import { useTranslations } from "next-intl";
-import { setUserLocale } from "@/services/locale";
+import { getUserLocale, setUserLocale } from "@/services/locale";
 import { Locale } from "@/config";
 import { IoMailOutline } from "react-icons/io5";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
@@ -49,7 +49,6 @@ export default function Login(){
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
-        toast.info(t('instance'), { position: "top-right", hideProgressBar: true, autoClose: 6000, closeOnClick: false, theme: "dark" })
         setLoading(true);
         try{
             const response = await fetch('https://tecnoburguer.onrender.com/api/user/login',{

@@ -13,6 +13,7 @@ API_SECRET = os.getenv('API_SECRET')
 DEBUG = int(os.getenv('DEBUG', '0')) == 1
 
 ALLOWED_HOSTS = [
+    'tecnoburguer.onrender.com',
     'localhost',
     '127.0.0.1',
 ]

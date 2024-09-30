@@ -1,3 +1,4 @@
+'use client'
 import style from './styles/filters.module.scss';
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { IoClose, IoLocationOutline, IoSearch } from 'react-icons/io5';
@@ -11,7 +12,7 @@ interface Props{
     filters: boolean;
 }
 
-export default function Filters( {filters} : Props){
+export default function Filters( {filters} : Props ){
     const searchParams = useSearchParams();
     const [searchValue, setSearchValue] = useState('');
     const t = useTranslations('Filters');

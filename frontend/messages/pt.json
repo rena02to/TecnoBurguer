@@ -1,6 +1,5 @@
 {
   "Login": {
-    "instance": "O backend do projeto está armazenado em uma instância gratuita que desativa após alguns minutos de inatividade, portanto, caso a instância esteja desativada, é necessário aguardar alguns segundos para que os dados carreguem.",
     "menu": "Cardápio",
     "title": "Bem vindo!",
     "password": "Senha",
@@ -12,7 +11,6 @@
   },
   "Register": {
     "User":{
-      "instance": "O backend do projeto está armazenado em uma instância gratuita que desativa após alguns minutos de inatividade, portanto, caso a instância esteja desativada, é necessário aguardar alguns segundos para que os dados carreguem.",
       "menu": "Cardápio",
       "title": "Cadastro",
       "title-form": "Bem vindo!",
@@ -45,7 +43,6 @@
       "success": "Usuário criado com sucesso"
     },
     "Collaborator": {
-      "instance": "O backend do projeto está armazenado em uma instância gratuita que desativa após alguns minutos de inatividade, portanto, caso a instância esteja desativada, é necessário aguardar alguns segundos para que os dados carreguem."
     }
   },
   "Filters": {
@@ -73,7 +70,6 @@
   "HomePage": {
     "signup": "Registre-se",
     "Stores":{
-      "instance": "O backend do projeto está armazenado em uma instância gratuita que desativa após alguns minutos de inatividade, portanto, caso a instância esteja desativada, é necessário aguardar alguns segundos para que os dados carreguem.",
       "monday": "segunda",
       "tuesday": "terça",
       "wednesday": "quarta",
@@ -98,7 +94,6 @@
     }
   },
   "Search": {
-    "instance": "O backend do projeto está armazenado em uma instância gratuita que desativa após alguns minutos de inatividade, portanto, caso a instância esteja desativada, é necessário aguardar alguns segundos para que os dados carreguem.",
     "load": "Carregando resultados...",
     "notresults": "Nenhum resultado encontrado",
     "resultsfor": "Resultados para ",

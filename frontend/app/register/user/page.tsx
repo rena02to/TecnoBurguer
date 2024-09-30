@@ -66,7 +66,7 @@ export default function Register(){
         }else{
             setDarkMode('No')
         }
-    }, [t])
+    }, [])
 
     const formataNome = ( value : string ) : string => {
         return value.replace(/\b\w/g, char => char.toUpperCase());
@@ -90,7 +90,6 @@ export default function Register(){
 
     //functions
     const handleSubmit = async ( values: FormValues ) => {
-        toast.info(t('instance'), { position: "top-right", hideProgressBar: true, autoClose: 6000, closeOnClick: false, theme: "dark" })
         setLoading(true);
         try{
             const response = await fetch('https://tecnoburguer.onrender.com/api/user/register', {

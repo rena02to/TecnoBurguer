@@ -1,6 +1,5 @@
 {
   "Login": {
-    "instance": "The project backend is stored in a free instance that deactivates after a few minutes of inactivity, so if the instance is deactivated, you need to wait a few seconds for the data to load.",
     "menu": "Menu",
     "title": "Welcome!",
     "password": "Password",
@@ -12,7 +11,6 @@
   },
   "Register": {
     "User":{
-      "instance": "The project backend is stored in a free instance that deactivates after a few minutes of inactivity, so if the instance is deactivated, you need to wait a few seconds for the data to load.",
       "menu": "Menu",
       "title": "Sign up",
       "title-form": "Welcome!",
@@ -45,7 +43,6 @@
       "success": "User created successfully"
     },
     "Collaborator": {
-      "instance": "The project backend is stored in a free instance that deactivates after a few minutes of inactivity, so if the instance is deactivated, you need to wait a few seconds for the data to load."
     }
   },
   "Filters": {
@@ -73,7 +70,6 @@
   "HomePage": {
     "signup": "Sign up",
     "Stores":{
-      "instance": "The project backend is stored in a free instance that deactivates after a few minutes of inactivity, so if the instance is deactivated, you need to wait a few seconds for the data to load.",
       "monday": "monday",
       "tuesday": "tuesday",
       "wednesday": "wednesday",
@@ -98,7 +94,6 @@
     }
   },
   "Search": {
-    "instance": "The project backend is stored in a free instance that deactivates after a few minutes of inactivity, so if the instance is deactivated, you need to wait a few seconds for the data to load.",
     "load": "Loading results...",
     "notresults": "No results found",
     "resultsfor": "Results for ",

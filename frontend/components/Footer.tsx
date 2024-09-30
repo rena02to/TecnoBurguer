@@ -2,6 +2,7 @@ import Image from 'next/image';
 import style from './styles/footer.module.scss';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 import { useTranslations } from 'next-intl';
+import { useContexts } from '@/context/context';
 
 export default function Footer(){
     const t = useTranslations('');
