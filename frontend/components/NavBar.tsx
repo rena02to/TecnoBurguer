@@ -6,6 +6,9 @@ import { IoMenu } from 'react-icons/io5';
 import { FaHome } from 'react-icons/fa';
 import { useContexts } from '@/context/context';
 import { useTranslations } from 'use-intl';
+import { IoIosLogIn } from 'react-icons/io';
+import { LuFileSignature } from 'react-icons/lu';
+import { VscFileSubmodule } from 'react-icons/vsc';
 
 type Link = {
     key: number;
@@ -40,8 +43,9 @@ export default function NavBar() {
             { key: 4, title: 'Perfil', link: '/', icon: <FaHome /> },
         ],
         loggedout: [
-            { key: 1, title: 'Login', link: '/login', icon: null },
-            { key: 2, title: t('signup'), link: '/', icon: null },
+            { key: 1, title: 'Login', link: '/login', icon: <IoIosLogIn/> },
+            { key: 2, title: t('signup'), link: '/', icon: <LuFileSignature/> },
+            { key: 3, title: 'Mais projetos', link: '/', icon: <VscFileSubmodule/> },
         ],
     };
 
@@ -57,7 +61,7 @@ export default function NavBar() {
                 <button className={style.buttonMenu} onClick={() => setMenuOpen(!menuOpen)}>
                     <IoMenu />
                 </button>
-                <a href='/'><Image src='/Images/icon.svg' height={35} width={75} alt='TecnoBurguer Image' /></a>
+                <a href='/'><Image src='/Images/Icon.svg' height={35} width={75} alt='TecnoBurguer Image' /></a>
             </div>
             <div className={style.menu}>
                 {links[typeUser].map((link) => (

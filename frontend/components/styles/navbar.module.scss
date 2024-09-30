@@ -65,8 +65,7 @@
         }
     }
     .menu{
-        background-color: white;
-        width: max-content;
+        background-color: $color-navbar;
         height: calc(100vh - 80px);
         padding: 70px 15px 10px 15px;
         overflow-x: scroll;
@@ -74,18 +73,28 @@
         gap: 10px;
         align-items: flex-start;
         justify-content: flex-start;
-        width: 150px;
+        width: 200px;
         &::-webkit-scrollbar{
             display: none;
         }
         .link, .linkInative{
+            width: calc(100% - 20px);
+            padding: 5px 10px;
             @include flex-align(row);
+            justify-content: flex-start;
             text-decoration: none;
             color: black;
             gap: 5px;
+            border-radius: 5px;
             svg{
-                width: 25px;
-                height: 25px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+        .link{
+            background-color: rgba(gray, 0.08);
+            &:hover{
+                background-color: rgba(black, 0.2);
             }
         }
         .inative{
